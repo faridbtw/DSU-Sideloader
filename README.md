@@ -1,3 +1,27 @@
+# DSU Sideloader · Design fork
+
+A native Jetpack Compose redesign of [VegaBobo/DSU-Sideloader](https://github.com/VegaBobo/DSU-Sideloader), maintained by [faridbtw](https://github.com/faridbtw).
+
+- Indigo light and dark themes, softer surfaces, and consistent typography.
+- A guided Choose → Configure → Install workflow with a large, accessible image picker.
+- Expandable storage options, with custom allocation visible in the summary.
+- Refreshed settings, dialogs, progress states, and readable disabled buttons.
+- Original installation engine, device checks, confirmations, Shizuku/root/ADB modes, and upstream credits retained.
+
+Build with JDK 17 and Android SDK 33:
+
+```sh
+./gradlew assembleDebug lintDebug
+```
+
+The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`. GitHub Actions also uploads it as **DSU-Sideloader-redesign** after a successful build. This fork keeps the upstream package ID for compatibility with the existing privileged module; it cannot be installed alongside the original app. The upstream updater is disabled for this fork until fork-specific signed releases are configured.
+
+Actual GSI installation still depends on device support, compatible images, an unlocked bootloader, and the selected operation mode. Compilation and interface checks do not verify a device can boot a GSI.
+
+Licensed under Apache 2.0. Original project documentation and credits follow.
+
+---
+
 # DSU Sideloader
 
 A simple app made to help users easily install GSIs via DSU's Android feature.

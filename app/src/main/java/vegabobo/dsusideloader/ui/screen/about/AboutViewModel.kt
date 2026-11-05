@@ -49,7 +49,7 @@ class AboutViewModel @Inject constructor(
 
     init {
         val isSignedByAuthor = application.isBuildSignedByAuthor()
-        _uiState.update { it.copy(isUpdaterAvailable = isSignedByAuthor || BuildConfig.DEBUG) }
+        _uiState.update { it.copy(isUpdaterAvailable = AppPrefs.ENABLE_UPDATER && (isSignedByAuthor || BuildConfig.DEBUG)) }
     }
 
     fun resetDeveloperOptionsCounter() {

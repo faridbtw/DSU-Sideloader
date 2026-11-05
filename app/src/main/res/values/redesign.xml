@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Go back</string>
+    <string name="your_workspace">SYSTEM WORKSPACE</string>
+    <string name="operation_mode_badge">%1$s mode</string>
+    <string name="workspace_headline">A new system.\nA fresh start.</string>
+    <string name="workspace_description">Explore another Android with a Generic System Image.</string>
+    <string name="journey_choose">Choose</string>
+    <string name="journey_configure">Configure</string>
+    <string name="journey_install">Install</string>
+    <string name="system_image">System image</string>
+    <string name="choose_system_image">Choose a system image</string>
+    <string name="supported_image_formats">.img · .gz · .xz · DSU .zip</string>
+    <string name="tap_to_change_image">Tap to choose a different image</string>
+    <string name="installation_options">Installation options</string>
+    <string name="default_allocation">Default userdata · Automatic image size</string>
+    <string name="custom_allocation">Custom storage allocation</string>
+    <string name="expand_options">Expand installation options</string>
+    <string name="collapse_options">Collapse installation options</string>
+    <string name="dsu_short_description">Dynamic System Updates lets you try a compatible Android system image. Reboot to return to your original system.</string>
+</resources>

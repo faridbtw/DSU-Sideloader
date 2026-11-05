@@ -1,5 +1,6 @@
 package vegabobo.dsusideloader.ui.components
 
+import androidx.compose.foundation.border
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -26,22 +27,23 @@ fun CardBox(
     isToggleChecked: Boolean = false,
     isToggleEnabled: Boolean = true,
     addPadding: Boolean = true,
-    cardColor: Color = MaterialTheme.colorScheme.inverseOnSurface,
+    cardColor: Color = MaterialTheme.colorScheme.surface,
     onCheckedChange: ((Boolean) -> Unit) = {},
-    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(10.dp),
+    roundedCornerShape: RoundedCornerShape = RoundedCornerShape(24.dp),
     content: @Composable (ColumnScope) -> Unit,
 ) {
     Box(
         modifier = if (addPadding) {
             Modifier
                 .clip(roundedCornerShape)
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f), roundedCornerShape)
                 .background(cardColor)
-                .padding(all = 10.dp)
-                .padding(end = 4.dp, start = 4.dp)
+                .padding(all = 20.dp)
                 .fillMaxWidth()
         } else {
             Modifier
                 .clip(roundedCornerShape)
+                .border(1.dp, MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f), roundedCornerShape)
                 .background(cardColor)
                 .fillMaxWidth()
         },
@@ -50,7 +52,7 @@ fun CardBox(
             if (cardTitle.isNotEmpty()) {
                 if (addToggle) {
                     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        CardTitle(modifier.weight(1F), cardTitle = cardTitle)
+                        CardTitle(Modifier.weight(1F), cardTitle = cardTitle)
                         Spacer(modifier = Modifier.padding(4.dp))
                         Switch(
                             checked = isToggleChecked,

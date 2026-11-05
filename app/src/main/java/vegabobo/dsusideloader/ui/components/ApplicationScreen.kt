@@ -8,6 +8,7 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.WindowInsetsSides
 import androidx.compose.foundation.layout.asPaddingValues
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.only
 import androidx.compose.foundation.layout.padding
@@ -15,6 +16,7 @@ import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.material3.TopAppBarDefaults
@@ -51,8 +53,9 @@ fun ApplicationScreen(
         .only(WindowInsetsSides.Vertical)
         .asPaddingValues()
 
-    Surface {
+    Surface(color = MaterialTheme.colorScheme.background) {
         Scaffold(
+            containerColor = MaterialTheme.colorScheme.background,
             modifier = scrollBehaviorModifier
                 .fillMaxSize(),
             topBar = { topBar(scrollBehavior) },
@@ -64,7 +67,8 @@ fun ApplicationScreen(
                     Column(
                         modifier = modifier
                             .padding(top = innerPadding.calculateTopPadding())
-                            .then(scrollModifier),
+                            .then(scrollModifier)
+                            .fillMaxWidth(),
                         verticalArrangement = verticalArrangement,
                     ) {
                         content()

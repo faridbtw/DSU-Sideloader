@@ -51,6 +51,7 @@ fun Home(
     homeViewModel: HomeViewModel = hiltViewModel(),
 ) {
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
+    val operationMode by homeViewModel.session.operationMode.collectAsStateWithLifecycle()
     val uriHandler = LocalUriHandler.current
 
     if (uiState.shouldKeepScreenOn) {
@@ -65,17 +66,19 @@ fun Home(
     }
 
     ApplicationScreen(
-        modifier = Modifier.padding(start = 10.dp, end = 10.dp),
-        verticalArrangement = Arrangement.spacedBy(8.dp),
+        modifier = Modifier.padding(start = 20.dp, end = 20.dp),
+        verticalArrangement = Arrangement.spacedBy(16.dp),
         topBar = {
             TopBar(
                 barTitle = stringResource(id = R.string.app_name),
                 icon = Icons.Outlined.Settings,
+                iconContentDescription = stringResource(R.string.settings),
                 scrollBehavior = it,
                 onClickIcon = { navigate(Destinations.Preferences) },
             )
         },
         content = {
+            WorkspaceHeader(operationMode = operationMode, uiState = uiState)
             Box(modifier = Modifier.animateContentSize()) {
                 when (uiState.additionalCard) {
                     AdditionalCardState.NO_DYNAMIC_PARTITIONS ->
@@ -125,6 +128,9 @@ fun Home(
                     onClickViewCommands = { navigate(Destinations.ADBInstallation) },
                     minPercentageOfFreeStorage = homeViewModel.allocPercentageInt.toString(),
                 )
+                AdvancedOptions(
+                    hasCustomValues = uiState.userDataCard.isSelected || uiState.imageSizeCard.isSelected,
+                ) {
                 UserdataCard(
                     isEnabled = uiState.isInstalling(),
                     uiState = uiState.userDataCard,
@@ -137,6 +143,7 @@ fun Home(
                     onCheckedChange = { homeViewModel.onCheckImageSizeCard() },
                     onValueChange = { homeViewModel.updateImageSize(it) },
                 )
+                }
                 DsuInfoCard(
                     onClickViewDocs = { uriHandler.openUri(HomeLinks.DSU_DOCS) },
                     onClickLearnMore = { uriHandler.openUri(HomeLinks.DSU_LEARN_MORE) },

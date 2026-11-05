@@ -2,10 +2,7 @@ package vegabobo.dsusideloader.ui.cards.installation
 
 import android.content.Intent
 import android.net.Uri
-import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.interaction.collectIsPressedAsState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import vegabobo.dsusideloader.R
@@ -47,20 +44,14 @@ fun InstallationCard(
         onSelectFileSuccess(it)
     }
 
-    val textFieldInteraction = remember { MutableInteractionSource() }
-
-    if (textFieldInteraction.collectIsPressedAsState().value) {
-        launcherSelectFile.launch(chooseFile)
-    }
-
     CardBox(
-        cardTitle = stringResource(R.string.installation),
+        cardTitle = stringResource(R.string.system_image),
         addToggle = false,
         modifier = modifier,
     ) {
         InstallationCardStep(
             uiState = uiState,
-            textFieldInteraction = textFieldInteraction,
+            onClickSelectFile = { launcherSelectFile.launch(chooseFile) },
             onClickClear = onClickClear,
             onClickInstall = onClickInstall,
             onClickRetryInstallation = onClickRetryInstallation,

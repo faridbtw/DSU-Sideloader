@@ -33,6 +33,7 @@ fun PreferenceItem(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
             .fillMaxWidth()
+            .alpha(if (isEnabled) 1f else 0.5f)
             .clickable(onClick = { onClick(isChecked) }, enabled = isEnabled)
             .padding(
                 start = 17.dp,
@@ -55,15 +56,14 @@ fun PreferenceItem(
             ) {
                 Text(
                     text = title,
-                    fontSize = 20.sp,
-                    style = MaterialTheme.typography.headlineMedium,
+                    style = MaterialTheme.typography.titleMedium,
                 )
                 if (description.isNotEmpty()) {
                     Spacer(Modifier.height(2.dp))
                     Text(
                         text = description,
                         style = MaterialTheme.typography.bodyMedium,
-                        modifier = Modifier.alpha(0.60F),
+                        color = MaterialTheme.colorScheme.onSurfaceVariant,
                     )
                 }
             }

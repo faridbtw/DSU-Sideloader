@@ -1,6 +1,8 @@
 package vegabobo.dsusideloader.preferences
 
 object AppPrefs {
+    // Enable only after configuring this fork's signed update releases.
+    const val ENABLE_UPDATER = false
     /**
      * Update feature only works if AUTHOR_SIGN_DIGEST is set
      * with same SHA1 digest from signed apk OR is a DEBUG build
