@@ -92,6 +92,9 @@ android {
     kotlin {
         jvmToolchain(17)
     }
+    lint {
+        baseline = file("lint-baseline.xml")
+    }
     buildFeatures {
         aidl = true
         buildConfig = true

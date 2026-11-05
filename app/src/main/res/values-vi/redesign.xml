@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">Quay lại</string>
+    <string name="your_workspace">KHÔNG GIAN HỆ THỐNG</string>
+    <string name="operation_mode_badge">Chế độ %1$s</string>
+    <string name="workspace_headline">Hệ thống mới.\nKhởi đầu mới.</string>
+    <string name="workspace_description">Khám phá một phiên bản Android khác bằng ảnh hệ thống chung.</string>
+    <string name="journey_choose">Chọn</string>
+    <string name="journey_configure">Thiết lập</string>
+    <string name="journey_install">Cài đặt</string>
+    <string name="system_image">Ảnh hệ thống</string>
+    <string name="choose_system_image">Chọn ảnh hệ thống</string>
+    <string name="supported_image_formats">.img · .gz · .xz · DSU .zip</string>
+    <string name="tap_to_change_image">Nhấn để chọn ảnh khác</string>
+    <string name="installation_options">Tùy chọn cài đặt</string>
+    <string name="default_allocation">Dữ liệu mặc định · Tự động tính kích thước ảnh</string>
+    <string name="custom_allocation">Phân bổ bộ nhớ tùy chỉnh</string>
+    <string name="expand_options">Mở rộng tùy chọn cài đặt</string>
+    <string name="collapse_options">Thu gọn tùy chọn cài đặt</string>
+    <string name="dsu_short_description">Cập nhật hệ thống động cho phép bạn thử ảnh hệ thống Android tương thích. Khởi động lại để trở về hệ thống ban đầu.</string>
+</resources>

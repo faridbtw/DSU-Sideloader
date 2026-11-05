@@ -1,12 +1,19 @@
 package vegabobo.dsusideloader.ui.cards.installation.content
 
 import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.shape.CircleShape
+import androidx.compose.ui.draw.clip
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Alignment
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
+import java.text.NumberFormat
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.unit.dp
@@ -24,18 +31,28 @@ fun ProgressableCardContent(
     onClickFirstButton: (() -> Unit)? = null,
     onClickSecondButton: (() -> Unit)? = null,
 ) {
-    Text(text = text)
+    Text(text = text, style = MaterialTheme.typography.bodyLarge)
     AnimatedVisibility(visible = showProgressBar) {
-        val progressBarModifier = Modifier
-            .fillMaxWidth()
-            .padding(top = 12.dp, bottom = 5.dp)
-        if (isIndeterminate) {
-            LinearProgressIndicator(modifier = progressBarModifier)
-        } else {
-            LinearProgressIndicator(
-                modifier = progressBarModifier,
-                progress = progress,
-            )
+        Column {
+            val progressBarModifier = Modifier
+                .fillMaxWidth()
+                .padding(top = 16.dp, bottom = 8.dp)
+                .height(6.dp)
+                .clip(CircleShape)
+            if (isIndeterminate) {
+                LinearProgressIndicator(modifier = progressBarModifier)
+            } else {
+                LinearProgressIndicator(
+                    modifier = progressBarModifier,
+                    progress = progress.coerceIn(0f, 1f),
+                )
+                Text(
+                    text = NumberFormat.getPercentInstance().format(progress.coerceIn(0f, 1f)),
+                    modifier = Modifier.align(Alignment.End),
+                    style = MaterialTheme.typography.labelMedium,
+                    color = MaterialTheme.colorScheme.primary,
+                )
+            }
         }
     }
     Spacer(modifier = Modifier.padding(top = 4.dp))

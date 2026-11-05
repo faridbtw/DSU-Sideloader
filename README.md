@@ -14,6 +14,8 @@ Build with JDK 17 and Android SDK 33:
 ./gradlew assembleDebug lintDebug
 ```
 
+Lint checks all new changes. `app/lint-baseline.xml` records only the 67 pre-existing missing translations in upstream `values/strings.xml`; the new interface labels are translated into all six existing locales. Android Studio previews cover light mode, dark mode, and large text in `WorkspacePreview.kt`.
+
 The debug APK is written to `app/build/outputs/apk/debug/app-debug.apk`. GitHub Actions also uploads it as **DSU-Sideloader-redesign** after a successful build. This fork keeps the upstream package ID for compatibility with the existing privileged module; it cannot be installed alongside the original app. The upstream updater is disabled for this fork until fork-specific signed releases are configured.
 
 Actual GSI installation still depends on device support, compatible images, an unlocked bootloader, and the selected operation mode. Compilation and interface checks do not verify a device can boot a GSI.

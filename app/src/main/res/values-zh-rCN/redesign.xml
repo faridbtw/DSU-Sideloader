@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">返回</string>
+    <string name="your_workspace">系统工作区</string>
+    <string name="operation_mode_badge">%1$s 模式</string>
+    <string name="workspace_headline">全新系统。\n全新开始。</string>
+    <string name="workspace_description">使用通用系统镜像探索另一个 Android 系统。</string>
+    <string name="journey_choose">选择</string>
+    <string name="journey_configure">配置</string>
+    <string name="journey_install">安装</string>
+    <string name="system_image">系统镜像</string>
+    <string name="choose_system_image">选择系统镜像</string>
+    <string name="supported_image_formats">.img · .gz · .xz · DSU .zip</string>
+    <string name="tap_to_change_image">点按以选择其他镜像</string>
+    <string name="installation_options">安装选项</string>
+    <string name="default_allocation">默认用户数据 · 自动计算镜像大小</string>
+    <string name="custom_allocation">自定义存储分配</string>
+    <string name="expand_options">展开安装选项</string>
+    <string name="collapse_options">收起安装选项</string>
+    <string name="dsu_short_description">动态系统更新可让您试用兼容的 Android 系统镜像。重新启动即可返回原来的系统。</string>
+</resources>

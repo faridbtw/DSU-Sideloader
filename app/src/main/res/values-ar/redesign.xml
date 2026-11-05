@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="navigate_back">رجوع</string>
+    <string name="your_workspace">مساحة عمل النظام</string>
+    <string name="operation_mode_badge">وضع %1$s</string>
+    <string name="workspace_headline">نظام جديد.\nبداية جديدة.</string>
+    <string name="workspace_description">استكشف إصدارًا آخر من Android باستخدام صورة نظام عامة.</string>
+    <string name="journey_choose">اختيار</string>
+    <string name="journey_configure">إعداد</string>
+    <string name="journey_install">تثبيت</string>
+    <string name="system_image">صورة النظام</string>
+    <string name="choose_system_image">اختر صورة نظام</string>
+    <string name="supported_image_formats">.img · .gz · .xz · DSU .zip</string>
+    <string name="tap_to_change_image">انقر لاختيار صورة أخرى</string>
+    <string name="installation_options">خيارات التثبيت</string>
+    <string name="default_allocation">بيانات مستخدم افتراضية · حجم صورة تلقائي</string>
+    <string name="custom_allocation">تخصيص مساحة التخزين</string>
+    <string name="expand_options">توسيع خيارات التثبيت</string>
+    <string name="collapse_options">طي خيارات التثبيت</string>
+    <string name="dsu_short_description">تتيح لك تحديثات النظام الديناميكية تجربة صورة نظام Android متوافقة. أعد التشغيل للعودة إلى نظامك الأصلي.</string>
+</resources>

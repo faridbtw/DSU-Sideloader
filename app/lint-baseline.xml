@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Existing upstream translation gaps only. New resources must pass lint. -->
+<issues format="6" by="lint 8.0.0" type="baseline" client="gradle" dependencies="false" name="AGP (8.0.0)" variant="all" version="8.0.0">
+    <issue id="MissingTranslation" message="&quot;unsupported&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;unsupported&quot;&gt;Unsupported&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="9" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;storage_warning_description&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;storage_warning_description&quot;&gt;You have less than %1$s%% of free storage, installation process will fail, please free up some space.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="17" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;unlocked_bl_warn&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;unlocked_bl_warn&quot;&gt;Unlocked bootloader&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="24" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;unlocked_bl_warn_desc&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;unlocked_bl_warn_desc&quot;&gt;DSU Sideloader requires unlocked bootloader, installing images with locked bootloader may be dangerous in some devices, before using this app, you: \n- MUST unlock bootloader.\n- MUST have some way to restore device stock firmware.\n- RECOMMENDED to do a full backup.\nThis app have been made to be used by developers and advanced users, you have been warned.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="25" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;selinux_error_description&quot; is not translated in &quot;ar&quot; (Arabic)" errorLine1="    &lt;string name=&quot;selinux_error_description&quot;&gt;Looks like SELinux denials are preventing DSU installation, there are some fixes you can try:\n - Install DSU Sideloader Magisk\'s module.\n - If you\'re using a sdcard, try to unmount it (there is a option for that in settings section).\n - Change your SELinux to permissive (not recommended, weakens your device security).&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="89" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;selinux_error_action&quot; is not translated in &quot;ar&quot; (Arabic)" errorLine1="    &lt;string name=&quot;selinux_error_action&quot;&gt;Retry with permissive&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="90" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;extents_error_title&quot; is not translated in &quot;ar&quot; (Arabic)" errorLine1="    &lt;string name=&quot;extents_error_title&quot;&gt;Extents error&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="93" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;extents_error_description&quot; is not translated in &quot;ar&quot; (Arabic)" errorLine1="    &lt;string name=&quot;extents_error_description&quot;&gt;On Android 10 devices, images/filesystem needs to have more than 512 extents, there are some fixes you can try:\n - Install DSU Sideloader Magisk\'s module.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="94" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;unknown_error&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;unknown_error&quot;&gt;Unknown error.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="98" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;error&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;error&quot;&gt;Error&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="99" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;try_again&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;try_again&quot;&gt;Try again&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="100" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;view_logs&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;view_logs&quot;&gt;View logs&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="101" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;installation_canceled&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;installation_canceled&quot;&gt;Installation canceled.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="102" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;cancel_installation_question&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;cancel_installation_question&quot;&gt;Cancel installation?&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="105" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;cancel_installation_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;cancel_installation_description&quot;&gt;All progress made will be lost, are you sure?&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="106" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;installation_finished_rootless&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;installation_finished_rootless&quot;&gt;Image installed successfully, check your notifications to boot into dynamic system.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="109" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;installation_finished&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;installation_finished&quot;&gt;Installation finished.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="110" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;reboot_into_dsu&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;reboot_into_dsu&quot;&gt;Reboot into DSU&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="111" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;userdata_size&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;userdata_size&quot;&gt;Userdata size&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="114" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;userdata_size_info&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;userdata_size_info&quot;&gt;Size in gigabytes&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="115" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;allowed_userdata_allocation&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;allowed_userdata_allocation&quot;&gt;Maximum available for allocation: %1$sGB&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="116" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;image_size&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;image_size&quot;&gt;Image size&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="119" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;image_size_info&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;image_size_info&quot;&gt;Size in bytes&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="120" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;not_recommended_option&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;not_recommended_option&quot;&gt;This option is strongly inadvisable!&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="121" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;dialog_image_size&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;dialog_image_size&quot;&gt;Set image size?&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="124" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;dialog_image_size_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;dialog_image_size_description&quot;&gt;DSU Sideloader will set this parameter for you automatically, setting image size manually is strongly inadvisable.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="125" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;set_anyway&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;set_anyway&quot;&gt;Set anyway&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="126" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;what_is_dsu&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;what_is_dsu&quot;&gt;What is DSU?&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="129" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;what_is_dsu_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;what_is_dsu_description&quot;&gt;DSU (Dynamic System Updates) is a feature introduced in Android 10 that allow developers to test Android system images without touching device partitions, with Android 11, DSU can also replace multiple partitions.&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="130" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;view_docs&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;view_docs&quot;&gt;View docs&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="131" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;learn_more&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;learn_more&quot;&gt;Learn more&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="132" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;settings&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;settings&quot;&gt;Settings&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="138" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;experimental_feature&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;experimental_feature&quot;&gt;Experimental feature&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="140" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;experimental_feature_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;experimental_feature_description&quot;&gt;This feature is under testing and may be unstable, are you sure?&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="141" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;builtin_installer&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;builtin_installer&quot;&gt;Built-in installer&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="143" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;builtin_installer_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;builtin_installer_description&quot;&gt;Faster, use internal APIs to install images directly&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="144" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;requires_root&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;requires_root&quot;&gt;Requires root&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="145" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;unmount_sd_title&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;unmount_sd_title&quot;&gt;Unmount SD&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="147" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;unmount_sd_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;unmount_sd_description&quot;&gt;Temporary unmount sd when installing&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="148" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;warning_storage_check_title&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;warning_storage_check_title&quot;&gt;Warning&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="150" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;warning_storage_check_description&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;warning_storage_check_description&quot;&gt;DSU installation will allocate some free space on your device, disabling storage checks may let into errors.\nThis option is not recommended. Only continue if you know what you\'re doing!&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="151" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;storage_check_title&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;storage_check_title&quot;&gt;Disable storage check&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="153" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;storage_check_description&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;storage_check_description&quot;&gt;Disable userdata storage checking, not recommended&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="154" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;full_logcat_logging_title&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;full_logcat_logging_title&quot;&gt;Full logcat logging&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="156" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;full_logcat_logging_description&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;full_logcat_logging_description&quot;&gt;Logs section will capture logs with no filters, may degrade app performance&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="157" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;keep_screen_on&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;keep_screen_on&quot;&gt;Keep screen on&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="159" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;developer_options&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;developer_options&quot;&gt;Developer options&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="161" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;other&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;other&quot;&gt;Other&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="163" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;operation_mode&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;operation_mode&quot;&gt;Operation mode&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="165" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;about&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;about&quot;&gt;About&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="167" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;about_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;about_description&quot;&gt;Credits, libraries and more…&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="168" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;version_info&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;version_info&quot;&gt;version %1$s (%2$d)&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="174" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;check_updates_title&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;check_updates_title&quot;&gt;Check updates&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="175" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;check_updates_text_idle&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;check_updates_text_idle&quot;&gt;Tap to check&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="176" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;check_updates_text_found&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;check_updates_text_found&quot;&gt;New %1$s version found&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="177" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;check_updates_text_updated&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;check_updates_text_updated&quot;&gt;Running latest version&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="178" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;changelog&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;changelog&quot;&gt;Changelog&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="179" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;download&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;download&quot;&gt;Download&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="180" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;application&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;application&quot;&gt;Application&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="182" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;developer_options_enabled&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;developer_options_enabled&quot;&gt;Developer options enabled&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="184" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;developer_options_disabled&quot; is not translated in &quot;ar&quot; (Arabic), &quot;vi&quot; (Vietnamese), &quot;ja&quot; (Japanese), &quot;pl&quot; (Polish)" errorLine1="    &lt;string name=&quot;developer_options_disabled&quot;&gt;Developer options disabled&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="185" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;github_repo&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;github_repo&quot;&gt;GitHub Repository&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="187" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;github_repo_description&quot; is not translated in &quot;ar&quot; (Arabic) or &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;github_repo_description&quot;&gt;Source code on GitHub&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="188" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;collaborators&quot; is not translated in &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;collaborators&quot;&gt;Collaborators&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="190" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;libraries_title&quot; is not translated in &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;libraries_title&quot;&gt;Libraries&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="192" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;libraries_description&quot; is not translated in &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;libraries_description&quot;&gt;Libraries used in this app&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="193" column="13" />
+    </issue>
+    <issue id="MissingTranslation" message="&quot;role_developer&quot; is not translated in &quot;ja&quot; (Japanese)" errorLine1="    &lt;string name=&quot;role_developer&quot;&gt;Developer&lt;/string&gt;" errorLine2="            ~~~~~~~~~~~~~~~~~~~~~">
+        <location file="src/main/res/values/strings.xml" line="195" column="13" />
+    </issue>
+</issues>
