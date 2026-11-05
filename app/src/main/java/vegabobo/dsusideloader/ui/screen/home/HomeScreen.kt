@@ -11,14 +11,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
 import androidx.hilt.navigation.compose.hiltViewModel
 import kotlin.system.exitProcess
 import kotlinx.coroutines.flow.collectLatest
 import vegabobo.dsusideloader.R
-import vegabobo.dsusideloader.ui.cards.DsuInfoCard
 import vegabobo.dsusideloader.ui.cards.ImageSizeCard
 import vegabobo.dsusideloader.ui.cards.UserdataCard
 import vegabobo.dsusideloader.ui.cards.installation.InstallationCard
@@ -39,11 +37,6 @@ import vegabobo.dsusideloader.ui.sdialogs.ViewLogsBottomSheet
 import vegabobo.dsusideloader.ui.util.KeepScreenOn
 import vegabobo.dsusideloader.util.collectAsStateWithLifecycle
 
-object HomeLinks {
-    const val DSU_LEARN_MORE = "https://developer.android.com/topic/dsu"
-    const val DSU_DOCS = "https://source.android.com/devices/tech/ota/dynamic-system-updates"
-}
-
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Home(
@@ -52,7 +45,6 @@ fun Home(
 ) {
     val uiState by homeViewModel.uiState.collectAsStateWithLifecycle()
     val operationMode by homeViewModel.session.operationMode.collectAsStateWithLifecycle()
-    val uriHandler = LocalUriHandler.current
 
     if (uiState.shouldKeepScreenOn) {
         KeepScreenOn()
@@ -131,23 +123,19 @@ fun Home(
                 AdvancedOptions(
                     hasCustomValues = uiState.userDataCard.isSelected || uiState.imageSizeCard.isSelected,
                 ) {
-                UserdataCard(
-                    isEnabled = uiState.isInstalling(),
-                    uiState = uiState.userDataCard,
-                    onCheckedChange = { homeViewModel.onCheckUserdataCard() },
-                    onValueChange = { homeViewModel.updateUserdataSize(it) },
-                )
-                ImageSizeCard(
-                    isEnabled = uiState.isInstalling(),
-                    uiState = uiState.imageSizeCard,
-                    onCheckedChange = { homeViewModel.onCheckImageSizeCard() },
-                    onValueChange = { homeViewModel.updateImageSize(it) },
-                )
+                    UserdataCard(
+                        isEnabled = uiState.isInstalling(),
+                        uiState = uiState.userDataCard,
+                        onCheckedChange = { homeViewModel.onCheckUserdataCard() },
+                        onValueChange = { homeViewModel.updateUserdataSize(it) },
+                    )
+                    ImageSizeCard(
+                        isEnabled = uiState.isInstalling(),
+                        uiState = uiState.imageSizeCard,
+                        onCheckedChange = { homeViewModel.onCheckImageSizeCard() },
+                        onValueChange = { homeViewModel.updateImageSize(it) },
+                    )
                 }
-                DsuInfoCard(
-                    onClickViewDocs = { uriHandler.openUri(HomeLinks.DSU_DOCS) },
-                    onClickLearnMore = { uriHandler.openUri(HomeLinks.DSU_LEARN_MORE) },
-                )
             }
         },
     )
