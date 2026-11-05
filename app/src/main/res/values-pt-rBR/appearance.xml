@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance">Aparência</string>
+    <string name="theme_mode">Tema</string>
+    <string name="theme_system">Seguir o sistema</string>
+    <string name="theme_light">Claro</string>
+    <string name="theme_dark">Escuro</string>
+    <string name="theme_amoled">Preto AMOLED</string>
+    <string name="accent_color">Cor de destaque</string>
+    <string name="accent_indigo">Índigo</string>
+    <string name="accent_blue">Azul</string>
+    <string name="accent_teal">Verde-azulado</string>
+    <string name="accent_green">Verde</string>
+    <string name="accent_rose">Rosa</string>
+    <string name="accent_amber">Âmbar</string>
+    <string name="wallpaper_colors">Cores do papel de parede</string>
+    <string name="wallpaper_colors_description">Usar a paleta do papel de parede do Android em vez de uma cor predefinida.</string>
+    <string name="reset_appearance">Redefinir aparência</string>
+</resources>

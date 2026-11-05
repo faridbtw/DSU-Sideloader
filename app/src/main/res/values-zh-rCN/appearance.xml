@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance">外观</string>
+    <string name="theme_mode">主题</string>
+    <string name="theme_system">跟随系统</string>
+    <string name="theme_light">浅色</string>
+    <string name="theme_dark">深色</string>
+    <string name="theme_amoled">AMOLED 纯黑</string>
+    <string name="accent_color">强调色</string>
+    <string name="accent_indigo">靛蓝</string>
+    <string name="accent_blue">蓝色</string>
+    <string name="accent_teal">青色</string>
+    <string name="accent_green">绿色</string>
+    <string name="accent_rose">玫瑰色</string>
+    <string name="accent_amber">琥珀色</string>
+    <string name="wallpaper_colors">壁纸配色</string>
+    <string name="wallpaper_colors_description">使用 Android 壁纸调色板代替预设强调色。</string>
+    <string name="reset_appearance">重置外观</string>
+</resources>

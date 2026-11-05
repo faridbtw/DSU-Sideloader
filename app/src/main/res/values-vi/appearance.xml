@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance">Giao diện</string>
+    <string name="theme_mode">Chủ đề</string>
+    <string name="theme_system">Theo hệ thống</string>
+    <string name="theme_light">Sáng</string>
+    <string name="theme_dark">Tối</string>
+    <string name="theme_amoled">Đen AMOLED</string>
+    <string name="accent_color">Màu nhấn</string>
+    <string name="accent_indigo">Chàm</string>
+    <string name="accent_blue">Xanh dương</string>
+    <string name="accent_teal">Xanh ngọc</string>
+    <string name="accent_green">Xanh lá</string>
+    <string name="accent_rose">Hồng</string>
+    <string name="accent_amber">Hổ phách</string>
+    <string name="wallpaper_colors">Màu hình nền</string>
+    <string name="wallpaper_colors_description">Dùng bảng màu hình nền Android thay cho màu nhấn có sẵn.</string>
+    <string name="reset_appearance">Đặt lại giao diện</string>
+</resources>

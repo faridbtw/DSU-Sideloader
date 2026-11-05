@@ -41,6 +41,13 @@ fun Settings(
             )
         },
     ) {
+        AppearanceSettingsCard(
+            settings = uiState.appearance,
+            onThemeModeChanged = settingsViewModel::setThemeMode,
+            onAccentChanged = settingsViewModel::setAccentColor,
+            onWallpaperColorsChanged = settingsViewModel::setWallpaperColors,
+            onReset = settingsViewModel::resetAppearance,
+        )
         Title(title = stringResource(id = R.string.installation))
         PreferenceItem(
             title = stringResource(id = R.string.builtin_installer),

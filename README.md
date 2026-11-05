@@ -27,7 +27,7 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
-| **Choose → Configure → Install** — a guide that follows your installation state. | **Light and dark** — coordinated colors that follow your system theme. |
+| **Choose → Configure → Install** — a guide that follows your installation state. | **Your appearance** — System, Light, Dark, or AMOLED; six accent presets and Android 12+ wallpaper colors. |
 | **A larger image picker** — readable filenames and supported formats at a glance. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
@@ -89,7 +89,7 @@ Use **JDK 17** and **Android SDK 33**, then run:
 ```sh
 git clone https://github.com/faridbtw/DSU-Sideloader.git
 cd DSU-Sideloader
-./gradlew assembleDebug lintDebug
+./gradlew testDebugUnitTest assembleDebug lintDebug
 ```
 
 The APK is generated at `app/build/outputs/apk/debug/app-debug.apk`.

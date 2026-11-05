@@ -8,6 +8,7 @@ import android.os.Bundle
 import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
+import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ipc.RootService
@@ -17,6 +18,7 @@ import org.lsposed.hiddenapibypass.HiddenApiBypass
 import rikka.shizuku.Shizuku
 import rikka.shizuku.ShizukuProvider
 import vegabobo.dsusideloader.model.Session
+import vegabobo.dsusideloader.preferences.AppearancePreferences
 import vegabobo.dsusideloader.service.PrivilegedProvider
 import vegabobo.dsusideloader.service.PrivilegedRootService
 import vegabobo.dsusideloader.service.PrivilegedService
@@ -25,12 +27,16 @@ import vegabobo.dsusideloader.ui.screen.Navigation
 import vegabobo.dsusideloader.ui.theme.DSUHelperTheme
 import vegabobo.dsusideloader.util.OperationMode
 import vegabobo.dsusideloader.util.OperationModeUtils
+import vegabobo.dsusideloader.util.collectAsStateWithLifecycle
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListener {
 
     @Inject
     lateinit var session: Session
+
+    @Inject
+    lateinit var appearancePreferences: AppearancePreferences
 
     private val tag = this.javaClass.simpleName
 
@@ -134,8 +140,11 @@ class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListe
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         setContent {
-            DSUHelperTheme {
-                Navigation()
+            val appearance by appearancePreferences.settings.collectAsStateWithLifecycle(initialValue = null)
+            appearance?.let { settings ->
+                DSUHelperTheme(appearance = settings) {
+                    Navigation()
+                }
             }
         }
 

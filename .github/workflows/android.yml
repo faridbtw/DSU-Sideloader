@@ -22,7 +22,7 @@ jobs:
           distribution: temurin
       - uses: gradle/actions/setup-gradle@v4
       - name: Build and lint
-        run: ./gradlew assembleDebug lintDebug
+        run: ./gradlew testDebugUnitTest assembleDebug lintDebug
       - name: Archive APK
         uses: actions/upload-artifact@v4
         with:

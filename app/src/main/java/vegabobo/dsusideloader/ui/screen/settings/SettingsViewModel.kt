@@ -15,7 +15,10 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import vegabobo.dsusideloader.core.BaseViewModel
 import vegabobo.dsusideloader.model.Session
+import vegabobo.dsusideloader.preferences.AccentColor
 import vegabobo.dsusideloader.preferences.AppPrefs
+import vegabobo.dsusideloader.preferences.AppearancePreferences
+import vegabobo.dsusideloader.preferences.ThemeMode
 import vegabobo.dsusideloader.util.OperationMode
 import vegabobo.dsusideloader.util.OperationModeUtils
 
@@ -23,6 +26,7 @@ import vegabobo.dsusideloader.util.OperationModeUtils
 class SettingsViewModel @Inject constructor(
     override val dataStore: DataStore<Preferences>,
     private val session: Session,
+    private val appearancePreferences: AppearancePreferences,
     val application: Application,
 ) : BaseViewModel(dataStore) {
 
@@ -46,6 +50,27 @@ class SettingsViewModel @Inject constructor(
 
     init {
         reloadPreferences()
+        viewModelScope.launch {
+            appearancePreferences.settings.collect { appearance ->
+                _uiState.update { it.copy(appearance = appearance) }
+            }
+        }
+    }
+
+    fun setThemeMode(mode: ThemeMode) {
+        viewModelScope.launch { appearancePreferences.setThemeMode(mode) }
+    }
+
+    fun setAccentColor(accent: AccentColor) {
+        viewModelScope.launch { appearancePreferences.setAccentColor(accent) }
+    }
+
+    fun setWallpaperColors(enabled: Boolean) {
+        viewModelScope.launch { appearancePreferences.setWallpaperColors(enabled) }
+    }
+
+    fun resetAppearance() {
+        viewModelScope.launch { appearancePreferences.reset() }
     }
 
     fun togglePreference(preference: String, value: Boolean) {

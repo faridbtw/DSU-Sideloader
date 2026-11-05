@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance">Wygląd</string>
+    <string name="theme_mode">Motyw</string>
+    <string name="theme_system">Zgodnie z systemem</string>
+    <string name="theme_light">Jasny</string>
+    <string name="theme_dark">Ciemny</string>
+    <string name="theme_amoled">Czerń AMOLED</string>
+    <string name="accent_color">Kolor akcentu</string>
+    <string name="accent_indigo">Indygo</string>
+    <string name="accent_blue">Niebieski</string>
+    <string name="accent_teal">Morski</string>
+    <string name="accent_green">Zielony</string>
+    <string name="accent_rose">Różowy</string>
+    <string name="accent_amber">Bursztynowy</string>
+    <string name="wallpaper_colors">Kolory tapety</string>
+    <string name="wallpaper_colors_description">Używaj palety tapety Androida zamiast gotowego koloru akcentu.</string>
+    <string name="reset_appearance">Resetuj wygląd</string>
+</resources>

@@ -1,19 +1,25 @@
 package vegabobo.dsusideloader.ui.theme
 
 import android.app.Activity
+import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Shapes
 import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalView
 import androidx.compose.ui.unit.dp
 import androidx.core.view.WindowCompat
+import vegabobo.dsusideloader.preferences.AppearanceSettings
+import vegabobo.dsusideloader.preferences.ThemeMode
 
 private val DarkColorScheme = darkColorScheme(
     primary = IndigoLight,
@@ -57,12 +63,46 @@ private val LightColorScheme = lightColorScheme(
     outlineVariant = Color(0xFFE2E4F0),
 )
 
+fun appearanceColorScheme(settings: AppearanceSettings, systemDark: Boolean): androidx.compose.material3.ColorScheme {
+    val dark = settings.themeMode.isDark(systemDark)
+    val palette = settings.accentColor.palette()
+    val base = if (dark) DarkColorScheme else LightColorScheme
+    val accented = base.copy(
+        primary = if (dark) palette.darkPrimary else palette.lightPrimary,
+        onPrimary = if (dark) palette.darkOnPrimary else Color.White,
+        primaryContainer = if (dark) palette.darkContainer else palette.lightContainer,
+        onPrimaryContainer = if (dark) palette.darkOnContainer else palette.lightOnContainer,
+        secondary = if (dark) palette.darkPrimary else palette.lightPrimary,
+        secondaryContainer = if (dark) palette.darkContainer else palette.lightContainer,
+        onSecondaryContainer = if (dark) palette.darkOnContainer else palette.lightOnContainer,
+        tertiary = if (dark) palette.darkPrimary else palette.lightPrimary,
+        surfaceTint = if (dark) palette.darkPrimary else palette.lightPrimary,
+    )
+    return if (settings.themeMode == ThemeMode.AMOLED) accented.withBlackSurfaces() else accented
+}
+
+private fun androidx.compose.material3.ColorScheme.withBlackSurfaces() = copy(
+    background = Color.Black,
+    surface = Color.Black,
+    inverseOnSurface = Color.Black,
+    surfaceVariant = Color(0xFF171717),
+    outlineVariant = Color(0xFF343434),
+)
+
 @Composable
 fun DSUHelperTheme(
     darkTheme: Boolean = isSystemInDarkTheme(),
+    appearance: AppearanceSettings = AppearanceSettings(),
     content: @Composable () -> Unit,
 ) {
-    val colorScheme = if (darkTheme) DarkColorScheme else LightColorScheme
+    val effectiveDark = appearance.themeMode.isDark(darkTheme)
+    val context = LocalContext.current
+    val colorScheme = if (appearance.useWallpaperColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+        val dynamic = if (effectiveDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        if (appearance.themeMode == ThemeMode.AMOLED) dynamic.withBlackSurfaces() else dynamic
+    } else {
+        appearanceColorScheme(appearance, darkTheme)
+    }
     val view = LocalView.current
     if (!view.isInEditMode) {
         SideEffect {
@@ -70,8 +110,8 @@ fun DSUHelperTheme(
             window.statusBarColor = Color.Transparent.toArgb()
             window.navigationBarColor = Color.Transparent.toArgb()
             WindowCompat.getInsetsController(window, view).apply {
-                isAppearanceLightStatusBars = !darkTheme
-                isAppearanceLightNavigationBars = !darkTheme
+                isAppearanceLightStatusBars = !effectiveDark
+                isAppearanceLightNavigationBars = !effectiveDark
             }
         }
     }

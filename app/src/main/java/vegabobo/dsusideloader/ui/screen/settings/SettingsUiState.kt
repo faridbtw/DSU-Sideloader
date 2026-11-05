@@ -1,6 +1,7 @@
 package vegabobo.dsusideloader.ui.screen.settings
 
 import vegabobo.dsusideloader.preferences.AppPrefs
+import vegabobo.dsusideloader.preferences.AppearanceSettings
 
 enum class DialogSheetState {
     NONE,
@@ -9,6 +10,7 @@ enum class DialogSheetState {
 }
 
 data class SettingsUiState(
+    val appearance: AppearanceSettings = AppearanceSettings(),
     val preferences: HashMap<String, Boolean> = hashMapOf(
         AppPrefs.USE_BUILTIN_INSTALLER to false,
         AppPrefs.KEEP_SCREEN_ON to false,

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="appearance">المظهر</string>
+    <string name="theme_mode">السمة</string>
+    <string name="theme_system">اتباع النظام</string>
+    <string name="theme_light">فاتح</string>
+    <string name="theme_dark">داكن</string>
+    <string name="theme_amoled">أسود AMOLED</string>
+    <string name="accent_color">لون التمييز</string>
+    <string name="accent_indigo">نيلي</string>
+    <string name="accent_blue">أزرق</string>
+    <string name="accent_teal">أزرق مخضر</string>
+    <string name="accent_green">أخضر</string>
+    <string name="accent_rose">وردي</string>
+    <string name="accent_amber">كهرماني</string>
+    <string name="wallpaper_colors">ألوان الخلفية</string>
+    <string name="wallpaper_colors_description">استخدام لوحة ألوان خلفية Android بدلاً من لون تمييز محدد.</string>
+    <string name="reset_appearance">إعادة تعيين المظهر</string>
+</resources>
