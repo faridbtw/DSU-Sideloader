@@ -3,8 +3,6 @@
     <string name="navigate_back">رجوع</string>
     <string name="your_workspace">مساحة عمل النظام</string>
     <string name="operation_mode_badge">وضع %1$s</string>
-    <string name="workspace_headline">نظام جديد.\nبداية جديدة.</string>
-    <string name="workspace_description">استكشف إصدارًا آخر من Android باستخدام صورة نظام عامة.</string>
     <string name="journey_choose">اختيار</string>
     <string name="journey_configure">إعداد</string>
     <string name="journey_install">تثبيت</string>

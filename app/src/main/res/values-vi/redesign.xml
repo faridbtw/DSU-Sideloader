@@ -3,8 +3,6 @@
     <string name="navigate_back">Quay lại</string>
     <string name="your_workspace">KHÔNG GIAN HỆ THỐNG</string>
     <string name="operation_mode_badge">Chế độ %1$s</string>
-    <string name="workspace_headline">Hệ thống mới.\nKhởi đầu mới.</string>
-    <string name="workspace_description">Khám phá một phiên bản Android khác bằng ảnh hệ thống chung.</string>
     <string name="journey_choose">Chọn</string>
     <string name="journey_configure">Thiết lập</string>
     <string name="journey_install">Cài đặt</string>

@@ -58,12 +58,6 @@ fun WorkspaceHeader(operationMode: OperationMode, uiState: HomeUiState) {
                 )
             }
         }
-        Text(text = stringResource(R.string.workspace_headline), style = MaterialTheme.typography.headlineLarge)
-        Text(
-            text = stringResource(R.string.workspace_description),
-            style = MaterialTheme.typography.bodyLarge,
-            color = MaterialTheme.colorScheme.onSurfaceVariant,
-        )
         if (uiState.passedInitialChecks && uiState.additionalCard == AdditionalCardState.NONE) {
             InstallationJourney(uiState.installationCard)
         }

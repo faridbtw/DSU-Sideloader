@@ -3,8 +3,6 @@
     <string name="navigate_back">戻る</string>
     <string name="your_workspace">システムワークスペース</string>
     <string name="operation_mode_badge">%1$s モード</string>
-    <string name="workspace_headline">新しいシステム。\n新たなスタート。</string>
-    <string name="workspace_description">汎用システムイメージで別の Android を試してみましょう。</string>
     <string name="journey_choose">選択</string>
     <string name="journey_configure">設定</string>
     <string name="journey_install">インストール</string>

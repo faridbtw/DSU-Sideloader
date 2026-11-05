@@ -3,8 +3,6 @@
     <string name="navigate_back">Wstecz</string>
     <string name="your_workspace">OBSZAR SYSTEMU</string>
     <string name="operation_mode_badge">Tryb %1$s</string>
-    <string name="workspace_headline">Nowy system.\nNowy początek.</string>
-    <string name="workspace_description">Wypróbuj innego Androida z uniwersalnym obrazem systemu.</string>
     <string name="journey_choose">Wybierz</string>
     <string name="journey_configure">Skonfiguruj</string>
     <string name="journey_install">Zainstaluj</string>

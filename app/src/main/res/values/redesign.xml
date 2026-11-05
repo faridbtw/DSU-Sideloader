@@ -3,8 +3,6 @@
     <string name="navigate_back">Go back</string>
     <string name="your_workspace">SYSTEM WORKSPACE</string>
     <string name="operation_mode_badge">%1$s mode</string>
-    <string name="workspace_headline">A new system.\nA fresh start.</string>
-    <string name="workspace_description">Explore another Android with a Generic System Image.</string>
     <string name="journey_choose">Choose</string>
     <string name="journey_configure">Configure</string>
     <string name="journey_install">Install</string>

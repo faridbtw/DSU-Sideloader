@@ -3,8 +3,6 @@
     <string name="navigate_back">返回</string>
     <string name="your_workspace">系统工作区</string>
     <string name="operation_mode_badge">%1$s 模式</string>
-    <string name="workspace_headline">全新系统。\n全新开始。</string>
-    <string name="workspace_description">使用通用系统镜像探索另一个 Android 系统。</string>
     <string name="journey_choose">选择</string>
     <string name="journey_configure">配置</string>
     <string name="journey_install">安装</string>
