@@ -31,6 +31,10 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
+import androidx.compose.ui.input.nestedscroll.nestedScroll
+import vegabobo.dsusideloader.ui.components.IndependentListScrollConnection
+import vegabobo.dsusideloader.ui.components.LocalScrollIsolation
+import vegabobo.dsusideloader.ui.components.trackScrollOwner
 import androidx.compose.runtime.Composable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.lazy.rememberLazyListState
@@ -77,6 +81,7 @@ fun FolderImagesCard(
     val browseImage = { imageLauncher.launch(systemImageSelectionIntent()) }
     val selectedImage = state.images.firstOrNull { it.uriString == installation.selectedFileUri }
     val listState = rememberLazyListState()
+    val isolation = LocalScrollIsolation.current
     val listHeight = with(LocalDensity.current) { LocalWindowInfo.current.containerSize.height.toDp() * 0.36f }
         .coerceIn(180.dp, 360.dp)
     LaunchedEffect(state.folderUri) { listState.scrollToItem(0) }
@@ -134,7 +139,8 @@ fun FolderImagesCard(
             )
             else -> LazyColumn(
                 state = listState,
-                modifier = Modifier.fillMaxWidth().padding(top = 10.dp).heightIn(max = listHeight).selectableGroup(),
+                modifier = Modifier.fillMaxWidth().padding(top = 10.dp).heightIn(max = listHeight).selectableGroup()
+                    .trackScrollOwner(isolation, child = true).nestedScroll(IndependentListScrollConnection),
                 verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
                 items(state.images, key = { it.uriString }) { image ->

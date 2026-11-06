@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selinux_title">SELinux</string>
+    <string name="selinux_checking">Đang kiểm tra…</string>
+    <string name="selinux_not_checked">Chưa kiểm tra</string>
+    <string name="selinux_enforcing">Enforcing</string>
+    <string name="selinux_permissive">Permissive</string>
+    <string name="selinux_disabled">Đã tắt</string>
+    <string name="selinux_no_root">Không có quyền root</string>
+    <string name="selinux_unavailable">Không thể lấy trạng thái</string>
+    <string name="selinux_check_root">Kiểm tra SELinux bằng root</string>
+</resources>

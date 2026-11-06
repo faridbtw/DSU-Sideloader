@@ -56,6 +56,7 @@ fun Home(
         homeViewModel.setupUserPreferences()
         homeViewModel.session.operationMode.collectLatest {
             homeViewModel.initialChecks()
+            if (homeViewModel.session.isRoot()) homeViewModel.refreshSelinuxStatus()
         }
     }
 
@@ -64,6 +65,7 @@ fun Home(
         val observer = LifecycleEventObserver { _, event ->
             if (event == Lifecycle.Event.ON_RESUME && !homeViewModel.uiState.value.isInstalling()) {
                 homeViewModel.refreshFolderImages()
+                if (homeViewModel.session.isRoot()) homeViewModel.refreshSelinuxStatus()
             }
         }
         lifecycleOwner.lifecycle.addObserver(observer)
@@ -74,6 +76,7 @@ fun Home(
         title = stringResource(R.string.app_name),
         content = {
             WorkspaceHeader(operationMode = operationMode)
+            SelinuxStatusRow(state = uiState.selinux, onCheck = homeViewModel::refreshSelinuxStatus)
             if (uiState.additionalCard != AdditionalCardState.NONE) Box(modifier = Modifier.animateContentSize()) {
                 when (uiState.additionalCard) {
                     AdditionalCardState.NO_DYNAMIC_PARTITIONS ->

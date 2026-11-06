@@ -27,7 +27,7 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
-| **Compact install flow** — a collapsing Home header, quieter library controls, and an Install action shown after image selection; the image library scrolls directly inside Home, with file-type icons, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
+| **Compact install flow** — a collapsing Home header, quieter library controls, and an Install action shown after image selection; the image library scrolls independently inside Home, with file-type icons, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
 | **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
@@ -71,7 +71,7 @@ Device support determines whether a GSI can install and boot. Successful builds 
 <details>
 <summary><strong>Which operation mode will the app use?</strong></summary>
 
-The default **Automatic** option detects the best available mode. **Settings → Operation mode** also lets you choose ADB, Root, Shizuku, System, or Root/System. Changing the selection restarts the app to reconnect its service; unavailable modes fall back to ADB, and the current mode is shown below the selector. Mode changes are locked during installation. The experimental built-in installer is off by default.
+The default **Automatic** option detects the best available mode. **Settings → Operation mode** also lets you choose ADB, Root, Shizuku, System, or Root/System. Changing the selection restarts the app to reconnect its service; unavailable modes fall back to ADB, and the current mode is shown below the selector. Mode changes are locked during installation. The experimental built-in installer is off by default. Home also shows a read-only SELinux status from `getenforce` in a verified `su` shell. Root mode refreshes this automatically; the refresh button can explicitly request a root check in other modes.
 
 | Mode | What it provides |
 | --- | --- |

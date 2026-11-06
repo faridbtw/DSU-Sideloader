@@ -40,6 +40,9 @@ import vegabobo.dsusideloader.service.PrivilegedProvider
 import vegabobo.dsusideloader.util.DevicePropUtils
 import vegabobo.dsusideloader.util.FilenameUtils
 import vegabobo.dsusideloader.util.OperationMode
+import vegabobo.dsusideloader.util.SelinuxChecker
+import vegabobo.dsusideloader.util.SelinuxMode
+import vegabobo.dsusideloader.util.SelinuxState
 import vegabobo.dsusideloader.util.OperationModeUtils
 import vegabobo.dsusideloader.util.StorageUtils
 
@@ -62,6 +65,7 @@ class HomeViewModel @Inject constructor(
     var disabledStorageCheck = false
 
     private var folderScanJob: Job? = null
+    private var selinuxCheckJob: Job? = null
 
     var installationJob: Job = Job()
     var logger: LogcatDiagnostic? = null
@@ -166,6 +170,22 @@ class HomeViewModel @Inject constructor(
             updateAdditionalCardState(AdditionalCardState.NONE)
             _uiState.update { it.copy(passedInitialChecks = true) }
             refreshFolderImages()
+        }
+    }
+
+    fun refreshSelinuxStatus() {
+        if (selinuxCheckJob?.isActive == true) return
+        selinuxCheckJob = viewModelScope.launch {
+            _uiState.update { it.copy(selinux = it.selinux.copy(checking = true)) }
+            val mode = try {
+                withContext(Dispatchers.IO) { SelinuxChecker.checkWithRoot() }
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (error: Exception) {
+                Log.w(tag, "Unable to read SELinux mode", error)
+                SelinuxMode.UNAVAILABLE
+            }
+            _uiState.update { it.copy(selinux = SelinuxState(mode)) }
         }
     }
 

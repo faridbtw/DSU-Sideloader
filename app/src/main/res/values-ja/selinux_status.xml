@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selinux_title">SELinux</string>
+    <string name="selinux_checking">確認中…</string>
+    <string name="selinux_not_checked">未確認</string>
+    <string name="selinux_enforcing">Enforcing</string>
+    <string name="selinux_permissive">Permissive</string>
+    <string name="selinux_disabled">無効</string>
+    <string name="selinux_no_root">root 権限がありません</string>
+    <string name="selinux_unavailable">状態を取得できません</string>
+    <string name="selinux_check_root">root 権限で SELinux を確認</string>
+</resources>

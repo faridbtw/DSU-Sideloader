@@ -17,6 +17,8 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
+import androidx.compose.runtime.CompositionLocalProvider
+import androidx.compose.runtime.remember
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
@@ -35,10 +37,13 @@ import top.yukonga.miuix.kmp.basic.TopAppBar as MiuixTopAppBar
 @Composable
 fun LargeTitleScreen(title: String, onBack: (() -> Unit)? = null, content: @Composable ColumnScope.() -> Unit) {
     val scroll = rememberScrollState()
+    val isolation = remember { ScrollIsolationState() }
     val backLabel = stringResource(R.string.navigate_back)
     if (LocalDesignStyle.current == DesignStyle.MIUIX) {
         val behavior = MiuixScrollBehavior()
+        val connection = remember(behavior, isolation) { GuardedScrollConnection(behavior.nestedScrollConnection, isolation) }
         MiuixScaffold(
+            modifier = Modifier.fillMaxSize().trackScrollOwner(isolation, child = false),
             topBar = {
                 MiuixTopAppBar(
                     title = title,
@@ -52,15 +57,17 @@ fun LargeTitleScreen(title: String, onBack: (() -> Unit)? = null, content: @Comp
             },
         ) { insets ->
             Column(
-                modifier = Modifier.fillMaxSize().nestedScroll(behavior.nestedScrollConnection)
+                modifier = Modifier.fillMaxSize().nestedScroll(connection)
                     .verticalScroll(scroll).padding(insets).padding(12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
-                content = content,
+                content = { CompositionLocalProvider(LocalScrollIsolation provides isolation) { content() } },
             )
         }
     } else {
         val behavior = TopAppBarDefaults.exitUntilCollapsedScrollBehavior()
+        val connection = remember(behavior, isolation) { GuardedScrollConnection(behavior.nestedScrollConnection, isolation) }
         Scaffold(
+            modifier = Modifier.fillMaxSize().trackScrollOwner(isolation, child = false),
             containerColor = MaterialTheme.colorScheme.background,
             topBar = {
                 LargeTopAppBar(
@@ -73,10 +80,10 @@ fun LargeTitleScreen(title: String, onBack: (() -> Unit)? = null, content: @Comp
             },
         ) { insets ->
             Column(
-                modifier = Modifier.fillMaxSize().nestedScroll(behavior.nestedScrollConnection)
+                modifier = Modifier.fillMaxSize().nestedScroll(connection)
                     .verticalScroll(scroll).padding(insets).padding(horizontal = 16.dp, vertical = 12.dp),
                 verticalArrangement = Arrangement.spacedBy(12.dp),
-                content = content,
+                content = { CompositionLocalProvider(LocalScrollIsolation provides isolation) { content() } },
             )
         }
     }

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selinux_title">SELinux</string>
+    <string name="selinux_checking">Checking…</string>
+    <string name="selinux_not_checked">Not checked</string>
+    <string name="selinux_enforcing">Enforcing</string>
+    <string name="selinux_permissive">Permissive</string>
+    <string name="selinux_disabled">Disabled</string>
+    <string name="selinux_no_root">Root access unavailable</string>
+    <string name="selinux_unavailable">Status unavailable</string>
+    <string name="selinux_check_root">Check SELinux with root</string>
+</resources>

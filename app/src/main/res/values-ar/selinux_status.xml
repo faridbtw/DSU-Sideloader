@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="selinux_title">SELinux</string>
+    <string name="selinux_checking">جارٍ الفحص…</string>
+    <string name="selinux_not_checked">لم يُفحص بعد</string>
+    <string name="selinux_enforcing">Enforcing</string>
+    <string name="selinux_permissive">Permissive</string>
+    <string name="selinux_disabled">معطل</string>
+    <string name="selinux_no_root">صلاحيات الروت غير متاحة</string>
+    <string name="selinux_unavailable">الحالة غير متاحة</string>
+    <string name="selinux_check_root">فحص SELinux بصلاحيات الروت</string>
+</resources>

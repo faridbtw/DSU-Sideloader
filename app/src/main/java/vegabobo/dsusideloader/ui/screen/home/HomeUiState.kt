@@ -1,5 +1,6 @@
 package vegabobo.dsusideloader.ui.screen.home
 
+import vegabobo.dsusideloader.util.SelinuxState
 import vegabobo.dsusideloader.model.FolderImage
 import vegabobo.dsusideloader.preparation.InstallationStep
 
@@ -57,6 +58,7 @@ data class FolderImagesState(
 )
 
 data class HomeUiState(
+    val selinux: SelinuxState = SelinuxState(),
     val folderImages: FolderImagesState = FolderImagesState(),
     val installationCard: InstallationCardState = InstallationCardState(),
     val userDataCard: UserDataCardState = UserDataCardState(),
