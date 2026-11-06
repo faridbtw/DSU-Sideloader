@@ -1,7 +1,5 @@
 package vegabobo.dsusideloader.ui.components
 
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.unit.dp
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.text.KeyboardOptions
@@ -27,7 +25,7 @@ fun FileSelectionBox(
     OutlinedTextField(
         modifier = modifier.fillMaxWidth(),
         value = textFieldValue,
-        shape = RoundedCornerShape(14.dp),
+        shape = androidx.compose.material3.MaterialTheme.shapes.medium,
         placeholder = { Text(text = "") },
         onValueChange = onValueChange,
         enabled = isEnabled,

@@ -27,9 +27,11 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
-| **Compact install flow** — image selection and Install share one card; the full library opens in a scrollable dialog. | **Your appearance** — System, Light, Dark, or AMOLED; six accent presets and Android 12+ wallpaper colors. |
+| **Compact install flow** — image selection and Install share one card; the full library opens in a scrollable dialog. | **Your appearance** — Material, Miuix-inspired, Cupertino-inspired, or Minimal styles; light/dark/AMOLED modes, accent presets, and wallpaper colors. |
 | **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
+
+Interface styles are built-in Compose presets that change surfaces, corners, typography, header alignment, and controls. Choose a style independently of light/dark mode and accent color under **Settings → Appearance → Interface style**.
 
 ## Screenshots
 

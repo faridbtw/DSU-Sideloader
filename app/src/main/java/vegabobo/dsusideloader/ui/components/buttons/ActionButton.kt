@@ -1,16 +1,18 @@
 package vegabobo.dsusideloader.ui.components.buttons
 
-import androidx.compose.material3.ButtonDefaults
-import androidx.compose.material3.FilledTonalButton
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.ui.unit.dp
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.FilledTonalButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.unit.dp
+import vegabobo.dsusideloader.ui.theme.LocalDesignStyle
+import vegabobo.dsusideloader.ui.theme.metrics
 
 @Composable
 fun ActionButton(
@@ -30,7 +32,7 @@ fun ActionButton(
     } else {
         FilledTonalButton(
             modifier = modifier.heightIn(min = 48.dp),
-            shape = RoundedCornerShape(14.dp),
+            shape = RoundedCornerShape(LocalDesignStyle.current.metrics().buttonRadius.dp),
             onClick = onClick,
             enabled = isEnabled,
             colors = ButtonDefaults.buttonColors(

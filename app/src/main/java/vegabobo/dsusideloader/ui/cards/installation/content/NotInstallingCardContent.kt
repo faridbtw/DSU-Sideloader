@@ -7,7 +7,6 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.UploadFile
@@ -41,7 +40,7 @@ fun NotInstallingCardContent(
             onClick = onClickSelectFile,
             enabled = uiState.isTextFieldEnabled,
             modifier = Modifier.fillMaxWidth(),
-            shape = RoundedCornerShape(14.dp),
+            shape = MaterialTheme.shapes.medium,
             color = MaterialTheme.colorScheme.primaryContainer.copy(alpha = 0.4f),
             border = BorderStroke(
                 1.dp,

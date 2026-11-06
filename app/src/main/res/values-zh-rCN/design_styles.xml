@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="interface_style">界面风格</string>
+    <string name="style_material">Material</string>
+    <string name="style_miuix">Miuix 风格</string>
+    <string name="style_cupertino">Cupertino 风格</string>
+    <string name="style_minimal">极简</string>
+    <string name="style_material_description">原有的圆角 Material 设计。</string>
+    <string name="style_miuix_description">柔和卡片、流畅开关和小米风格标题。</string>
+    <string name="style_cupertino_description">分组背景、胶囊按钮和圆角开关。</string>
+    <string name="style_minimal_description">清晰描边、小圆角和紧凑文字。</string>
+</resources>

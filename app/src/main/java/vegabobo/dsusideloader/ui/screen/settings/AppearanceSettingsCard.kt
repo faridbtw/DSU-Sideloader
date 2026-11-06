@@ -7,14 +7,18 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Check
 import androidx.compose.material.icons.outlined.Contrast
+import androidx.compose.material.icons.outlined.Palette
 import androidx.compose.material3.AlertDialog
 import androidx.compose.material3.Divider
 import androidx.compose.material3.Icon
@@ -32,12 +36,14 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.unit.dp
 import vegabobo.dsusideloader.R
 import vegabobo.dsusideloader.preferences.AccentColor
 import vegabobo.dsusideloader.preferences.AppearanceSettings
+import vegabobo.dsusideloader.preferences.DesignStyle
 import vegabobo.dsusideloader.preferences.ThemeMode
 import vegabobo.dsusideloader.ui.components.CardBox
 import vegabobo.dsusideloader.ui.components.PreferenceItem
@@ -47,11 +53,13 @@ import vegabobo.dsusideloader.ui.theme.palette
 @Composable
 fun AppearanceSettingsCard(
     settings: AppearanceSettings,
+    onDesignStyleChanged: (DesignStyle) -> Unit,
     onThemeModeChanged: (ThemeMode) -> Unit,
     onAccentChanged: (AccentColor) -> Unit,
     onWallpaperColorsChanged: (Boolean) -> Unit,
     onReset: () -> Unit,
 ) {
+    var showStylePicker by rememberSaveable { mutableStateOf(false) }
     var showThemePicker by rememberSaveable { mutableStateOf(false) }
     val supportsWallpaperColors = Build.VERSION.SDK_INT >= Build.VERSION_CODES.S
     val useWallpaperColors = supportsWallpaperColors && settings.useWallpaperColors
@@ -59,6 +67,13 @@ fun AppearanceSettingsCard(
     Title(title = stringResource(R.string.appearance))
     Column(modifier = Modifier.padding(horizontal = 16.dp).padding(bottom = 16.dp)) {
         CardBox(addPadding = false) {
+            PreferenceItem(
+                title = stringResource(R.string.interface_style),
+                description = stringResource(settings.designStyle.labelRes()),
+                icon = Icons.Outlined.Palette,
+                onClick = { showStylePicker = true },
+            )
+            Divider(modifier = Modifier.padding(horizontal = 16.dp), color = MaterialTheme.colorScheme.outlineVariant)
             PreferenceItem(
                 title = stringResource(R.string.theme_mode),
                 description = stringResource(settings.themeMode.labelRes()),
@@ -123,6 +138,48 @@ fun AppearanceSettingsCard(
         }
     }
 
+    if (showStylePicker) {
+        AlertDialog(
+            onDismissRequest = { showStylePicker = false },
+            title = { Text(stringResource(R.string.interface_style)) },
+            text = {
+                LazyColumn(
+                    modifier = Modifier.fillMaxWidth().selectableGroup()
+                        .heightIn(max = (LocalConfiguration.current.screenHeightDp * 0.55f).dp),
+                ) {
+                    items(DesignStyle.values().toList(), key = { it.preferenceValue }) { style ->
+                        Row(
+                            modifier = Modifier.fillMaxWidth()
+                                .selectable(
+                                    selected = settings.designStyle == style,
+                                    role = Role.RadioButton,
+                                    onClick = {
+                                        onDesignStyleChanged(style)
+                                        showStylePicker = false
+                                    },
+                                ).padding(vertical = 12.dp),
+                            verticalAlignment = Alignment.CenterVertically,
+                            horizontalArrangement = Arrangement.spacedBy(12.dp),
+                        ) {
+                            RadioButton(selected = settings.designStyle == style, onClick = null)
+                            Column(modifier = Modifier.weight(1f)) {
+                                Text(stringResource(style.labelRes()), style = MaterialTheme.typography.titleSmall)
+                                Text(
+                                    stringResource(style.descriptionRes()),
+                                    style = MaterialTheme.typography.bodySmall,
+                                    color = MaterialTheme.colorScheme.onSurfaceVariant,
+                                )
+                            }
+                        }
+                    }
+                }
+            },
+            confirmButton = {
+                TextButton(onClick = { showStylePicker = false }) { Text(stringResource(R.string.close)) }
+            },
+        )
+    }
+
     if (showThemePicker) {
         AlertDialog(
             onDismissRequest = { showThemePicker = false },
@@ -174,4 +231,20 @@ private fun AccentColor.labelRes(): Int = when (this) {
     AccentColor.GREEN -> R.string.accent_green
     AccentColor.ROSE -> R.string.accent_rose
     AccentColor.AMBER -> R.string.accent_amber
+}
+
+@StringRes
+private fun DesignStyle.labelRes(): Int = when (this) {
+    DesignStyle.MATERIAL -> R.string.style_material
+    DesignStyle.MIUIX -> R.string.style_miuix
+    DesignStyle.CUPERTINO -> R.string.style_cupertino
+    DesignStyle.MINIMAL -> R.string.style_minimal
+}
+
+@StringRes
+private fun DesignStyle.descriptionRes(): Int = when (this) {
+    DesignStyle.MATERIAL -> R.string.style_material_description
+    DesignStyle.MIUIX -> R.string.style_miuix_description
+    DesignStyle.CUPERTINO -> R.string.style_cupertino_description
+    DesignStyle.MINIMAL -> R.string.style_minimal_description
 }

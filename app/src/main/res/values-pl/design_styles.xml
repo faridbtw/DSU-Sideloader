@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="interface_style">Styl interfejsu</string>
+    <string name="style_material">Material</string>
+    <string name="style_miuix">Inspirowany Miuix</string>
+    <string name="style_cupertino">Inspirowany Cupertino</string>
+    <string name="style_minimal">Minimalistyczny</string>
+    <string name="style_material_description">Oryginalny, zaokrąglony wygląd Material.</string>
+    <string name="style_miuix_description">Miękkie karty, płynne przełączniki i nagłówki w stylu Xiaomi.</string>
+    <string name="style_cupertino_description">Grupowane powierzchnie, kapsułkowe przyciski i zaokrąglone przełączniki.</string>
+    <string name="style_minimal_description">Proste obramowania, mniejsze narożniki i zwarty tekst.</string>
+</resources>

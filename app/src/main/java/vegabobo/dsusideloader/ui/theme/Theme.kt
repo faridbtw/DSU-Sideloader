@@ -11,6 +11,7 @@ import androidx.compose.material3.dynamicDarkColorScheme
 import androidx.compose.material3.dynamicLightColorScheme
 import androidx.compose.material3.lightColorScheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.SideEffect
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.toArgb
@@ -66,7 +67,7 @@ private val LightColorScheme = lightColorScheme(
 fun appearanceColorScheme(settings: AppearanceSettings, systemDark: Boolean): androidx.compose.material3.ColorScheme {
     val dark = settings.themeMode.isDark(systemDark)
     val palette = settings.accentColor.palette()
-    val base = if (dark) DarkColorScheme else LightColorScheme
+    val base = (if (dark) DarkColorScheme else LightColorScheme).withDesignStyle(settings.designStyle, dark)
     val accented = base.copy(
         primary = if (dark) palette.darkPrimary else palette.lightPrimary,
         onPrimary = if (dark) palette.darkOnPrimary else Color.White,
@@ -98,7 +99,8 @@ fun DSUHelperTheme(
     val effectiveDark = appearance.themeMode.isDark(darkTheme)
     val context = LocalContext.current
     val colorScheme = if (appearance.useWallpaperColors && Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
-        val dynamic = if (effectiveDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+        val dynamic = (if (effectiveDark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context))
+            .withDesignStyle(appearance.designStyle, effectiveDark)
         if (appearance.themeMode == ThemeMode.AMOLED) dynamic.withBlackSurfaces() else dynamic
     } else {
         appearanceColorScheme(appearance, darkTheme)
@@ -115,14 +117,18 @@ fun DSUHelperTheme(
             }
         }
     }
-    MaterialTheme(
-        colorScheme = colorScheme,
-        typography = Typography,
-        shapes = Shapes(
-            small = RoundedCornerShape(12.dp),
-            medium = RoundedCornerShape(18.dp),
-            large = RoundedCornerShape(24.dp),
-        ),
-        content = content,
-    )
+    val metrics = appearance.designStyle.metrics()
+    CompositionLocalProvider(LocalDesignStyle provides appearance.designStyle) {
+        MaterialTheme(
+            colorScheme = colorScheme,
+            typography = appearance.designStyle.typography(),
+            shapes = Shapes(
+                small = RoundedCornerShape(metrics.controlRadius.dp),
+                medium = RoundedCornerShape(metrics.controlRadius.dp),
+                large = RoundedCornerShape(metrics.cardRadius.dp),
+                extraLarge = RoundedCornerShape(metrics.cardRadius.dp),
+            ),
+            content = content,
+        )
+    }
 }

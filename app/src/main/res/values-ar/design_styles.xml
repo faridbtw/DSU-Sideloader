@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="interface_style">نمط الواجهة</string>
+    <string name="style_material">Material</string>
+    <string name="style_miuix">مستوحى من Miuix</string>
+    <string name="style_cupertino">مستوحى من Cupertino</string>
+    <string name="style_minimal">بسيط</string>
+    <string name="style_material_description">تصميم Material الأصلي بحواف مستديرة.</string>
+    <string name="style_miuix_description">بطاقات ناعمة ومفاتيح سلسة وعناوين بأسلوب Xiaomi.</string>
+    <string name="style_cupertino_description">أسطح مجمعة وأزرار كبسولية ومفاتيح مستديرة.</string>
+    <string name="style_minimal_description">حدود واضحة وزوايا أصغر ونص مدمج.</string>
+</resources>

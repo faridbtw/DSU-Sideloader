@@ -30,6 +30,7 @@ class AppearancePreferencesTest {
         val firstStore = PreferenceDataStoreFactory.create(scope = firstScope, produceFile = { file })
         val first = AppearancePreferences(firstStore)
         try {
+            first.setDesignStyle(DesignStyle.MIUIX)
             first.setThemeMode(ThemeMode.AMOLED)
             first.setAccentColor(AccentColor.TEAL)
             first.setWallpaperColors(true)
@@ -41,7 +42,7 @@ class AppearancePreferencesTest {
         val secondStore = PreferenceDataStoreFactory.create(scope = secondScope, produceFile = { file })
         try {
             assertEquals(
-                AppearanceSettings(ThemeMode.AMOLED, AccentColor.TEAL, true),
+                AppearanceSettings(ThemeMode.AMOLED, AccentColor.TEAL, true, DesignStyle.MIUIX),
                 AppearancePreferences(secondStore).settings.first(),
             )
         } finally {
@@ -60,6 +61,7 @@ class AppearancePreferencesTest {
             val appearance = AppearancePreferences(store)
             assertEquals(AppearanceSettings(), appearance.settings.first())
             store.edit {
+                it[stringPreferencesKey("appearance_style")] = "future-style"
                 it[stringPreferencesKey("appearance_theme")] = "future-theme"
                 it[stringPreferencesKey("appearance_accent")] = "future-accent"
             }
@@ -80,6 +82,7 @@ class AppearancePreferencesTest {
             val appearance = AppearancePreferences(store)
             val keepScreenOn = booleanPreferencesKey(AppPrefs.KEEP_SCREEN_ON)
             store.edit { it[keepScreenOn] = true }
+            appearance.setDesignStyle(DesignStyle.CUPERTINO)
             appearance.setThemeMode(ThemeMode.DARK)
             appearance.setAccentColor(AccentColor.ROSE)
             appearance.setWallpaperColors(true)
@@ -105,6 +108,28 @@ class AppearancePreferencesTest {
             val saved = appearance.settings.first()
             assertEquals(AccentColor.BLUE, saved.accentColor)
             assertFalse(saved.useWallpaperColors)
+        } finally {
+            scope.coroutineContext[Job]!!.cancelAndJoin()
+        }
+    }
+
+    @Test
+    fun changingStylePreservesColorModeAndAccentSettings() = runBlocking {
+        val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+        val store = PreferenceDataStoreFactory.create(
+            scope = scope,
+            produceFile = { File(temporaryFolder.root, "appearance.preferences_pb") },
+        )
+        try {
+            val appearance = AppearancePreferences(store)
+            appearance.setThemeMode(ThemeMode.DARK)
+            appearance.setAccentColor(AccentColor.ROSE)
+            appearance.setWallpaperColors(true)
+            appearance.setDesignStyle(DesignStyle.MINIMAL)
+            assertEquals(
+                AppearanceSettings(ThemeMode.DARK, AccentColor.ROSE, true, DesignStyle.MINIMAL),
+                appearance.settings.first(),
+            )
         } finally {
             scope.coroutineContext[Job]!!.cancelAndJoin()
         }

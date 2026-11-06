@@ -28,14 +28,20 @@ enum class AccentColor(val preferenceValue: String) {
     INDIGO("indigo"), BLUE("blue"), TEAL("teal"), GREEN("green"), ROSE("rose"), AMBER("amber")
 }
 
+enum class DesignStyle(val preferenceValue: String) {
+    MATERIAL("material"), MIUIX("miuix"), CUPERTINO("cupertino"), MINIMAL("minimal")
+}
+
 data class AppearanceSettings(
     val themeMode: ThemeMode = ThemeMode.SYSTEM,
     val accentColor: AccentColor = AccentColor.INDIGO,
     val useWallpaperColors: Boolean = false,
+    val designStyle: DesignStyle = DesignStyle.MATERIAL,
 )
 
 @Singleton
 class AppearancePreferences @Inject constructor(private val dataStore: DataStore<Preferences>) {
+    private val styleKey = stringPreferencesKey("appearance_style")
     private val themeKey = stringPreferencesKey("appearance_theme")
     private val accentKey = stringPreferencesKey("appearance_accent")
     private val wallpaperKey = booleanPreferencesKey("appearance_wallpaper_colors")
@@ -47,8 +53,13 @@ class AppearancePreferences @Inject constructor(private val dataStore: DataStore
             themeMode = ThemeMode.values().firstOrNull { it.preferenceValue == preferences[themeKey] } ?: ThemeMode.SYSTEM,
             accentColor = AccentColor.values().firstOrNull { it.preferenceValue == preferences[accentKey] } ?: AccentColor.INDIGO,
             useWallpaperColors = preferences[wallpaperKey] ?: false,
+            designStyle = DesignStyle.values().firstOrNull { it.preferenceValue == preferences[styleKey] } ?: DesignStyle.MATERIAL,
         )
     }.distinctUntilChanged()
+
+    suspend fun setDesignStyle(style: DesignStyle) {
+        dataStore.edit { it[styleKey] = style.preferenceValue }
+    }
 
     suspend fun setThemeMode(mode: ThemeMode) {
         dataStore.edit { it[themeKey] = mode.preferenceValue }
@@ -67,6 +78,7 @@ class AppearancePreferences @Inject constructor(private val dataStore: DataStore
 
     suspend fun reset() {
         dataStore.edit {
+            it.remove(styleKey)
             it.remove(themeKey)
             it.remove(accentKey)
             it.remove(wallpaperKey)

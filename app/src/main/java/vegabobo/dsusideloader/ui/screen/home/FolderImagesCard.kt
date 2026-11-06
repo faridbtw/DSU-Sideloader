@@ -13,7 +13,6 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
-import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Description
@@ -204,7 +203,7 @@ private fun FolderImageRow(
         enabled = enabled,
         modifier = Modifier.fillMaxWidth().semantics { selected = isSelected },
         color = if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant,
-        shape = RoundedCornerShape(12.dp),
+        shape = MaterialTheme.shapes.small,
     ) {
         Row(
             modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),

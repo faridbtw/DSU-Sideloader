@@ -17,8 +17,8 @@ plugins {
     id("org.jmailen.kotlinter") apply false
 }
 
-val versionCode by extra { 12 }
-val versionName by extra { "2.03-design.4" }
+val versionCode by extra { 13 }
+val versionName by extra { "2.03-design.5" }
 val packageName by extra { "vegabobo.dsusideloader" }
 
 task("clean") {

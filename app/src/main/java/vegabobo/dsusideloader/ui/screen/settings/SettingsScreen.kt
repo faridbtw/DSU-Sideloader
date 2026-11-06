@@ -43,6 +43,7 @@ fun Settings(
     ) {
         AppearanceSettingsCard(
             settings = uiState.appearance,
+            onDesignStyleChanged = settingsViewModel::setDesignStyle,
             onThemeModeChanged = settingsViewModel::setThemeMode,
             onAccentChanged = settingsViewModel::setAccentColor,
             onWallpaperColorsChanged = settingsViewModel::setWallpaperColors,

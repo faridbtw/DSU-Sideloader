@@ -18,6 +18,7 @@ import vegabobo.dsusideloader.model.Session
 import vegabobo.dsusideloader.preferences.AccentColor
 import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.preferences.AppearancePreferences
+import vegabobo.dsusideloader.preferences.DesignStyle
 import vegabobo.dsusideloader.preferences.ThemeMode
 import vegabobo.dsusideloader.util.OperationMode
 import vegabobo.dsusideloader.util.OperationModeUtils
@@ -55,6 +56,10 @@ class SettingsViewModel @Inject constructor(
                 _uiState.update { it.copy(appearance = appearance) }
             }
         }
+    }
+
+    fun setDesignStyle(style: DesignStyle) {
+        viewModelScope.launch { appearancePreferences.setDesignStyle(style) }
     }
 
     fun setThemeMode(mode: ThemeMode) {
