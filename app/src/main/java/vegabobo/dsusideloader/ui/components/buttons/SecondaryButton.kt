@@ -1,6 +1,7 @@
 package vegabobo.dsusideloader.ui.components.buttons
 
 import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
@@ -16,6 +17,7 @@ fun SecondaryButton(
     text: String,
     onClick: () -> Unit,
     isEnabled: Boolean = true,
+    icon: ImageVector? = null,
 ) {
     fun addAlpha(c: Int, a: Float): Color =
         Color(
@@ -36,6 +38,7 @@ fun SecondaryButton(
         text = text,
         onClick = onClick,
         isEnabled = isEnabled,
+        icon = icon,
         colorButton = colorButton,
         colorText = colorText,
     )

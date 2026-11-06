@@ -11,8 +11,6 @@ import androidx.compose.material.icons.outlined.RadioButtonUnchecked
 import androidx.compose.ui.semantics.Role
 import androidx.compose.ui.semantics.role
 import androidx.compose.ui.text.font.FontWeight
-import androidx.compose.ui.unit.sp
-import vegabobo.dsusideloader.ui.components.buttons.ActionButton
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -26,7 +24,6 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Refresh
-import vegabobo.dsusideloader.ui.components.AppAlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -34,15 +31,19 @@ import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
-import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.getValue
-import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.saveable.rememberSaveable
-import androidx.compose.runtime.setValue
+import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.foundation.lazy.rememberLazyListState
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.ui.platform.LocalWindowInfo
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.material.icons.rounded.DeveloperBoard
+import androidx.compose.material.icons.rounded.FolderZip
+import androidx.compose.material.icons.rounded.Inventory2
+import androidx.compose.material.icons.outlined.Storage
+import androidx.compose.material.icons.outlined.Image
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.platform.LocalConfiguration
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.semantics.selected
@@ -56,7 +57,6 @@ import vegabobo.dsusideloader.model.FolderImageFormat
 import vegabobo.dsusideloader.ui.cards.installation.content.NotInstallingCardContent
 import vegabobo.dsusideloader.ui.components.CardBox
 import vegabobo.dsusideloader.ui.util.launcherAcResult
-import vegabobo.dsusideloader.ui.util.systemImageSelectionIntent
 
 @Composable
 fun FolderImagesCard(
@@ -66,28 +66,30 @@ fun FolderImagesCard(
     onRefresh: () -> Unit,
     onChangeFolder: (Uri) -> Unit,
     onSelectImage: (FolderImage) -> Unit,
-    onSelectFile: (Uri) -> Unit,
     onInstall: () -> Unit,
     onClear: () -> Unit,
 ) {
-    var showAll by rememberSaveable(state.folderUri) { mutableStateOf(false) }
     val folderLauncher = launcherAcResult(onChangeFolder)
-    val imageLauncher = launcherAcResult(onSelectFile)
-    val browseImage = { imageLauncher.launch(systemImageSelectionIntent()) }
-    val selectedImage = state.images.firstOrNull { it.uriString == installation.selectedFileUri }
+    val listState = rememberLazyListState()
+    val listHeight = with(LocalDensity.current) { LocalWindowInfo.current.containerSize.height.toDp() * 0.36f }
+        .coerceIn(180.dp, 360.dp)
+    LaunchedEffect(state.folderUri) { listState.scrollToItem(0) }
 
     CardBox {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
             Column(modifier = Modifier.weight(1f)) {
                 Text(stringResource(R.string.system_image), style = MaterialTheme.typography.titleMedium)
                 if (state.folderName.isNotBlank()) {
-                    Text(
-                        state.folderName,
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Icon(Icons.Outlined.FolderOpen, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(13.dp))
+                        Text(
+                            state.folderName, style = MaterialTheme.typography.bodySmall,
+                            color = MaterialTheme.colorScheme.onSurfaceVariant, maxLines = 1,
+                            overflow = TextOverflow.Ellipsis, modifier = Modifier.weight(1f, fill = false),
+                        )
+                        Icon(Icons.Outlined.Image, null, tint = MaterialTheme.colorScheme.onSurfaceVariant, modifier = Modifier.size(13.dp))
+                        Text(state.images.size.toString(), style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant)
+                    }
                 }
             }
             IconButton(
@@ -124,39 +126,19 @@ fun FolderImagesCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 8.dp),
             )
-            else -> Column(modifier = Modifier.padding(top = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
-                // Keep the current selection visible even when it comes from the full list.
-                val preview = (listOfNotNull(selectedImage) + state.images.filter { it.uriString != installation.selectedFileUri }).take(2)
-                preview.forEach { image ->
-                    FolderImageRow(
-                        image = image,
-                        isSelected = image.uriString == installation.selectedFileUri,
-                        enabled = enabled,
-                        onClick = { onSelectImage(image) },
-                    )
-                }
-            }
-        }
-        if (state.images.isNotEmpty()) {
-            Row(
-                modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
-                verticalAlignment = Alignment.CenterVertically,
-                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            else -> LazyColumn(
+                state = listState,
+                modifier = Modifier.fillMaxWidth().padding(top = 10.dp).heightIn(max = listHeight).selectableGroup(),
+                verticalArrangement = Arrangement.spacedBy(8.dp),
             ) {
-                ActionButton(
-                    text = stringResource(R.string.browse_images), onClick = browseImage,
-                    textButton = true, plainText = true, isEnabled = enabled, modifier = Modifier.weight(1f),
-                )
-                if (state.images.size > 2) {
-                    ActionButton(
-                        text = stringResource(R.string.show_all_images, state.images.size),
-                        onClick = { showAll = true }, textButton = true, plainText = true,
-                        isEnabled = enabled, modifier = Modifier.weight(1f),
+                items(state.images, key = { it.uriString }) { image ->
+                    FolderImageRow(
+                        image = image, isSelected = image.uriString == installation.selectedFileUri,
+                        enabled = enabled, showPath = true, onClick = { onSelectImage(image) },
                     )
                 }
             }
         }
-
         if (state.limited && !state.isLoading && !state.hasError) {
             Text(
                 stringResource(R.string.image_scan_limited),
@@ -165,41 +147,9 @@ fun FolderImagesCard(
                 modifier = Modifier.padding(vertical = 4.dp),
             )
         }
-        if (installation.isInstallable || state.images.isEmpty() || installation.isError) NotInstallingCardContent(
-            onClickSelectFile = browseImage,
-            uiState = installation,
-            onClickClear = onClear,
-            onClickInstall = onInstall,
-            showFilePicker = state.images.isEmpty() || (installation.isInstallable && selectedImage == null),
-        )
-    }
-
-    if (showAll) {
-        AppAlertDialog(
-            onDismissRequest = { showAll = false },
-            title = { Text(stringResource(R.string.folder_system_images)) },
-            text = {
-                LazyColumn(
-                    modifier = Modifier.fillMaxWidth().heightIn(max = (LocalConfiguration.current.screenHeightDp * 0.55f).dp),
-                    verticalArrangement = Arrangement.spacedBy(6.dp),
-                ) {
-                    items(state.images, key = { it.uriString }) { image ->
-                        FolderImageRow(
-                            image = image,
-                            isSelected = image.uriString == installation.selectedFileUri,
-                            enabled = enabled && !state.isLoading,
-                            showPath = true,
-                            onClick = {
-                                onSelectImage(image)
-                                showAll = false
-                            },
-                        )
-                    }
-                }
-            },
-            confirmButton = {
-                TextButton(onClick = { showAll = false }) { Text(stringResource(R.string.close)) }
-            },
+        if (installation.isInstallable || installation.isError) NotInstallingCardContent(
+            onClickSelectFile = {}, uiState = installation, onClickClear = onClear,
+            onClickInstall = onInstall, showFilePicker = false,
         )
     }
 }
@@ -239,10 +189,12 @@ private fun FolderImageRow(
                 modifier = Modifier.size(38.dp),
             ) {
                 Box(contentAlignment = Alignment.Center) {
-                    Text(
-                        format, color = if (isSelected) colors.onPrimary else colors.primary,
-                        fontSize = 10.sp, fontWeight = FontWeight.Bold, maxLines = 1,
-                    )
+                    val fileIcon = when (image.format) {
+                        FolderImageFormat.IMAGE -> Icons.Rounded.DeveloperBoard
+                        FolderImageFormat.DSU_ZIP -> Icons.Rounded.FolderZip
+                        else -> Icons.Rounded.Inventory2
+                    }
+                    Icon(fileIcon, null, tint = if (isSelected) colors.onPrimary else colors.primary, modifier = Modifier.size(22.dp))
                 }
             }
             Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
@@ -251,10 +203,13 @@ private fun FolderImageRow(
                     color = foreground, maxLines = 2, overflow = TextOverflow.Ellipsis,
                 )
                 if (image.size > 0) {
-                    Text(
-                        Formatter.formatShortFileSize(context, image.size), style = MaterialTheme.typography.bodySmall,
-                        color = if (isSelected) foreground.copy(alpha = 0.8f) else colors.onSurfaceVariant,
-                    )
+                    Row(verticalAlignment = Alignment.CenterVertically, horizontalArrangement = Arrangement.spacedBy(4.dp)) {
+                        Icon(Icons.Outlined.Storage, null, tint = if (isSelected) foreground else colors.onSurfaceVariant, modifier = Modifier.size(12.dp))
+                        Text(
+                            "$format · ${Formatter.formatShortFileSize(context, image.size)}", style = MaterialTheme.typography.bodySmall,
+                            color = if (isSelected) foreground.copy(alpha = 0.8f) else colors.onSurfaceVariant,
+                        )
+                    }
                 }
                 if (showPath && image.relativePath != image.filename) {
                     Text(

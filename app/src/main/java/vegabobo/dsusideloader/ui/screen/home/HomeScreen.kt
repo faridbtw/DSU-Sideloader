@@ -115,7 +115,6 @@ fun Home(
                         onRefresh = homeViewModel::refreshFolderImages,
                         onChangeFolder = homeViewModel::takeUriPermission,
                         onSelectImage = { homeViewModel.onFileSelectionResult(it.uriString.toUri()) },
-                        onSelectFile = homeViewModel::onFileSelectionResult,
                         onInstall = homeViewModel::onClickInstall,
                         onClear = homeViewModel::resetInstallationCard,
                     )

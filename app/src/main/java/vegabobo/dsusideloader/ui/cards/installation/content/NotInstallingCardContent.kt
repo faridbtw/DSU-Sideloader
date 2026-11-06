@@ -7,6 +7,8 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.material.icons.rounded.Close
+import androidx.compose.material.icons.rounded.SystemUpdateAlt
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.UploadFile
@@ -87,10 +89,11 @@ fun NotInstallingCardContent(
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
     ) {
-        SecondaryButton(text = stringResource(R.string.clear), onClick = onClickClear)
+        SecondaryButton(text = stringResource(R.string.clear), onClick = onClickClear, icon = Icons.Rounded.Close)
         PrimaryButton(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.install),
+            icon = Icons.Rounded.SystemUpdateAlt,
             onClick = onClickInstall,
             isEnabled = uiState.isInstallable,
         )

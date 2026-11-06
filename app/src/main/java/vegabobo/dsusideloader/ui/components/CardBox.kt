@@ -19,6 +19,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import vegabobo.dsusideloader.ui.theme.LocalDesignStyle
@@ -28,6 +29,7 @@ import vegabobo.dsusideloader.ui.theme.metrics
 fun CardBox(
     modifier: Modifier = Modifier,
     cardTitle: String = "",
+    cardIcon: ImageVector? = null,
     addToggle: Boolean = false,
     isToggleChecked: Boolean = false,
     isToggleEnabled: Boolean = true,
@@ -42,7 +44,7 @@ fun CardBox(
             if (cardTitle.isNotEmpty()) {
                 if (addToggle) {
                     Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                        CardTitle(Modifier.weight(1F), cardTitle = cardTitle)
+                        CardTitle(Modifier.weight(1F), cardTitle = cardTitle, icon = cardIcon)
                         Spacer(modifier = Modifier.padding(4.dp))
                         StyledSwitch(
                             checked = isToggleChecked,
@@ -52,7 +54,7 @@ fun CardBox(
                     }
                 } else {
                     CardTitle(
-                        cardTitle = cardTitle,
+                        cardTitle = cardTitle, icon = cardIcon,
                         modifier = Modifier.padding(top = 9.5.dp, bottom = 9.5.dp),
                     )
                 }

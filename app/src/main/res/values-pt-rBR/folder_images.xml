@@ -9,7 +9,5 @@
     <string name="image_folder_empty">Nenhuma imagem compatível encontrada. Adicione IMG, GZIP, XZ ou um pacote DSU e atualize.</string>
     <string name="dsu_zip_format">DSU ZIP</string>
     <string name="show_fewer_images">Mostrar menos</string>
-    <string name="show_all_images">Mostrar todas (%1$d)</string>
     <string name="image_scan_limited">Apenas parte desta pasta foi verificada. Escolha uma pasta mais específica para ver outras imagens.</string>
-    <string name="browse_images">Escolher arquivo</string>
 </resources>

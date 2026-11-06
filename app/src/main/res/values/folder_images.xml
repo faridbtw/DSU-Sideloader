@@ -9,7 +9,5 @@
     <string name="image_folder_empty">No supported images found. Add an IMG, GZIP, XZ, or DSU package, then refresh.</string>
     <string name="dsu_zip_format">DSU ZIP</string>
     <string name="show_fewer_images">Show fewer</string>
-    <string name="show_all_images">Show all (%1$d)</string>
     <string name="image_scan_limited">Only part of this folder was scanned. Choose a more specific folder to see additional images.</string>
-    <string name="browse_images">Browse file</string>
 </resources>

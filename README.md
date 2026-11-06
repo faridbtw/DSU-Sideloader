@@ -27,11 +27,11 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
-| **Compact install flow** — a collapsing Home header, quieter library controls, and an Install action shown after image selection; the full library opens in a scrollable dialog with format badges, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
+| **Compact install flow** — a collapsing Home header, quieter library controls, and an Install action shown after image selection; the image library scrolls directly inside Home, with file-type icons, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
 | **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
-Switch between Material and the actual Miuix component library under **Settings → Appearance → Interface style**. Miuix supplies native cards, buttons, switches, text fields, top bars, dialogs, and dropdowns. Home and Settings are available from the bottom navigation bar, with saved tab state and a horizontal slide between tabs. Disable **Theme → Scroll animation** for instant switching. Settings follows KowSU Pro’s grouped cards, leading icons, navigation arrows, native switches, and collapsing large header. The **Theme** page has a live miniature workspace preview and direct mode tabs. Miuix uses compact color dropdowns with animated expansion; Material uses a horizontal strip of tonal swatches. Monet is off by default and can be enabled in Theme settings. Configure Monet, key color, nine palette variants, and the 2021/2025 color specifications there. Unsupported 2025 palettes use 2021 while retaining your saved choice.
+Switch between Material and the actual Miuix component library under **Settings → Appearance → Interface style**. Miuix supplies native cards, buttons, switches, text fields, top bars, dialogs, and dropdowns. Home and Settings are available from a floating dock, with saved tab state and a horizontal slide between tabs. Disable **Theme → Scroll animation** for instant switching. Settings follows KowSU Pro’s grouped cards, leading icons, navigation arrows, native switches, and collapsing large header. The **Theme** page has a live miniature workspace preview and direct mode tabs. Miuix uses compact color dropdowns with animated expansion; Material uses a horizontal strip of tonal swatches. Monet is off by default and can be enabled in Theme settings. Configure Monet, key color, nine palette variants, and the 2021/2025 color specifications there. Unsupported 2025 palettes use 2021 while retaining your saved choice.
 
 ## Screenshots
 
@@ -61,7 +61,7 @@ These are debug builds of this fork. They use the same package ID as the origina
 You need **Android 10 or newer**, a device with **dynamic partitions**, an **unlocked bootloader** for most community images, and a GSI compatible with your device architecture and vendor implementation.
 
 1. Install the app and grant access to a folder for temporary image files.
-2. Select an image from **System images**, or choose a file manually: `.img`, `.gz`, `.xz`, or a DSU package `.zip` on Android 11+.
+2. Scroll the **System image** list and select an image: `.img`, `.gz`, `.xz`, or a DSU package `.zip` on Android 11+. Use the folder icon to change the library folder.
 3. Open **Installation options** if you need a custom userdata allocation. Leave image size automatic unless you know a manual value is needed.
 4. Tap **Install**, review the confirmation, and follow the prompts for your operation mode.
 5. When installation completes, use the app or Android’s DSU notification to boot the image.

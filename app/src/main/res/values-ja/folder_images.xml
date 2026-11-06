@@ -9,7 +9,5 @@
     <string name="image_folder_empty">対応するイメージがありません。IMG、GZIP、XZ、または DSU パッケージを追加して更新してください。</string>
     <string name="dsu_zip_format">DSU ZIP</string>
     <string name="show_fewer_images">表示を減らす</string>
-    <string name="show_all_images">すべて表示（%1$d）</string>
     <string name="image_scan_limited">フォルダの一部のみ検索しました。ほかのイメージを見るには、より具体的なフォルダを選択してください。</string>
-    <string name="browse_images">ファイルを選択</string>
 </resources>

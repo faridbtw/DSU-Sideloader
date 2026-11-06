@@ -1,5 +1,11 @@
 package vegabobo.dsusideloader.ui.components.buttons
 
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
+import androidx.compose.material3.Icon
+import androidx.compose.ui.graphics.vector.ImageVector
+import top.yukonga.miuix.kmp.basic.Icon as MiuixIcon
 import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.ButtonDefaults
@@ -30,6 +36,7 @@ fun ActionButton(
     textButton: Boolean = false,
     plainText: Boolean = false,
     isEnabled: Boolean = true,
+    icon: ImageVector? = null,
     content: @Composable () -> Unit = {},
 ) {
     if (LocalDesignStyle.current == DesignStyle.MIUIX) {
@@ -51,6 +58,10 @@ fun ActionButton(
                     contentColor = colorText ?: MiuixTheme.colorScheme.onPrimary,
                 ),
             ) {
+                if (icon != null) {
+                    MiuixIcon(imageVector = icon, contentDescription = null, modifier = Modifier.size(20.dp))
+                    Spacer(Modifier.width(8.dp))
+                }
                 MiuixText(text = text)
                 content()
             }
@@ -72,6 +83,10 @@ fun ActionButton(
                 contentColor = colorText ?: MaterialTheme.colorScheme.onPrimary,
             ),
         ) {
+            if (icon != null) {
+                Icon(icon, contentDescription = null, modifier = Modifier.size(20.dp))
+                Spacer(Modifier.width(8.dp))
+            }
             Text(text = text, style = MaterialTheme.typography.labelLarge)
             content()
         }

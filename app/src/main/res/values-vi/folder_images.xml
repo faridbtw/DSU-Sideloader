@@ -9,7 +9,5 @@
     <string name="image_folder_empty">Không tìm thấy ảnh được hỗ trợ. Thêm IMG, GZIP, XZ hoặc gói DSU, rồi làm mới.</string>
     <string name="dsu_zip_format">DSU ZIP</string>
     <string name="show_fewer_images">Hiện ít hơn</string>
-    <string name="show_all_images">Hiện tất cả (%1$d)</string>
     <string name="image_scan_limited">Chỉ quét được một phần thư mục. Chọn thư mục cụ thể hơn để xem thêm ảnh.</string>
-    <string name="browse_images">Duyệt tệp</string>
 </resources>

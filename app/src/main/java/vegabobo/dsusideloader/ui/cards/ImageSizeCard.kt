@@ -6,6 +6,8 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.DeveloperBoard
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
@@ -26,6 +28,7 @@ fun ImageSizeCard(
     onCheckedChange: ((Boolean) -> Unit) = {},
 ) {
     AllocationCard(
+        icon = Icons.Rounded.DeveloperBoard,
         modifier = modifier,
         title = stringResource(R.string.image_size),
         checked = uiState.isSelected,
