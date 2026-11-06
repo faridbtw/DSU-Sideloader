@@ -11,14 +11,17 @@ import androidx.lifecycle.viewModelScope
 import com.topjohnwu.superuser.Shell
 import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.ensureActive
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import vegabobo.dsusideloader.BuildConfig
 import vegabobo.dsusideloader.core.BaseViewModel
 import vegabobo.dsusideloader.core.StorageManager
@@ -28,6 +31,7 @@ import vegabobo.dsusideloader.installer.privileged.LogcatDiagnostic
 import vegabobo.dsusideloader.installer.root.DSUInstaller
 import vegabobo.dsusideloader.model.DSUInstallationSource
 import vegabobo.dsusideloader.model.Session
+import vegabobo.dsusideloader.model.folderImageFormat
 import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.preparation.InstallationStep
 import vegabobo.dsusideloader.preparation.Preparation
@@ -55,6 +59,8 @@ class HomeViewModel @Inject constructor(
     var checkUnavaiableStorage = true
     var checkReadLogsPermission = true
     var disabledStorageCheck = false
+
+    private var folderScanJob: Job? = null
 
     var installationJob: Job = Job()
     var logger: LogcatDiagnostic? = null
@@ -129,7 +135,8 @@ class HomeViewModel @Inject constructor(
 
         viewModelScope.launch {
             val result = readStringPref(AppPrefs.SAF_PATH)
-            if (!storageManager.arePermissionsGrantedToFolder(result)) {
+            val hasFolderPermission = withContext(Dispatchers.IO) { storageManager.arePermissionsGrantedToFolder(result) }
+            if (!hasFolderPermission) {
                 updateAdditionalCardState(AdditionalCardState.SETUP_STORAGE)
                 return@launch
             }
@@ -151,6 +158,34 @@ class HomeViewModel @Inject constructor(
 
             updateAdditionalCardState(AdditionalCardState.NONE)
             _uiState.update { it.copy(passedInitialChecks = true) }
+            refreshFolderImages()
+        }
+    }
+
+    fun refreshFolderImages() {
+        if (!uiState.value.passedInitialChecks) return
+        folderScanJob?.cancel()
+        folderScanJob = viewModelScope.launch {
+            val path = readStringPref(AppPrefs.SAF_PATH)
+            if (path.isBlank()) return@launch
+            _uiState.update {
+                it.copy(folderImages = it.folderImages.copy(folderUri = path, isLoading = true, hasError = false))
+            }
+            try {
+                val scan = withContext(Dispatchers.IO) {
+                    storageManager.scanFolderImages(path, Build.VERSION.SDK_INT >= 30) { ensureActive() }
+                }
+                _uiState.update {
+                    it.copy(folderImages = FolderImagesState(path, scan.folderName, scan.images, limited = scan.limited))
+                }
+            } catch (error: CancellationException) {
+                throw error
+            } catch (error: Exception) {
+                Log.w(tag, "Unable to scan selected folder", error)
+                _uiState.update {
+                    it.copy(folderImages = FolderImagesState(folderUri = path, hasError = true))
+                }
+            }
         }
     }
 
@@ -446,7 +481,18 @@ class HomeViewModel @Inject constructor(
             Intent.FLAG_GRANT_READ_URI_PERMISSION or Intent.FLAG_GRANT_WRITE_URI_PERMISSION,
         )
         viewModelScope.launch {
-            if (storageManager.arePermissionsGrantedToFolder(uri.toString())) {
+            val hasFolderPermission = withContext(Dispatchers.IO) { storageManager.arePermissionsGrantedToFolder(uri.toString()) }
+            if (hasFolderPermission) {
+                val previousPath = readStringPref(AppPrefs.SAF_PATH)
+                if (previousPath != uri.toString()) {
+                    folderScanJob?.cancel()
+                    if (!uiState.value.isInstalling()) {
+                        resetInstallationCard()
+                        session.userSelection.selectedFileUri = Uri.EMPTY
+                        session.userSelection.selectedFileName = ""
+                    }
+                    _uiState.update { it.copy(folderImages = FolderImagesState(folderUri = uri.toString(), isLoading = true)) }
+                }
                 updateStringPref(AppPrefs.SAF_PATH, uri.toString()) { initialChecks() }
             }
         }
@@ -454,15 +500,8 @@ class HomeViewModel @Inject constructor(
 
     fun onFileSelectionResult(uri: Uri) {
         val filename = FilenameUtils.queryName(application.contentResolver, uri)
-        val extension = filename.substringAfterLast(".", "")
-        val supportedFiles = arrayListOf("gz", "xz", "img", "gzip")
-
-        // DSU packages (zip files), are only supported in R+
-        if (Build.VERSION.SDK_INT > 29) {
-            supportedFiles.add("zip")
-        }
-        val isFileSupported = supportedFiles.contains(extension)
-        Log.d(tag, "isFileSupported: $isFileSupported, extension: $extension, filename: $filename")
+        val isFileSupported = folderImageFormat(filename, Build.VERSION.SDK_INT >= 30) != null
+        Log.d(tag, "isFileSupported: $isFileSupported, filename: $filename")
 
         if (!isFileSupported) {
             viewModelScope.launch {
@@ -478,7 +517,8 @@ class HomeViewModel @Inject constructor(
         updateInstallationCard {
             it.copy(
                 text = filename,
-                isTextFieldEnabled = false,
+                selectedFileUri = uri.toString(),
+                isTextFieldEnabled = true,
                 isInstallable = true,
             )
         }

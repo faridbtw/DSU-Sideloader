@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="folder_system_images">Imagens do sistema</string>
+    <string name="change_image_folder">Alterar pasta</string>
+    <string name="refresh_image_folder">Atualizar imagens</string>
+    <string name="folder_image_hint">Imagens desta pasta e subpastas. Toque em uma para selecionar para instalação.</string>
+    <string name="scanning_image_folder">Verificando pasta…</string>
+    <string name="image_folder_error">Não foi possível ler esta pasta. Atualize ou escolha outra pasta.</string>
+    <string name="image_folder_empty">Nenhuma imagem compatível encontrada. Adicione IMG, GZIP, XZ ou um pacote DSU e atualize.</string>
+    <string name="dsu_zip_format">DSU ZIP</string>
+    <string name="show_fewer_images">Mostrar menos</string>
+    <string name="show_all_images">Mostrar todas (%1$d)</string>
+    <string name="image_scan_limited">Apenas parte desta pasta foi verificada. Escolha uma pasta mais específica para ver outras imagens.</string>
+</resources>

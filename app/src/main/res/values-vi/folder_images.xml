@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="folder_system_images">Ảnh hệ thống</string>
+    <string name="change_image_folder">Đổi thư mục</string>
+    <string name="refresh_image_folder">Làm mới ảnh</string>
+    <string name="folder_image_hint">Ảnh trong thư mục này và các thư mục con. Nhấn vào ảnh để chọn cài đặt.</string>
+    <string name="scanning_image_folder">Đang quét thư mục…</string>
+    <string name="image_folder_error">Không thể đọc thư mục. Hãy làm mới hoặc chọn thư mục khác.</string>
+    <string name="image_folder_empty">Không tìm thấy ảnh được hỗ trợ. Thêm IMG, GZIP, XZ hoặc gói DSU, rồi làm mới.</string>
+    <string name="dsu_zip_format">DSU ZIP</string>
+    <string name="show_fewer_images">Hiện ít hơn</string>
+    <string name="show_all_images">Hiện tất cả (%1$d)</string>
+    <string name="image_scan_limited">Chỉ quét được một phần thư mục. Chọn thư mục cụ thể hơn để xem thêm ảnh.</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="folder_system_images">システムイメージ</string>
+    <string name="change_image_folder">フォルダを変更</string>
+    <string name="refresh_image_folder">イメージを更新</string>
+    <string name="folder_image_hint">このフォルダとサブフォルダのイメージです。タップしてインストールするイメージを選択します。</string>
+    <string name="scanning_image_folder">フォルダを検索中…</string>
+    <string name="image_folder_error">フォルダを読み取れません。更新するか、別のフォルダを選択してください。</string>
+    <string name="image_folder_empty">対応するイメージがありません。IMG、GZIP、XZ、または DSU パッケージを追加して更新してください。</string>
+    <string name="dsu_zip_format">DSU ZIP</string>
+    <string name="show_fewer_images">表示を減らす</string>
+    <string name="show_all_images">すべて表示（%1$d）</string>
+    <string name="image_scan_limited">フォルダの一部のみ検索しました。ほかのイメージを見るには、より具体的なフォルダを選択してください。</string>
+</resources>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="folder_system_images">Obrazy systemu</string>
+    <string name="change_image_folder">Zmień folder</string>
+    <string name="refresh_image_folder">Odśwież obrazy</string>
+    <string name="folder_image_hint">Obrazy z tego folderu i podfolderów. Dotknij obrazu, aby wybrać go do instalacji.</string>
+    <string name="scanning_image_folder">Skanowanie folderu…</string>
+    <string name="image_folder_error">Nie można odczytać folderu. Odśwież listę lub wybierz inny folder.</string>
+    <string name="image_folder_empty">Nie znaleziono obsługiwanych obrazów. Dodaj plik IMG, GZIP, XZ lub pakiet DSU i odśwież listę.</string>
+    <string name="dsu_zip_format">DSU ZIP</string>
+    <string name="show_fewer_images">Pokaż mniej</string>
+    <string name="show_all_images">Pokaż wszystkie (%1$d)</string>
+    <string name="image_scan_limited">Przeskanowano tylko część folderu. Wybierz bardziej szczegółowy folder, aby zobaczyć kolejne obrazy.</string>
+</resources>

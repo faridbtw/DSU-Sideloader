@@ -1,5 +1,6 @@
 package vegabobo.dsusideloader.ui.screen.home
 
+import vegabobo.dsusideloader.model.FolderImage
 import vegabobo.dsusideloader.preparation.InstallationStep
 
 data class InstallationCardState(
@@ -8,6 +9,7 @@ data class InstallationCardState(
     val isInstallable: Boolean = false,
     val isError: Boolean = false,
     val text: String = "",
+    val selectedFileUri: String = "",
     val errorText: String = "",
     val isProgressBarIndeterminate: Boolean = false,
     val installationProgress: Float = 0F,
@@ -45,7 +47,17 @@ enum class SheetDisplayState {
     VIEW_LOGS,
 }
 
+data class FolderImagesState(
+    val folderUri: String = "",
+    val folderName: String = "",
+    val images: List<FolderImage> = emptyList(),
+    val isLoading: Boolean = false,
+    val hasError: Boolean = false,
+    val limited: Boolean = false,
+)
+
 data class HomeUiState(
+    val folderImages: FolderImagesState = FolderImagesState(),
     val installationCard: InstallationCardState = InstallationCardState(),
     val userDataCard: UserDataCardState = UserDataCardState(),
     val imageSizeCard: ImageSizeCardState = ImageSizeCardState(),

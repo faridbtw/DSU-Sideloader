@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="folder_system_images">系统镜像</string>
+    <string name="change_image_folder">更改文件夹</string>
+    <string name="refresh_image_folder">刷新镜像</string>
+    <string name="folder_image_hint">显示此文件夹及其子文件夹中的镜像。点按镜像以选择安装。</string>
+    <string name="scanning_image_folder">正在扫描文件夹…</string>
+    <string name="image_folder_error">无法读取此文件夹。请刷新或选择其他文件夹。</string>
+    <string name="image_folder_empty">未找到支持的镜像。请添加 IMG、GZIP、XZ 或 DSU 安装包，然后刷新。</string>
+    <string name="dsu_zip_format">DSU ZIP</string>
+    <string name="show_fewer_images">收起列表</string>
+    <string name="show_all_images">显示全部（%1$d）</string>
+    <string name="image_scan_limited">仅扫描了此文件夹的一部分。请选择更具体的文件夹以查看其他镜像。</string>
+</resources>

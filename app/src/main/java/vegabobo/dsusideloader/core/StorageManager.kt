@@ -15,6 +15,9 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import org.apache.commons.compress.utils.IOUtils
+import vegabobo.dsusideloader.model.FolderDocument
+import vegabobo.dsusideloader.model.FolderImageScan
+import vegabobo.dsusideloader.model.FolderImageScanner
 import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.util.DataStoreUtils
 import vegabobo.dsusideloader.util.FilenameUtils
@@ -29,7 +32,7 @@ class StorageManager(
     }
 
     private var rwPathAllowedByUser: String = ""
-    private lateinit var workspaceFolder: DocumentFile
+    private var workspaceFolder: DocumentFile? = null
 
     init {
         val coroutineScope = CoroutineScope(Dispatchers.IO)
@@ -54,6 +57,7 @@ class StorageManager(
 
                 // check if uri has r/w permission
                 if (folder.isWritePermission && folder.isReadPermission) {
+                    if (rwPathAllowedByUser != path) workspaceFolder = null
                     rwPathAllowedByUser = path
                     return true
                 }
@@ -72,9 +76,7 @@ class StorageManager(
     // this path will be used to store images that will be utilized by DSU
     @Throws(Exception::class)
     private fun getWorkspaceFolder(): DocumentFile {
-        if (this::workspaceFolder.isInitialized && workspaceFolder.canRead()) {
-            return workspaceFolder
-        }
+        workspaceFolder?.takeIf { it.canRead() }?.let { return it }
 
         if (rwPathAllowedByUser.isEmpty()) {
             throw Exception("Allowed path by user is empty, ask user to allow storage permission again.")
@@ -84,10 +86,18 @@ class StorageManager(
             DocumentFile.fromTreeUri(appContext, rwPathAllowedByUser.toUri())
                 ?: throw Exception("Workspace folder cannot be null.")
 
-        workspaceFolder = writeableDir.findFile(Constants.WORKSPACE_FOLDER)
-            ?: writeableDir.createDirectory(Constants.WORKSPACE_FOLDER)!!
+        val folder = writeableDir.findFile(Constants.WORKSPACE_FOLDER)
+            ?: writeableDir.createDirectory(Constants.WORKSPACE_FOLDER)
+            ?: throw IOException("Unable to create workspace folder.")
+        workspaceFolder = folder
+        return folder
+    }
 
-        return workspaceFolder
+    fun scanFolderImages(path: String, supportsZip: Boolean, checkCancelled: () -> Unit): FolderImageScan {
+        val root = DocumentFile.fromTreeUri(appContext, path.toUri())
+            ?: throw IOException("Selected folder is unavailable.")
+        if (!root.exists() || !root.canRead()) throw IOException("Selected folder cannot be read.")
+        return FolderImageScanner().scan(SafFolderDocument(root), supportsZip, checkCancelled)
     }
 
     fun cleanWorkspaceFolder(deleteAlsoGzFile: Boolean) {
@@ -166,4 +176,13 @@ class StorageManager(
     private fun isPathWrong(uri: Uri): Boolean {
         return uri.path.toString().contains("msf:")
     }
+}
+
+private class SafFolderDocument(private val document: DocumentFile) : FolderDocument {
+    override val uriString get() = document.uri.toString()
+    override val name get() = document.name
+    override val isDirectory get() = document.isDirectory
+    override val isFile get() = document.isFile
+    override val size get() = document.length()
+    override fun children(): List<FolderDocument> = document.listFiles().map { SafFolderDocument(it) }
 }

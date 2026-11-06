@@ -28,7 +28,7 @@ Choose an image, adjust the options you need, and follow the installation. This 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
 | **Choose → Configure → Install** — a guide that follows your installation state. | **Your appearance** — System, Light, Dark, or AMOLED; six accent presets and Android 12+ wallpaper colors. |
-| **A larger image picker** — readable filenames and supported formats at a glance. | **Options when you need them** — expandable userdata and image-size controls. |
+| **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
 ## Screenshots
@@ -59,7 +59,7 @@ These are debug builds of this fork. They use the same package ID as the origina
 You need **Android 10 or newer**, a device with **dynamic partitions**, an **unlocked bootloader** for most community images, and a GSI compatible with your device architecture and vendor implementation.
 
 1. Install the app and grant access to a folder for temporary image files.
-2. Choose a system image: `.img`, `.gz`, `.xz`, or a DSU package `.zip` on Android 11+.
+2. Select an image from **System images**, or choose a file manually: `.img`, `.gz`, `.xz`, or a DSU package `.zip` on Android 11+.
 3. Open **Installation options** if you need a custom userdata allocation. Leave image size automatic unless you know a manual value is needed.
 4. Tap **Install**, review the confirmation, and follow the prompts for your operation mode.
 5. When installation completes, use the app or Android’s DSU notification to boot the image.

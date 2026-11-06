@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="folder_system_images">System images</string>
+    <string name="change_image_folder">Change folder</string>
+    <string name="refresh_image_folder">Refresh images</string>
+    <string name="folder_image_hint">Images from this folder and its subfolders. Tap one to select it for installation.</string>
+    <string name="scanning_image_folder">Scanning folder…</string>
+    <string name="image_folder_error">Unable to read this folder. Try refreshing or choose another folder.</string>
+    <string name="image_folder_empty">No supported images found. Add an IMG, GZIP, XZ, or DSU package, then refresh.</string>
+    <string name="dsu_zip_format">DSU ZIP</string>
+    <string name="show_fewer_images">Show fewer</string>
+    <string name="show_all_images">Show all (%1$d)</string>
+    <string name="image_scan_limited">Only part of this folder was scanned. Choose a more specific folder to see additional images.</string>
+</resources>
