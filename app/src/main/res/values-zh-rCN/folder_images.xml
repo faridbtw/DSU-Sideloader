@@ -10,4 +10,5 @@
     <string name="dsu_zip_format">DSU ZIP</string>
     <string name="show_fewer_images">收起列表</string>
     <string name="image_scan_limited">仅扫描了此文件夹的一部分。请选择更具体的文件夹以查看其他镜像。</string>
+    <string name="browse_images">浏览文件</string>
 </resources>

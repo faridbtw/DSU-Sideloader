@@ -61,7 +61,7 @@ These are debug builds of this fork. They use the same package ID as the origina
 You need **Android 10 or newer**, a device with **dynamic partitions**, an **unlocked bootloader** for most community images, and a GSI compatible with your device architecture and vendor implementation.
 
 1. Install the app and grant access to a folder for temporary image files.
-2. Scroll the **System image** list and select an image: `.img`, `.gz`, `.xz`, or a DSU package `.zip` on Android 11+. Use the folder icon to change the library folder.
+2. Scroll the **System image** list and select an image: `.img`, `.gz`, `.xz`, or a DSU package `.zip` on Android 11+. Use the folder icon to change the library folder, or **Browse file** to select an image manually.
 3. Open **Installation options** if you need a custom userdata allocation. Leave image size automatic unless you know a manual value is needed.
 4. Tap **Install**, review the confirmation, and follow the prompts for your operation mode.
 5. When installation completes, use the app or Android’s DSU notification to boot the image.

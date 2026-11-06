@@ -56,6 +56,8 @@ import vegabobo.dsusideloader.model.FolderImage
 import vegabobo.dsusideloader.model.FolderImageFormat
 import vegabobo.dsusideloader.ui.cards.installation.content.NotInstallingCardContent
 import vegabobo.dsusideloader.ui.components.CardBox
+import vegabobo.dsusideloader.ui.components.buttons.ActionButton
+import vegabobo.dsusideloader.ui.util.systemImageSelectionIntent
 import vegabobo.dsusideloader.ui.util.launcherAcResult
 
 @Composable
@@ -66,10 +68,14 @@ fun FolderImagesCard(
     onRefresh: () -> Unit,
     onChangeFolder: (Uri) -> Unit,
     onSelectImage: (FolderImage) -> Unit,
+    onSelectFile: (Uri) -> Unit,
     onInstall: () -> Unit,
     onClear: () -> Unit,
 ) {
     val folderLauncher = launcherAcResult(onChangeFolder)
+    val imageLauncher = launcherAcResult(onSelectFile)
+    val browseImage = { imageLauncher.launch(systemImageSelectionIntent()) }
+    val selectedImage = state.images.firstOrNull { it.uriString == installation.selectedFileUri }
     val listState = rememberLazyListState()
     val listHeight = with(LocalDensity.current) { LocalWindowInfo.current.containerSize.height.toDp() * 0.36f }
         .coerceIn(180.dp, 360.dp)
@@ -147,9 +153,14 @@ fun FolderImagesCard(
                 modifier = Modifier.padding(vertical = 4.dp),
             )
         }
+        ActionButton(
+            text = stringResource(R.string.browse_images), onClick = browseImage,
+            textButton = true, plainText = true, isEnabled = enabled,
+            modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
+        )
         if (installation.isInstallable || installation.isError) NotInstallingCardContent(
-            onClickSelectFile = {}, uiState = installation, onClickClear = onClear,
-            onClickInstall = onInstall, showFilePicker = false,
+            onClickSelectFile = browseImage, uiState = installation, onClickClear = onClear,
+            onClickInstall = onInstall, showFilePicker = installation.isInstallable && selectedImage == null,
         )
     }
 }

@@ -10,4 +10,5 @@
     <string name="dsu_zip_format">حزمة DSU ZIP</string>
     <string name="show_fewer_images">عرض أقل</string>
     <string name="image_scan_limited">تم فحص جزء من هذا المجلد فقط. اختر مجلدًا أكثر تحديدًا لرؤية صور إضافية.</string>
+    <string name="browse_images">تصفح الملفات</string>
 </resources>
