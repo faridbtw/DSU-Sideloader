@@ -26,6 +26,10 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.unit.dp
+import top.yukonga.miuix.kmp.basic.BasicComponent
+import vegabobo.dsusideloader.preferences.DesignStyle
+import vegabobo.dsusideloader.ui.components.CardBox
+import vegabobo.dsusideloader.ui.theme.LocalDesignStyle
 import vegabobo.dsusideloader.R
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -33,7 +37,24 @@ import vegabobo.dsusideloader.R
 fun AdvancedOptions(hasCustomValues: Boolean, content: @Composable () -> Unit) {
     var expanded by rememberSaveable { mutableStateOf(hasCustomValues) }
     Column(verticalArrangement = Arrangement.spacedBy(12.dp)) {
-        Surface(
+        if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+            CardBox(addPadding = false) {
+                BasicComponent(
+                    title = stringResource(R.string.installation_options),
+                    summary = stringResource(if (hasCustomValues) R.string.custom_allocation else R.string.default_allocation),
+                    onClick = { expanded = !expanded },
+                    startAction = {
+                        Icon(Icons.Outlined.Tune, null, tint = MaterialTheme.colorScheme.primary, modifier = Modifier.padding(end = 6.dp))
+                    },
+                    endActions = {
+                        Icon(
+                            if (expanded) Icons.Outlined.ExpandLess else Icons.Outlined.ExpandMore,
+                            contentDescription = stringResource(if (expanded) R.string.collapse_options else R.string.expand_options),
+                        )
+                    },
+                )
+            }
+        } else Surface(
             onClick = { expanded = !expanded },
             shape = RoundedCornerShape(18.dp),
             color = MaterialTheme.colorScheme.surfaceVariant,

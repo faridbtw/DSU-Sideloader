@@ -34,11 +34,15 @@ fun FileSelectionBox(
         MiuixTextField(
             value = textFieldValue, onValueChange = onValueChange,
             modifier = modifier.fillMaxWidth().then(
-                if (isError) Modifier.border(1.dp, MiuixTheme.colorScheme.error, RoundedCornerShape(TextFieldDefaults.CornerRadius)) else Modifier,
+                if (isError) Modifier.border(1.dp, MiuixTheme.colorScheme.error, RoundedCornerShape(12.dp)) else Modifier,
             ),
             colors = if (isError) TextFieldDefaults.textFieldColors(
                 labelColor = MiuixTheme.colorScheme.error, borderColor = MiuixTheme.colorScheme.error,
-            ) else TextFieldDefaults.textFieldColors(),
+            ) else TextFieldDefaults.textFieldColors(
+                backgroundColor = MiuixTheme.colorScheme.surfaceContainerHigh,
+                labelColor = MiuixTheme.colorScheme.onSurfaceVariantSummary,
+            ),
+            cornerRadius = 12.dp,
             label = textFieldTitle, enabled = isEnabled, readOnly = isReadOnly,
             singleLine = true, keyboardOptions = keyboardOptions,
             interactionSource = textFieldInteraction,
