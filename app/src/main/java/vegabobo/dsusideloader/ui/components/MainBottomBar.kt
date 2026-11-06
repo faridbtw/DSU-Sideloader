@@ -47,7 +47,7 @@ fun MainBottomBar(selectedRoute: String, onSelect: (String) -> Unit) {
         Triple(Destinations.Preferences, stringResource(R.string.settings), Icons.Rounded.Settings),
     )
     if (LocalDesignStyle.current == DesignStyle.MIUIX) {
-        FloatingNavigationBar(shadowElevation = 8.dp, showDivider = true) {
+        FloatingNavigationBar(cornerRadius = 26.dp, shadowElevation = 4.dp, showDivider = true) {
             tabs.forEach { (route, label, icon) ->
                 val selected = selectedRoute == route
                 val indicator by animateColorAsState(if (selected) MiuixTheme.colorScheme.primaryContainer else Color.Transparent)
@@ -62,25 +62,25 @@ fun MainBottomBar(selectedRoute: String, onSelect: (String) -> Unit) {
         }
     } else {
         Box(
-            modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(top = 8.dp, bottom = 16.dp),
+            modifier = Modifier.fillMaxWidth().navigationBarsPadding().padding(top = 6.dp, bottom = 12.dp),
             contentAlignment = Alignment.Center,
         ) {
             Surface(
-                shape = RoundedCornerShape(32.dp), color = MaterialTheme.colorScheme.surfaceContainerHigh,
-                shadowElevation = 8.dp,
+                shape = RoundedCornerShape(28.dp), color = MaterialTheme.colorScheme.surfaceContainerHigh,
+                shadowElevation = 4.dp,
             ) {
-                Row(modifier = Modifier.padding(8.dp).selectableGroup(), horizontalArrangement = Arrangement.spacedBy(8.dp)) {
+                Row(modifier = Modifier.padding(4.dp).selectableGroup(), horizontalArrangement = Arrangement.spacedBy(4.dp)) {
                     tabs.forEach { (route, label, icon) ->
                         val selected = selectedRoute == route
                         val indicator by animateColorAsState(if (selected) MaterialTheme.colorScheme.primaryContainer else Color.Transparent)
                         val foreground = if (selected) MaterialTheme.colorScheme.onPrimaryContainer else MaterialTheme.colorScheme.onSurfaceVariant
                         Column(
-                            modifier = Modifier.width(96.dp).height(56.dp).clip(RoundedCornerShape(24.dp))
+                            modifier = Modifier.width(68.dp).height(48.dp).clip(RoundedCornerShape(24.dp))
                                 .background(indicator).selectable(selected = selected, role = Role.Tab, onClick = { onSelect(route) }),
                             horizontalAlignment = Alignment.CenterHorizontally,
                             verticalArrangement = Arrangement.Center,
                         ) {
-                            Icon(icon, contentDescription = null, tint = foreground, modifier = Modifier.size(24.dp))
+                            Icon(icon, contentDescription = null, tint = foreground, modifier = Modifier.size(22.dp))
                             Text(label, color = foreground, style = MaterialTheme.typography.labelSmall, maxLines = 1)
                         }
                     }
