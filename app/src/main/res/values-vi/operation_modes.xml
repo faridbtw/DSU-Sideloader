@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_auto">Tự động</string>
+    <string name="operation_active">Đang dùng: %1$s</string>
+    <string name="operation_busy">Không thể đổi chế độ khi đang cài đặt.</string>
+    <string name="operation_restart_hint">Đổi chế độ sẽ khởi động lại ứng dụng. Chế độ không khả dụng sẽ dùng ADB.</string>
+</resources>

@@ -13,6 +13,7 @@ import vegabobo.dsusideloader.ui.theme.LocalScrollAnimation
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -48,6 +49,7 @@ fun Navigation() {
     val rtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     val showTabs = route == Destinations.Homepage || route == Destinations.Preferences
     Scaffold(
+        containerColor = MaterialTheme.colorScheme.background,
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
         bottomBar = {
             if (showTabs) MainBottomBar(selectedRoute = route) { destination ->

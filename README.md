@@ -27,7 +27,7 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
-| **Compact install flow** — image selection and Install share one card; the full library opens in a scrollable dialog. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
+| **Compact install flow** — image selection and Install share one card; the full library opens in a scrollable dialog with format badges, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
 | **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
@@ -71,7 +71,7 @@ Device support determines whether a GSI can install and boot. Successful builds 
 <details>
 <summary><strong>Which operation mode will the app use?</strong></summary>
 
-The app detects the best available mode automatically.
+The default **Automatic** option detects the best available mode. **Settings → Operation mode** also lets you choose ADB, Root, Shizuku, System, or Root/System. Changing the selection restarts the app to reconnect its service; unavailable modes fall back to ADB, and the current mode is shown below the selector. Mode changes are locked during installation. The experimental built-in installer is off by default.
 
 | Mode | What it provides |
 | --- | --- |

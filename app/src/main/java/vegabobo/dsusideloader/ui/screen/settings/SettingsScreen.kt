@@ -10,6 +10,17 @@ import androidx.compose.material.icons.rounded.SdStorage
 import androidx.compose.material.icons.rounded.Security
 import androidx.compose.material.icons.rounded.Storage
 import androidx.compose.material.icons.rounded.SystemUpdate
+import android.content.Context
+import android.content.ContextWrapper
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.material3.Text
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.ui.Modifier
+import androidx.compose.foundation.layout.padding
+import androidx.compose.ui.unit.dp
+import vegabobo.dsusideloader.MainActivity
+import vegabobo.dsusideloader.preferences.OperationModePreference
+import vegabobo.dsusideloader.util.OperationModeUtils
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
@@ -29,6 +40,7 @@ fun Settings(
     settingsViewModel: SettingsViewModel = hiltViewModel(),
 ) {
     val uiState by settingsViewModel.uiState.collectAsStateWithLifecycle()
+    val activity = LocalContext.current.findMainActivity()
 
     LaunchedEffect(Unit) {
         settingsViewModel.checkDevOpt()
@@ -110,10 +122,27 @@ fun Settings(
         }
 
         SettingsGroup {
-            PreferenceItem(
-                icon = Icons.Rounded.Security,
-                title = stringResource(R.string.operation_mode),
-                description = settingsViewModel.checkOperationMode(),
+            val modes = OperationModePreference.entries
+            AppearanceChoice(
+                icon = Icons.Rounded.Security, title = stringResource(R.string.operation_mode),
+                items = modes.map { choice ->
+                    choice.mode?.let { OperationModeUtils.getOperationModeAsString(it) } ?: stringResource(R.string.operation_auto)
+                },
+                selected = modes.indexOf(uiState.preferredMode),
+                enabled = !uiState.isInstalling && !uiState.changingMode && activity != null,
+                onSelect = { index ->
+                    settingsViewModel.setOperationMode(modes[index]) { activity?.restartForOperationMode() }
+                },
+            )
+            Text(
+                stringResource(R.string.operation_active, OperationModeUtils.getOperationModeAsString(uiState.activeMode)),
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(horizontal = 16.dp),
+            )
+            Text(
+                stringResource(if (uiState.isInstalling) R.string.operation_busy else R.string.operation_restart_hint),
+                style = MaterialTheme.typography.bodySmall, color = MaterialTheme.colorScheme.onSurfaceVariant,
+                modifier = Modifier.padding(start = 16.dp, end = 16.dp, top = 4.dp, bottom = 12.dp),
             )
             PreferenceItem(
                 icon = Icons.Rounded.Info,
@@ -156,4 +185,10 @@ fun Settings(
 
         else -> {}
     }
+}
+
+private fun Context.findMainActivity(): MainActivity? = when (this) {
+    is MainActivity -> this
+    is ContextWrapper -> baseContext.takeUnless { it === this }?.findMainActivity()
+    else -> null
 }

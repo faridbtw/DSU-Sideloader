@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_auto">Automatyczny</string>
+    <string name="operation_active">Aktywny: %1$s</string>
+    <string name="operation_busy">Nie można zmienić trybu podczas instalacji.</string>
+    <string name="operation_restart_hint">Zmiana trybu uruchamia aplikację ponownie. Niedostępne tryby używają ADB.</string>
+</resources>

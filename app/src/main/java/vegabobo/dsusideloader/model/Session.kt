@@ -2,12 +2,13 @@ package vegabobo.dsusideloader.model
 
 import android.net.Uri
 import kotlinx.coroutines.flow.MutableStateFlow
+import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.util.FilenameUtils
 import vegabobo.dsusideloader.util.OperationMode
 
 data class InstallationPreferences(
     var isUnmountSdCard: Boolean = false,
-    var useBuiltinInstaller: Boolean = false,
+    var useBuiltinInstaller: Boolean = AppPrefs.DEFAULT_USE_BUILTIN_INSTALLER,
 )
 
 class UserSelection(
@@ -55,6 +56,8 @@ class Session(
     var preferences: InstallationPreferences = InstallationPreferences(),
     var operationMode: MutableStateFlow<OperationMode> = MutableStateFlow(OperationMode.ADB),
 ) {
+
+    val installationInProgress = MutableStateFlow(false)
 
     fun isRoot(): Boolean {
         return (

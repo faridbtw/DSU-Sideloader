@@ -42,3 +42,12 @@ enum class InstallationStep {
     INSTALL_SUCCESS,
     INSTALL_SUCCESS_REBOOT_DYN_OS,
 }
+
+fun InstallationStep.isActiveInstallationStep(): Boolean = when (this) {
+    InstallationStep.PROCESSING, InstallationStep.COPYING_FILE, InstallationStep.DECOMPRESSING_XZ,
+    InstallationStep.COMPRESSING_TO_GZ, InstallationStep.DECOMPRESSING_GZIP, InstallationStep.EXTRACTING_FILE,
+    InstallationStep.DISCARD_CURRENT_GSI, InstallationStep.WAITING_USER_CONFIRMATION,
+    InstallationStep.PROCESSING_LOG_READABLE, InstallationStep.INSTALLING,
+    InstallationStep.INSTALLING_ROOTED, InstallationStep.CREATING_PARTITION -> true
+    else -> false
+}

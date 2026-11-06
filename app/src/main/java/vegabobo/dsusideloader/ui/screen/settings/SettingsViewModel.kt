@@ -15,6 +15,8 @@ import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 import vegabobo.dsusideloader.core.BaseViewModel
 import vegabobo.dsusideloader.model.Session
+import vegabobo.dsusideloader.preferences.OperationPreferences
+import vegabobo.dsusideloader.preferences.OperationModePreference
 import vegabobo.dsusideloader.preferences.AccentColor
 import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.preferences.AppearancePreferences
@@ -30,6 +32,7 @@ class SettingsViewModel @Inject constructor(
     override val dataStore: DataStore<Preferences>,
     private val session: Session,
     private val appearancePreferences: AppearancePreferences,
+    private val operationPreferences: OperationPreferences,
     val application: Application,
 ) : BaseViewModel(dataStore) {
 
@@ -46,16 +49,36 @@ class SettingsViewModel @Inject constructor(
             }
         }
 
-        if (session.isRoot()) {
-            _uiState.update { it.copy(isRoot = true) }
-        }
+        _uiState.update { it.copy(isRoot = session.isRoot()) }
     }
 
     init {
         reloadPreferences()
         viewModelScope.launch {
+            operationPreferences.preferredMode.collect { mode -> _uiState.update { it.copy(preferredMode = mode) } }
+        }
+        viewModelScope.launch {
+            session.operationMode.collect { mode -> _uiState.update { it.copy(activeMode = mode, isRoot = session.isRoot()) } }
+        }
+        viewModelScope.launch {
+            session.installationInProgress.collect { busy -> _uiState.update { it.copy(isInstalling = busy) } }
+        }
+        viewModelScope.launch {
             appearancePreferences.settings.collect { appearance ->
                 _uiState.update { it.copy(appearance = appearance) }
+            }
+        }
+    }
+
+    fun setOperationMode(mode: OperationModePreference, onSaved: () -> Unit) {
+        if (session.installationInProgress.value || uiState.value.changingMode || mode == uiState.value.preferredMode) return
+        viewModelScope.launch {
+            _uiState.update { it.copy(changingMode = true) }
+            try {
+                operationPreferences.setPreferredMode(mode)
+                onSaved()
+            } finally {
+                _uiState.update { it.copy(changingMode = false) }
             }
         }
     }

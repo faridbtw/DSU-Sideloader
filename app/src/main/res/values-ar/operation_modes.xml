@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_auto">تلقائي</string>
+    <string name="operation_active">الوضع النشط: %1$s</string>
+    <string name="operation_busy">لا يمكن تغيير وضع التشغيل أثناء التثبيت.</string>
+    <string name="operation_restart_hint">يُعاد تشغيل التطبيق عند تغيير الوضع. تُستخدم ADB إذا كان الوضع غير متاح.</string>
+</resources>

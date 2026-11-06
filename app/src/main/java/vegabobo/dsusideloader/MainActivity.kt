@@ -10,15 +10,23 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.runtime.getValue
 import androidx.core.view.WindowCompat
+import androidx.lifecycle.lifecycleScope
 import com.topjohnwu.superuser.Shell
 import com.topjohnwu.superuser.ipc.RootService
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.first
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import rikka.shizuku.Shizuku
 import rikka.shizuku.ShizukuProvider
 import vegabobo.dsusideloader.model.Session
 import vegabobo.dsusideloader.preferences.AppearancePreferences
+import vegabobo.dsusideloader.preferences.OperationModePreference
+import vegabobo.dsusideloader.preferences.OperationPreferences
+import vegabobo.dsusideloader.service.Connection
 import vegabobo.dsusideloader.service.PrivilegedProvider
 import vegabobo.dsusideloader.service.PrivilegedRootService
 import vegabobo.dsusideloader.service.PrivilegedService
@@ -38,12 +46,20 @@ class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListe
     @Inject
     lateinit var appearancePreferences: AppearancePreferences
 
+    @Inject
+    lateinit var operationPreferences: OperationPreferences
+
+    private var preferredOperationMode = OperationModePreference.AUTOMATIC
+    private var boundOperationMode: OperationMode? = null
+
     private val tag = this.javaClass.simpleName
 
     private var shouldCheckShizuku = false
 
-    private fun setupSessionOperationMode() {
-        val operationMode = OperationModeUtils.getOperationMode(application, shouldCheckShizuku)
+    private suspend fun setupSessionOperationMode() {
+        val operationMode = withContext(Dispatchers.IO) {
+            preferredOperationMode.resolve(OperationModeUtils.getAvailableModes(application, shouldCheckShizuku, preferredOperationMode.requiresRootProbe))
+        }
         session.setOperationMode(operationMode)
         Log.d(tag, "Operation mode is: $operationMode")
     }
@@ -98,9 +114,11 @@ class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListe
     }
 
     fun bindShizuku() {
+        if (preferredOperationMode != OperationModePreference.AUTOMATIC && preferredOperationMode != OperationModePreference.SHIZUKU) return
         Shizuku.bindUserService(userServiceArgs, PrivilegedProvider.connection)
+        boundOperationMode = OperationMode.SHIZUKU
         shouldCheckShizuku = true
-        setupSessionOperationMode()
+        lifecycleScope.launch { setupSessionOperationMode() }
     }
 
     //
@@ -122,36 +140,52 @@ class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListe
         if (session.isRoot()) {
             val privRootService = Intent(this, PrivilegedRootService::class.java)
             RootService.bind(privRootService, PrivilegedProvider.connection)
+            boundOperationMode = session.getOperationMode()
             return
         }
 
         if (session.getOperationMode() == OperationMode.SYSTEM) {
             val service = Intent(this, PrivilegedSystemService::class.java)
-            bindService(service, PrivilegedProvider.connection, Context.BIND_AUTO_CREATE)
+            applicationContext.bindService(service, PrivilegedProvider.connection, Context.BIND_AUTO_CREATE)
+            boundOperationMode = OperationMode.SYSTEM
             return
         }
 
-        addShizukuListeners()
+        if (preferredOperationMode == OperationModePreference.AUTOMATIC || preferredOperationMode == OperationModePreference.SHIZUKU) {
+            addShizukuListeners()
+        }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        Shell.getShell {}
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
-        setContent {
-            val appearance by appearancePreferences.settings.collectAsStateWithLifecycle(initialValue = null)
-            appearance?.let { settings ->
-                DSUHelperTheme(appearance = settings) {
-                    Navigation()
+        lifecycleScope.launch {
+            preferredOperationMode = operationPreferences.preferredMode.first()
+            shouldCheckShizuku = runCatching { Shizuku.pingBinder() }.getOrDefault(false)
+            if (savedInstanceState == null || !PrivilegedProvider.isConnected()) {
+                setupSessionOperationMode()
+                setupService()
+            } else {
+                boundOperationMode = session.getOperationMode().takeUnless { it == OperationMode.ADB }
+                if (boundOperationMode == OperationMode.SHIZUKU) addShizukuListeners()
+            }
+            setContent {
+                val appearance by appearancePreferences.settings.collectAsStateWithLifecycle(initialValue = null)
+                appearance?.let { settings ->
+                    DSUHelperTheme(appearance = settings) { Navigation() }
                 }
             }
         }
+    }
 
-        if (savedInstanceState == null) {
-            setupSessionOperationMode()
-            setupService()
-        }
+    fun restartForOperationMode() {
+        if (session.installationInProgress.value) return
+        releaseService()
+        // Late callbacks from the old binding cannot populate the new provider connection.
+        PrivilegedProvider.connection = Connection()
+        finish()
+        startActivity(Intent(this, MainActivity::class.java))
     }
 
     override fun attachBaseContext(newBase: Context?) {
@@ -159,24 +193,24 @@ class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListe
         super.attachBaseContext(newBase)
     }
 
-    override fun onDestroy() {
-        super.onDestroy()
-        if (isChangingConfigurations) {
-            return
-        }
-        when (session.getOperationMode()) {
-            OperationMode.ROOT, OperationMode.SYSTEM_AND_ROOT ->
-                RootService.unbind(PrivilegedProvider.connection)
-
-            OperationMode.SYSTEM ->
-                applicationContext.unbindService(PrivilegedProvider.connection)
-
-            OperationMode.SHIZUKU -> {
-                removeShizukuListeners()
-                Shizuku.unbindUserService(userServiceArgs, PrivilegedProvider.connection, true)
+    private fun releaseService() {
+        removeShizukuListeners()
+        val mode = boundOperationMode
+        boundOperationMode = null
+        runCatching {
+            when (mode) {
+                OperationMode.ROOT, OperationMode.SYSTEM_AND_ROOT -> RootService.unbind(PrivilegedProvider.connection)
+                OperationMode.SYSTEM -> applicationContext.unbindService(PrivilegedProvider.connection)
+                OperationMode.SHIZUKU -> Shizuku.unbindUserService(userServiceArgs, PrivilegedProvider.connection, true)
+                else -> Unit
             }
+        }.onFailure { Log.w(tag, "Unable to release previous operation mode service", it) }
+        if (mode != null) PrivilegedProvider.connection.SERVICE = null
+    }
 
-            else -> {}
-        }
+    override fun onDestroy() {
+        removeShizukuListeners()
+        if (!isChangingConfigurations) releaseService()
+        super.onDestroy()
     }
 }

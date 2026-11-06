@@ -18,6 +18,7 @@ object AppPrefs {
     const val SAF_PATH = "writable_path"
     const val DEVELOPER_OPTIONS = "developer_options"
     const val USE_BUILTIN_INSTALLER = "builtin_installer"
+    const val DEFAULT_USE_BUILTIN_INSTALLER = false
     const val KEEP_SCREEN_ON = "keep_screen_on"
     const val UMOUNT_SD = "umount_sd"
     const val DISABLE_STORAGE_CHECK = "disable_storage_check"

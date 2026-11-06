@@ -3,6 +3,7 @@ package vegabobo.dsusideloader.core
 import androidx.datastore.core.DataStore
 import androidx.datastore.preferences.core.Preferences
 import androidx.lifecycle.ViewModel
+import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.util.DataStoreUtils
 
 open class BaseViewModel(
@@ -18,7 +19,7 @@ open class BaseViewModel(
     suspend fun readBoolPref(
         key: String,
     ): Boolean {
-        return DataStoreUtils.readBoolPref(dataStore, key, false)
+        return DataStoreUtils.readBoolPref(dataStore, key, if (key == AppPrefs.USE_BUILTIN_INSTALLER) AppPrefs.DEFAULT_USE_BUILTIN_INSTALLER else false)
     }
 
     suspend fun updateBoolPref(

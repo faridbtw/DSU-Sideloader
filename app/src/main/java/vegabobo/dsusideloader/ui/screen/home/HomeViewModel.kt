@@ -33,6 +33,7 @@ import vegabobo.dsusideloader.model.DSUInstallationSource
 import vegabobo.dsusideloader.model.Session
 import vegabobo.dsusideloader.model.folderImageFormat
 import vegabobo.dsusideloader.preferences.AppPrefs
+import vegabobo.dsusideloader.preparation.isActiveInstallationStep
 import vegabobo.dsusideloader.preparation.InstallationStep
 import vegabobo.dsusideloader.preparation.Preparation
 import vegabobo.dsusideloader.service.PrivilegedProvider
@@ -83,7 +84,11 @@ class HomeViewModel @Inject constructor(
         _uiState.update { it.copy(userDataCard = update(it.userDataCard.copy())) }
 
     private fun updateInstallationCard(update: (InstallationCardState) -> InstallationCardState) =
-        _uiState.update { it.copy(installationCard = update(it.installationCard.copy())) }
+        _uiState.update {
+            val card = update(it.installationCard.copy())
+            session.installationInProgress.value = card.installationStep.isActiveInstallationStep()
+            it.copy(installationCard = card)
+        }
 
     private fun updateImageSizeCard(update: (ImageSizeCardState) -> ImageSizeCardState) =
         _uiState.update { it.copy(imageSizeCard = update(it.imageSizeCard.copy())) }
@@ -91,13 +96,15 @@ class HomeViewModel @Inject constructor(
     private fun updateSheetState(sheetDisplay: SheetDisplayState) =
         _uiState.update { it.copy(sheetDisplay = sheetDisplay) }
 
-    fun resetInstallationCard() =
+    fun resetInstallationCard() {
+        session.installationInProgress.value = false
         _uiState.update {
             it.copy(
                 installationCard = InstallationCardState(),
                 sheetDisplay = SheetDisplayState.NONE,
             )
         }
+    }
 
     fun dismissSheet() = updateSheetState(SheetDisplayState.NONE)
 
@@ -164,12 +171,12 @@ class HomeViewModel @Inject constructor(
 
     fun refreshFolderImages() {
         if (!uiState.value.passedInitialChecks) return
-        folderScanJob?.cancel()
+        if (folderScanJob?.isActive == true) return
         folderScanJob = viewModelScope.launch {
             val path = readStringPref(AppPrefs.SAF_PATH)
             if (path.isBlank()) return@launch
             _uiState.update {
-                it.copy(folderImages = it.folderImages.copy(folderUri = path, isLoading = true, hasError = false))
+                it.copy(folderImages = it.folderImages.copy(folderUri = path, isLoading = it.folderImages.images.isEmpty(), hasError = false))
             }
             try {
                 val scan = withContext(Dispatchers.IO) {

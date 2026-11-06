@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_auto">自动</string>
+    <string name="operation_active">当前模式：%1$s</string>
+    <string name="operation_busy">安装期间无法更改运行模式。</string>
+    <string name="operation_restart_hint">更改模式将重启应用。不可用的模式将使用 ADB。</string>
+</resources>

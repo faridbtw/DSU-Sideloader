@@ -54,22 +54,22 @@ class OperationModeUtils {
     companion object {
 
         fun getOperationMode(context: Context, checkShizuku: Boolean): OperationMode {
-            if (isDsuPermissionGranted(context)) {
-                if (Shell.getShell().isRoot) {
-                    return OperationMode.SYSTEM_AND_ROOT
+            val available = getAvailableModes(context, checkShizuku)
+            return OperationMode.entries.first { it in available }
+        }
+
+        fun getAvailableModes(context: Context, checkShizuku: Boolean, checkRoot: Boolean = true): Set<OperationMode> {
+            val root = checkRoot && Shell.getShell().isRoot
+            val system = isDsuPermissionGranted(context)
+            return buildSet {
+                add(OperationMode.ADB)
+                if (root) add(OperationMode.ROOT)
+                if (system) add(OperationMode.SYSTEM)
+                if (root && system) add(OperationMode.SYSTEM_AND_ROOT)
+                if (checkShizuku && runCatching { Shizuku.pingBinder() && isShizukuPermissionGranted(context) }.getOrDefault(false)) {
+                    add(OperationMode.SHIZUKU)
                 }
-                return OperationMode.SYSTEM
             }
-
-            if (Shell.getShell().isRoot) {
-                return OperationMode.ROOT
-            }
-
-            if (checkShizuku && isShizukuPermissionGranted(context)) {
-                return OperationMode.SHIZUKU
-            }
-
-            return OperationMode.ADB
         }
 
         fun getOperationModeAsString(operationMode: OperationMode): String {

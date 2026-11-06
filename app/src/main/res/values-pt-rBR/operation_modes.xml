@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_auto">Automático</string>
+    <string name="operation_active">Ativo: %1$s</string>
+    <string name="operation_busy">Não é possível mudar o modo durante a instalação.</string>
+    <string name="operation_restart_hint">Mudar o modo reinicia o app. Modos indisponíveis usam ADB.</string>
+</resources>

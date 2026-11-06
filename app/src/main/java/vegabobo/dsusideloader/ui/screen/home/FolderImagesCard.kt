@@ -4,6 +4,15 @@ import android.content.Intent
 import android.net.Uri
 import android.provider.DocumentsContract
 import android.text.format.Formatter
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.icons.outlined.RadioButtonUnchecked
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.unit.sp
+import vegabobo.dsusideloader.ui.components.buttons.ActionButton
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -15,7 +24,6 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.items
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.outlined.CheckCircle
-import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Refresh
 import vegabobo.dsusideloader.ui.components.AppAlertDialog
@@ -70,6 +78,14 @@ fun FolderImagesCard(
 
     CardBox {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
+            Surface(
+                shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.primaryContainer,
+                modifier = Modifier.padding(end = 10.dp).size(38.dp),
+            ) {
+                Box(contentAlignment = Alignment.Center) {
+                    Icon(Icons.Outlined.FolderOpen, null, tint = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.size(21.dp))
+                }
+            }
             Column(modifier = Modifier.weight(1f)) {
                 Text(stringResource(R.string.folder_system_images), style = MaterialTheme.typography.titleMedium)
                 if (state.folderName.isNotBlank()) {
@@ -97,7 +113,7 @@ fun FolderImagesCard(
             }
         }
         when {
-            state.isLoading -> Row(
+            state.isLoading && state.images.isEmpty() -> Row(
                 modifier = Modifier.padding(vertical = 8.dp),
                 horizontalArrangement = Arrangement.spacedBy(12.dp),
                 verticalAlignment = Alignment.CenterVertically,
@@ -116,7 +132,7 @@ fun FolderImagesCard(
                 color = MaterialTheme.colorScheme.onSurfaceVariant,
                 modifier = Modifier.padding(bottom = 8.dp),
             )
-            else -> Column(verticalArrangement = Arrangement.spacedBy(4.dp)) {
+            else -> Column(modifier = Modifier.padding(top = 10.dp), verticalArrangement = Arrangement.spacedBy(8.dp)) {
                 // Keep the current selection visible even when it comes from the full list.
                 val preview = (listOfNotNull(selectedImage) + state.images.filter { it.uriString != installation.selectedFileUri }).take(2)
                 preview.forEach { image ->
@@ -130,17 +146,25 @@ fun FolderImagesCard(
             }
         }
         if (state.images.isNotEmpty()) {
-            Row(modifier = Modifier.fillMaxWidth(), verticalAlignment = Alignment.CenterVertically) {
-                TextButton(onClick = browseImage, enabled = enabled, modifier = Modifier.weight(1f)) {
-                    Text(stringResource(R.string.browse_images))
-                }
+            Row(
+                modifier = Modifier.fillMaxWidth().padding(top = 12.dp),
+                verticalAlignment = Alignment.CenterVertically,
+                horizontalArrangement = Arrangement.spacedBy(8.dp),
+            ) {
+                ActionButton(
+                    text = stringResource(R.string.browse_images), onClick = browseImage,
+                    textButton = true, isEnabled = enabled, modifier = Modifier.weight(1f),
+                )
                 if (state.images.size > 2) {
-                    TextButton(onClick = { showAll = true }, enabled = enabled && !state.isLoading) {
-                        Text(stringResource(R.string.show_all_images, state.images.size))
-                    }
+                    ActionButton(
+                        text = stringResource(R.string.show_all_images, state.images.size),
+                        onClick = { showAll = true }, textButton = true,
+                        isEnabled = enabled, modifier = Modifier.weight(1f),
+                    )
                 }
             }
         }
+
         if (state.limited && !state.isLoading && !state.hasError) {
             Text(
                 stringResource(R.string.image_scan_limited),
@@ -198,47 +222,61 @@ private fun FolderImageRow(
     onClick: () -> Unit,
 ) {
     val context = LocalContext.current
+    val colors = MaterialTheme.colorScheme
+    val format = when (image.format) {
+        FolderImageFormat.IMAGE -> "IMG"
+        FolderImageFormat.GZIP -> "GZ"
+        FolderImageFormat.XZ -> "XZ"
+        FolderImageFormat.DSU_ZIP -> "ZIP"
+    }
+    val foreground = if (isSelected) colors.onPrimaryContainer else colors.onSurface
     Surface(
-        onClick = onClick,
-        enabled = enabled,
-        modifier = Modifier.fillMaxWidth().semantics { selected = isSelected },
-        color = if (isSelected) MaterialTheme.colorScheme.primaryContainer else MaterialTheme.colorScheme.surfaceVariant,
-        shape = MaterialTheme.shapes.small,
+        onClick = onClick, enabled = enabled,
+        modifier = Modifier.fillMaxWidth().semantics { selected = isSelected; role = Role.RadioButton },
+        color = if (isSelected) colors.primaryContainer else colors.surfaceVariant.copy(alpha = 0.45f),
+        shape = RoundedCornerShape(16.dp),
+        border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) colors.primary else colors.outlineVariant.copy(alpha = 0.4f)),
     ) {
         Row(
-            modifier = Modifier.padding(horizontal = 10.dp, vertical = 8.dp),
-            verticalAlignment = Alignment.CenterVertically,
-            horizontalArrangement = Arrangement.spacedBy(10.dp),
+            modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(12.dp),
         ) {
-            Icon(
-                if (isSelected) Icons.Outlined.CheckCircle else Icons.Outlined.Description,
-                contentDescription = null,
-                tint = MaterialTheme.colorScheme.primary,
-                modifier = Modifier.size(20.dp),
-            )
-            Column(modifier = Modifier.weight(1f)) {
-                Text(image.filename, style = MaterialTheme.typography.titleSmall, maxLines = if (showPath) 2 else 1, overflow = TextOverflow.Ellipsis)
-                val format = when (image.format) {
-                    FolderImageFormat.IMAGE -> "IMG"
-                    FolderImageFormat.GZIP -> "GZIP"
-                    FolderImageFormat.XZ -> "XZ"
-                    FolderImageFormat.DSU_ZIP -> stringResource(R.string.dsu_zip_format)
-                }
-                Text(
-                    if (image.size > 0) "$format · ${Formatter.formatShortFileSize(context, image.size)}" else format,
-                    style = MaterialTheme.typography.bodySmall,
-                    color = MaterialTheme.colorScheme.onSurfaceVariant,
-                )
-                if (showPath && image.relativePath != image.filename) {
+            Surface(
+                shape = RoundedCornerShape(10.dp),
+                color = if (isSelected) colors.primary else colors.primary.copy(alpha = 0.12f),
+                modifier = Modifier.size(38.dp),
+            ) {
+                Box(contentAlignment = Alignment.Center) {
                     Text(
-                        image.relativePath.substringBeforeLast('/'),
-                        style = MaterialTheme.typography.bodySmall,
-                        color = MaterialTheme.colorScheme.onSurfaceVariant,
-                        maxLines = 1,
-                        overflow = TextOverflow.Ellipsis,
+                        format, color = if (isSelected) colors.onPrimary else colors.primary,
+                        fontSize = 10.sp, fontWeight = FontWeight.Bold, maxLines = 1,
                     )
                 }
             }
+            Column(modifier = Modifier.weight(1f), verticalArrangement = Arrangement.spacedBy(4.dp)) {
+                Text(
+                    image.filename, style = MaterialTheme.typography.bodyMedium, fontWeight = FontWeight.Medium,
+                    color = foreground, maxLines = 2, overflow = TextOverflow.Ellipsis,
+                )
+                if (image.size > 0) {
+                    Text(
+                        Formatter.formatShortFileSize(context, image.size), style = MaterialTheme.typography.bodySmall,
+                        color = if (isSelected) foreground.copy(alpha = 0.8f) else colors.onSurfaceVariant,
+                    )
+                }
+                if (showPath && image.relativePath != image.filename) {
+                    Text(
+                        image.relativePath.substringBeforeLast('/'), style = MaterialTheme.typography.labelSmall,
+                        color = if (isSelected) foreground.copy(alpha = 0.8f) else colors.onSurfaceVariant,
+                        maxLines = 1, overflow = TextOverflow.Ellipsis,
+                    )
+                }
+            }
+            Icon(
+                if (isSelected) Icons.Outlined.CheckCircle else Icons.Outlined.RadioButtonUnchecked,
+                null, tint = if (isSelected) colors.primary else colors.outline,
+                modifier = Modifier.size(20.dp),
+            )
         }
     }
 }

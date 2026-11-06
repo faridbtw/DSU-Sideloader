@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="operation_auto">自動</string>
+    <string name="operation_active">使用中: %1$s</string>
+    <string name="operation_busy">インストール中は動作モードを変更できません。</string>
+    <string name="operation_restart_hint">変更するとアプリを再起動します。利用できないモードでは ADB を使用します。</string>
+</resources>
