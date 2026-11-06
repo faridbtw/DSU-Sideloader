@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon">App icon</string>
+    <string name="app_icon_notice">Your launcher may take a moment to refresh the icon.</string>
+    <string name="app_icon_error">Could not change the app icon. Please try again.</string>
+    <string name="app_icon_stock">Stock blue</string>
+    <string name="app_icon_material">Material</string>
+    <string name="app_icon_mint">Mint</string>
+    <string name="app_icon_ocean">Ocean</string>
+    <string name="app_icon_sunset">Sunset</string>
+    <string name="app_icon_rose">Rose</string>
+    <string name="app_icon_graphite">Graphite</string>
+    <string name="app_icon_orbit">Orbit</string>
+    <string name="app_icon_circuit">Circuit</string>
+    <string name="app_icon_prism">Prism</string>
+    <string name="app_icon_pixel">Pixel</string>
+    <string name="app_icon_terminal">Terminal</string>
+    <string name="app_icon_solar">Solar</string>
+</resources>

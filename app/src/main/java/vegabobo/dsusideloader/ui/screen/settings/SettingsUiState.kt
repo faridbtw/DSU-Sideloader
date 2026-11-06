@@ -2,6 +2,7 @@ package vegabobo.dsusideloader.ui.screen.settings
 
 import vegabobo.dsusideloader.preferences.OperationModePreference
 import vegabobo.dsusideloader.util.OperationMode
+import vegabobo.dsusideloader.preferences.LauncherIcon
 import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.preferences.AppearanceSettings
 
@@ -21,6 +22,9 @@ data class SettingsUiState(
         AppPrefs.FULL_LOGCAT_LOGGING to false,
     ),
     val dialogSheetDisplay: DialogSheetState = DialogSheetState.NONE,
+    val appIcon: LauncherIcon = LauncherIcon.MATERIAL,
+    val changingIcon: Boolean = false,
+    val iconChangeFailed: Boolean = false,
     val preferredMode: OperationModePreference = OperationModePreference.AUTOMATIC,
     val activeMode: OperationMode = OperationMode.ADB,
     val isInstalling: Boolean = false,

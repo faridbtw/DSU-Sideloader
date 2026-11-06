@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon">アプリアイコン</string>
+    <string name="app_icon_notice">ランチャーにアイコンが反映されるまで少し時間がかかることがあります。</string>
+    <string name="app_icon_error">アイコンを変更できませんでした。もう一度お試しください。</string>
+    <string name="app_icon_stock">標準の青</string>
+    <string name="app_icon_material">Material</string>
+    <string name="app_icon_mint">ミント</string>
+    <string name="app_icon_ocean">オーシャン</string>
+    <string name="app_icon_sunset">サンセット</string>
+    <string name="app_icon_rose">ローズ</string>
+    <string name="app_icon_graphite">グラファイト</string>
+    <string name="app_icon_orbit">オービット</string>
+    <string name="app_icon_circuit">サーキット</string>
+    <string name="app_icon_prism">プリズム</string>
+    <string name="app_icon_pixel">ピクセル</string>
+    <string name="app_icon_terminal">ターミナル</string>
+    <string name="app_icon_solar">ソーラー</string>
+</resources>

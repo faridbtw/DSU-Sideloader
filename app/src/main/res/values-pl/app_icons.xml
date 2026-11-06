@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon">Ikona aplikacji</string>
+    <string name="app_icon_notice">Zmiana ikony w programie uruchamiającym może chwilę potrwać.</string>
+    <string name="app_icon_error">Nie udało się zmienić ikony. Spróbuj ponownie.</string>
+    <string name="app_icon_stock">Oryginalna niebieska</string>
+    <string name="app_icon_material">Material</string>
+    <string name="app_icon_mint">Mięta</string>
+    <string name="app_icon_ocean">Ocean</string>
+    <string name="app_icon_sunset">Zachód słońca</string>
+    <string name="app_icon_rose">Róża</string>
+    <string name="app_icon_graphite">Grafit</string>
+    <string name="app_icon_orbit">Orbita</string>
+    <string name="app_icon_circuit">Obwód</string>
+    <string name="app_icon_prism">Pryzmat</string>
+    <string name="app_icon_pixel">Piksel</string>
+    <string name="app_icon_terminal">Terminal</string>
+    <string name="app_icon_solar">Słońce</string>
+</resources>

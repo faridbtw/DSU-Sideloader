@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon">Ícone do app</string>
+    <string name="app_icon_notice">O launcher pode levar um momento para atualizar o ícone.</string>
+    <string name="app_icon_error">Não foi possível alterar o ícone. Tente novamente.</string>
+    <string name="app_icon_stock">Azul original</string>
+    <string name="app_icon_material">Material</string>
+    <string name="app_icon_mint">Menta</string>
+    <string name="app_icon_ocean">Oceano</string>
+    <string name="app_icon_sunset">Pôr do sol</string>
+    <string name="app_icon_rose">Rosa</string>
+    <string name="app_icon_graphite">Grafite</string>
+    <string name="app_icon_orbit">Órbita</string>
+    <string name="app_icon_circuit">Circuito</string>
+    <string name="app_icon_prism">Prisma</string>
+    <string name="app_icon_pixel">Pixel</string>
+    <string name="app_icon_terminal">Terminal</string>
+    <string name="app_icon_solar">Solar</string>
+</resources>

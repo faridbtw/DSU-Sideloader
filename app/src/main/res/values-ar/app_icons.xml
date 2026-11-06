@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon">أيقونة التطبيق</string>
+    <string name="app_icon_notice">قد يستغرق المشغّل لحظة لتحديث الأيقونة.</string>
+    <string name="app_icon_error">تعذر تغيير أيقونة التطبيق. حاول مجددًا.</string>
+    <string name="app_icon_stock">الأزرق الأصلي</string>
+    <string name="app_icon_material">Material</string>
+    <string name="app_icon_mint">نعناع</string>
+    <string name="app_icon_ocean">محيط</string>
+    <string name="app_icon_sunset">غروب</string>
+    <string name="app_icon_rose">وردي</string>
+    <string name="app_icon_graphite">جرافيت</string>
+    <string name="app_icon_orbit">مدار</string>
+    <string name="app_icon_circuit">دائرة إلكترونية</string>
+    <string name="app_icon_prism">منشور</string>
+    <string name="app_icon_pixel">بكسل</string>
+    <string name="app_icon_terminal">طرفية</string>
+    <string name="app_icon_solar">شمسي</string>
+</resources>

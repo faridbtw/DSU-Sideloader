@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="icon_mint_background">#DDF4E5</color>
+    <color name="icon_ocean_background">#D9E8FF</color>
+    <color name="icon_sunset_background">#FFE2CC</color>
+    <color name="icon_rose_background">#FFDBE8</color>
+    <color name="icon_graphite_background">#E4E6E9</color>
+    <color name="icon_orbit_background">#E6DFFF</color>
+    <color name="icon_circuit_background">#DFF5DD</color>
+    <color name="icon_prism_background">#E1E7FF</color>
+    <color name="icon_pixel_background">#EFE7FA</color>
+    <color name="icon_terminal_background">#1A2030</color>
+    <color name="icon_solar_background">#FFF1CD</color>
+</resources>

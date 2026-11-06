@@ -13,6 +13,12 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
+import vegabobo.dsusideloader.launcher.LauncherIconManager
+import vegabobo.dsusideloader.preferences.LauncherIcon
+import vegabobo.dsusideloader.preferences.LauncherIconPreferences
 import vegabobo.dsusideloader.core.BaseViewModel
 import vegabobo.dsusideloader.model.Session
 import vegabobo.dsusideloader.preferences.OperationPreferences
@@ -33,6 +39,8 @@ class SettingsViewModel @Inject constructor(
     private val session: Session,
     private val appearancePreferences: AppearancePreferences,
     private val operationPreferences: OperationPreferences,
+    private val launcherIconPreferences: LauncherIconPreferences,
+    private val launcherIconManager: LauncherIconManager,
     val application: Application,
 ) : BaseViewModel(dataStore) {
 
@@ -55,6 +63,9 @@ class SettingsViewModel @Inject constructor(
     init {
         reloadPreferences()
         viewModelScope.launch {
+            launcherIconPreferences.selectedIcon.collect { icon -> _uiState.update { it.copy(appIcon = icon) } }
+        }
+        viewModelScope.launch {
             operationPreferences.preferredMode.collect { mode -> _uiState.update { it.copy(preferredMode = mode) } }
         }
         viewModelScope.launch {
@@ -66,6 +77,28 @@ class SettingsViewModel @Inject constructor(
         viewModelScope.launch {
             appearancePreferences.settings.collect { appearance ->
                 _uiState.update { it.copy(appearance = appearance) }
+            }
+        }
+    }
+
+    fun setAppIcon(icon: LauncherIcon) {
+        if (session.installationInProgress.value || uiState.value.changingIcon || icon == uiState.value.appIcon) return
+        viewModelScope.launch {
+            val previous = uiState.value.appIcon
+            _uiState.update { it.copy(changingIcon = true, iconChangeFailed = false) }
+            try {
+                // Persist first so the choice survives launchers that recreate the activity on icon changes.
+                launcherIconPreferences.setIcon(icon)
+                withContext(Dispatchers.IO) { launcherIconManager.apply(icon) }
+            } catch (cancelled: CancellationException) {
+                throw cancelled
+            } catch (error: Exception) {
+                launcherIconPreferences.setIcon(previous)
+                withContext(Dispatchers.IO) { runCatching { launcherIconManager.apply(previous) } }
+                Log.w(tag, "Unable to change launcher icon", error)
+                _uiState.update { it.copy(iconChangeFailed = true) }
+            } finally {
+                _uiState.update { it.copy(changingIcon = false) }
             }
         }
     }

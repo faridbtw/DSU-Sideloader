@@ -4,6 +4,8 @@ import androidx.compose.animation.AnimatedVisibility
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.rounded.Apps
+import vegabobo.dsusideloader.launcher.labelResource
 import androidx.compose.material.icons.rounded.Brightness1
 import androidx.compose.material.icons.rounded.Brightness4
 import androidx.compose.material.icons.rounded.Colorize
@@ -103,6 +105,11 @@ fun ThemeScreen(navigate: (String) -> Unit, viewModel: SettingsViewModel = hiltV
             }
         }
         SettingsGroup {
+            PreferenceItem(
+                icon = Icons.Rounded.Apps, title = stringResource(R.string.app_icon),
+                description = stringResource(state.appIcon.labelResource), showArrow = true,
+                onClick = { navigate(Destinations.AppIcons) },
+            )
             PreferenceItem(
                 icon = Icons.Rounded.ViewCarousel, title = stringResource(R.string.scroll_animation),
                 description = stringResource(R.string.scroll_animation_description),

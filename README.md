@@ -104,6 +104,6 @@ This is an independent design fork by [faridbtw](https://github.com/faridbtw), b
 
 The appearance controls reference the behavior of [KowSU Pro](https://github.com/KOWX712/KernelSU). This fork independently implements those controls using [Miuix](https://github.com/miuix-kotlin-multiplatform/miuix) (Apache 2.0) and [MaterialKolor](https://github.com/jordond/MaterialKolor) (MIT).
 
-This fork includes an original [Material-style DSU icon](docs/assets/dsu-icon.svg), with adaptive and monochrome Android variants.
+Choose from **13 launcher icons** under **Settings → Theme → App icon**, including the original blue stock icon, Material color variants, Orbit, Circuit, Prism, Pixel, Terminal, and Solar. [Preview the icon collection](docs/assets/app-icons.svg). Launcher icon choices are saved separately from theme resets.
 
 Released under [Apache License 2.0](LICENSE). The [original project guide](docs/UPSTREAM.md) is preserved for reference.

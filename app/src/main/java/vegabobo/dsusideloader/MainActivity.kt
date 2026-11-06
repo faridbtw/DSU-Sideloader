@@ -22,6 +22,8 @@ import kotlinx.coroutines.withContext
 import org.lsposed.hiddenapibypass.HiddenApiBypass
 import rikka.shizuku.Shizuku
 import rikka.shizuku.ShizukuProvider
+import vegabobo.dsusideloader.launcher.LauncherIconManager
+import vegabobo.dsusideloader.preferences.LauncherIconPreferences
 import vegabobo.dsusideloader.model.Session
 import vegabobo.dsusideloader.preferences.AppearancePreferences
 import vegabobo.dsusideloader.preferences.OperationModePreference
@@ -48,6 +50,12 @@ class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListe
 
     @Inject
     lateinit var operationPreferences: OperationPreferences
+
+    @Inject
+    lateinit var launcherIconPreferences: LauncherIconPreferences
+
+    @Inject
+    lateinit var launcherIconManager: LauncherIconManager
 
     private var preferredOperationMode = OperationModePreference.AUTOMATIC
     private var boundOperationMode: OperationMode? = null
@@ -161,6 +169,10 @@ class MainActivity : ComponentActivity(), Shizuku.OnRequestPermissionResultListe
         WindowCompat.setDecorFitsSystemWindows(window, false)
 
         lifecycleScope.launch {
+            val icon = launcherIconPreferences.selectedIcon.first()
+            withContext(Dispatchers.IO) {
+                runCatching { launcherIconManager.apply(icon) }.onFailure { Log.w(tag, "Unable to restore launcher icon", it) }
+            }
             preferredOperationMode = operationPreferences.preferredMode.first()
             shouldCheckShizuku = runCatching { Shizuku.pingBinder() }.getOrDefault(false)
             if (savedInstanceState == null || !PrivilegedProvider.isConnected()) {

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon">Biểu tượng ứng dụng</string>
+    <string name="app_icon_notice">Trình khởi chạy có thể mất một chút thời gian để cập nhật biểu tượng.</string>
+    <string name="app_icon_error">Không thể đổi biểu tượng. Vui lòng thử lại.</string>
+    <string name="app_icon_stock">Xanh gốc</string>
+    <string name="app_icon_material">Material</string>
+    <string name="app_icon_mint">Bạc hà</string>
+    <string name="app_icon_ocean">Đại dương</string>
+    <string name="app_icon_sunset">Hoàng hôn</string>
+    <string name="app_icon_rose">Hoa hồng</string>
+    <string name="app_icon_graphite">Than chì</string>
+    <string name="app_icon_orbit">Quỹ đạo</string>
+    <string name="app_icon_circuit">Mạch điện</string>
+    <string name="app_icon_prism">Lăng kính</string>
+    <string name="app_icon_pixel">Điểm ảnh</string>
+    <string name="app_icon_terminal">Dòng lệnh</string>
+    <string name="app_icon_solar">Mặt trời</string>
+</resources>

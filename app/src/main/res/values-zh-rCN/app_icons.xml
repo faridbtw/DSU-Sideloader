@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_icon">应用图标</string>
+    <string name="app_icon_notice">启动器可能需要片刻才能刷新图标。</string>
+    <string name="app_icon_error">无法更改应用图标，请重试。</string>
+    <string name="app_icon_stock">原版蓝色</string>
+    <string name="app_icon_material">Material</string>
+    <string name="app_icon_mint">薄荷</string>
+    <string name="app_icon_ocean">海洋</string>
+    <string name="app_icon_sunset">日落</string>
+    <string name="app_icon_rose">玫瑰</string>
+    <string name="app_icon_graphite">石墨</string>
+    <string name="app_icon_orbit">轨道</string>
+    <string name="app_icon_circuit">电路</string>
+    <string name="app_icon_prism">棱镜</string>
+    <string name="app_icon_pixel">像素</string>
+    <string name="app_icon_terminal">终端</string>
+    <string name="app_icon_solar">太阳</string>
+</resources>
