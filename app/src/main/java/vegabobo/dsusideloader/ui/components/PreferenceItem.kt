@@ -7,6 +7,10 @@ import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.material.icons.Icons
+import androidx.compose.material.icons.automirrored.rounded.KeyboardArrowRight
+import top.yukonga.miuix.kmp.preference.ArrowPreference
+import top.yukonga.miuix.kmp.preference.SwitchPreference
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
@@ -29,18 +33,27 @@ fun PreferenceItem(
     isChecked: Boolean = false,
     showToggle: Boolean = false,
     isEnabled: Boolean = true,
+    showArrow: Boolean = false,
 ) {
     if (LocalDesignStyle.current == DesignStyle.MIUIX) {
-        BasicComponent(
-            title = title,
-            summary = description.takeIf { it.isNotEmpty() },
-            enabled = isEnabled,
-            onClick = { onClick(isChecked) },
-            startAction = if (icon != null) ({ Icon(icon, contentDescription = null) }) else null,
-            endActions = if (showToggle) ({
-                StyledSwitch(checked = isChecked, enabled = isEnabled, onCheckedChange = { onClick(isChecked) })
-            }) else null,
-        )
+        val leading: @Composable (() -> Unit)? = if (icon != null) ({
+            Icon(icon, contentDescription = null, modifier = Modifier.padding(end = 6.dp))
+        }) else null
+        when {
+            showToggle -> SwitchPreference(
+                title = title, summary = description.takeIf { it.isNotEmpty() },
+                enabled = isEnabled, startAction = leading, checked = isChecked,
+                onCheckedChange = { onClick(isChecked) },
+            )
+            showArrow -> ArrowPreference(
+                title = title, summary = description.takeIf { it.isNotEmpty() },
+                enabled = isEnabled, startAction = leading, onClick = { onClick(isChecked) },
+            )
+            else -> BasicComponent(
+                title = title, summary = description.takeIf { it.isNotEmpty() },
+                enabled = isEnabled, startAction = leading, onClick = { onClick(isChecked) },
+            )
+        }
         return
     }
     Row(
@@ -90,5 +103,9 @@ fun PreferenceItem(
                 modifier = Modifier.padding(start = 8.dp),
             )
         }
+        if (showArrow && !showToggle) {
+            Icon(Icons.AutoMirrored.Rounded.KeyboardArrowRight, contentDescription = null, tint = MaterialTheme.colorScheme.onSurfaceVariant)
+        }
+
     }
 }

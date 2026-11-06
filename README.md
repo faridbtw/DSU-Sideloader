@@ -31,7 +31,7 @@ Choose an image, adjust the options you need, and follow the installation. This 
 | **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
-Switch between Material and the actual Miuix component library under **Settings → Appearance → Interface style**. Miuix supplies native cards, buttons, switches, text fields, top bars, dialogs, and dropdowns. Cupertino-inspired and Minimal remain appearance presets. Open **Theme** for mode, Monet, key color, nine palette variants, and the 2021/2025 color specifications. Unsupported 2025 palettes use 2021 while retaining your saved choice.
+Switch between Material and the actual Miuix component library under **Settings → Appearance → Interface style**. Miuix supplies native cards, buttons, switches, text fields, top bars, dialogs, and dropdowns. Cupertino-inspired and Minimal remain appearance presets. Settings follows KowSU Pro’s grouped cards, leading icons, navigation arrows, native switches, and collapsing large header. Open **Theme** for mode, Monet, key color, nine palette variants, and the 2021/2025 color specifications. Unsupported 2025 palettes use 2021 while retaining your saved choice.
 
 ## Screenshots
 

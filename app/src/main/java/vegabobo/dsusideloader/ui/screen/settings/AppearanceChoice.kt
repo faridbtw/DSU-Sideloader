@@ -9,6 +9,8 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.foundation.selection.selectableGroup
+import androidx.compose.material3.Icon
+import androidx.compose.ui.graphics.vector.ImageVector
 import androidx.compose.material3.RadioButton
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
@@ -30,12 +32,14 @@ import vegabobo.dsusideloader.ui.components.PreferenceItem
 import vegabobo.dsusideloader.ui.theme.LocalDesignStyle
 
 @Composable
-fun AppearanceChoice(title: String, items: List<String>, selected: Int, enabled: Boolean = true, onSelect: (Int) -> Unit) {
+fun AppearanceChoice(title: String, items: List<String>, selected: Int, enabled: Boolean = true, icon: ImageVector? = null, onSelect: (Int) -> Unit) {
     if (LocalDesignStyle.current == DesignStyle.MIUIX) {
-        WindowDropdownPreference(title = title, items = items, selectedIndex = selected, enabled = enabled, onSelectedIndexChange = onSelect)
+        WindowDropdownPreference(title = title, items = items, selectedIndex = selected, enabled = enabled, onSelectedIndexChange = onSelect,
+            startAction = if (icon != null) ({ Icon(icon, null, modifier = Modifier.padding(end = 6.dp)) }) else null,
+        )
     } else {
         var open by rememberSaveable { mutableStateOf(false) }
-        PreferenceItem(title = title, description = items.getOrElse(selected) { "" }, isEnabled = enabled, onClick = { open = true })
+        PreferenceItem(icon = icon, showArrow = true, title = title, description = items.getOrElse(selected) { "" }, isEnabled = enabled, onClick = { open = true })
         if (open) {
             AppAlertDialog(
                 onDismissRequest = { open = false },

@@ -35,10 +35,8 @@ import vegabobo.dsusideloader.preferences.ColorSpecVersion
 import vegabobo.dsusideloader.preferences.PaletteVariant
 import vegabobo.dsusideloader.preferences.ThemeMode
 import vegabobo.dsusideloader.preferences.effectiveColorSpec
-import vegabobo.dsusideloader.ui.components.ApplicationScreen
 import vegabobo.dsusideloader.ui.components.CardBox
 import vegabobo.dsusideloader.ui.components.PreferenceItem
-import vegabobo.dsusideloader.ui.components.TopBar
 import vegabobo.dsusideloader.ui.screen.Destinations
 import vegabobo.dsusideloader.util.collectAsStateWithLifecycle
 
@@ -60,10 +58,7 @@ fun ThemeScreen(navigate: (String) -> Unit, viewModel: SettingsViewModel = hiltV
         R.string.accent_green, R.string.key_yellow, R.string.accent_amber, R.string.key_orange,
         R.string.key_brown, R.string.key_blue_grey, R.string.key_sakura,
     )
-    ApplicationScreen(
-        modifier = Modifier.padding(horizontal = 16.dp), verticalArrangement = Arrangement.spacedBy(12.dp),
-        topBar = { TopBar(barTitle = stringResource(R.string.theme_mode), scrollBehavior = it, onClickBackButton = { navigate(Destinations.Up) }) },
-    ) {
+    SettingsPage(title = stringResource(R.string.theme_mode), onBack = { navigate(Destinations.Up) }) {
         CardBox(addPadding = false) {
             val modes = ThemeMode.entries
             val labels = listOf(R.string.theme_system, R.string.theme_light, R.string.theme_dark, R.string.theme_amoled).map { stringResource(it) }
