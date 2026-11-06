@@ -20,4 +20,6 @@
     <string name="key_blue_grey">蓝灰色</string>
     <string name="key_sakura">樱花色</string>
     <string name="theme_preview">主题预览</string>
+    <string name="scroll_animation">滚动动画</string>
+    <string name="scroll_animation_description">切换主页和设置时显示动画。</string>
 </resources>

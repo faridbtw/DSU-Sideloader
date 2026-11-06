@@ -153,6 +153,7 @@ fun DSUHelperTheme(
             ) {
                 CompositionLocalProvider(
                     LocalDesignStyle provides appearance.designStyle,
+                    LocalScrollAnimation provides appearance.scrollAnimation,
                     LocalIndication provides if (appearance.designStyle == DesignStyle.MIUIX) miuixIndication else LocalIndication.current,
                 ) { content() }
             }

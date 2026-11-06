@@ -47,14 +47,16 @@ data class AppearanceSettings(
     val accentColor: AccentColor = AccentColor.INDIGO,
     val useWallpaperColors: Boolean = false,
     val designStyle: DesignStyle = DesignStyle.MATERIAL,
-    val monetEnabled: Boolean = true,
+    val monetEnabled: Boolean = false,
     val keyColor: Int = 0,
     val paletteVariant: PaletteVariant = PaletteVariant.TONAL_SPOT,
     val colorSpec: ColorSpecVersion = ColorSpecVersion.SPEC_2025,
+    val scrollAnimation: Boolean = true,
 )
 
 @Singleton
 class AppearancePreferences @Inject constructor(private val dataStore: DataStore<Preferences>) {
+    private val scrollAnimationKey = booleanPreferencesKey("appearance_scroll_animation")
     private val monetKey = booleanPreferencesKey("appearance_monet")
     private val keyColorKey = intPreferencesKey("appearance_key_color")
     private val paletteKey = stringPreferencesKey("appearance_palette")
@@ -72,12 +74,17 @@ class AppearancePreferences @Inject constructor(private val dataStore: DataStore
             accentColor = AccentColor.values().firstOrNull { it.preferenceValue == preferences[accentKey] } ?: AccentColor.INDIGO,
             useWallpaperColors = preferences[wallpaperKey] ?: false,
             designStyle = DesignStyle.values().firstOrNull { it.preferenceValue == preferences[styleKey] } ?: DesignStyle.MATERIAL,
-            monetEnabled = preferences[monetKey] ?: true,
+            monetEnabled = preferences[monetKey] ?: false,
+            scrollAnimation = preferences[scrollAnimationKey] ?: true,
             keyColor = preferences[keyColorKey] ?: legacyKeyColor(preferences[accentKey], preferences[wallpaperKey] == true),
             paletteVariant = PaletteVariant.values().firstOrNull { it.preferenceValue == preferences[paletteKey] } ?: PaletteVariant.TONAL_SPOT,
             colorSpec = ColorSpecVersion.values().firstOrNull { it.name == preferences[specKey] } ?: ColorSpecVersion.SPEC_2025,
         )
     }.distinctUntilChanged()
+
+    suspend fun setScrollAnimation(enabled: Boolean) {
+        dataStore.edit { it[scrollAnimationKey] = enabled }
+    }
 
     suspend fun setMonetEnabled(enabled: Boolean) {
         dataStore.edit { it[monetKey] = enabled }
@@ -124,6 +131,7 @@ class AppearancePreferences @Inject constructor(private val dataStore: DataStore
 
     suspend fun reset() {
         dataStore.edit {
+            it.remove(scrollAnimationKey)
             it.remove(monetKey)
             it.remove(keyColorKey)
             it.remove(paletteKey)

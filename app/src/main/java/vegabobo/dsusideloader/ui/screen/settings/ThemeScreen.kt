@@ -12,6 +12,7 @@ import androidx.compose.material.icons.rounded.DesignServices
 import androidx.compose.material.icons.rounded.LightMode
 import androidx.compose.material.icons.rounded.RestartAlt
 import androidx.compose.material.icons.rounded.Style
+import androidx.compose.material.icons.rounded.ViewCarousel
 import androidx.compose.material.icons.rounded.Wallpaper
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -102,6 +103,12 @@ fun ThemeScreen(navigate: (String) -> Unit, viewModel: SettingsViewModel = hiltV
             }
         }
         SettingsGroup {
+            PreferenceItem(
+                icon = Icons.Rounded.ViewCarousel, title = stringResource(R.string.scroll_animation),
+                description = stringResource(R.string.scroll_animation_description),
+                showToggle = true, isChecked = settings.scrollAnimation,
+                onClick = { viewModel.setScrollAnimation(!it) },
+            )
             PreferenceItem(
                 icon = Icons.Rounded.RestartAlt, title = stringResource(R.string.reset_appearance),
                 onClick = { viewModel.resetAppearance() },

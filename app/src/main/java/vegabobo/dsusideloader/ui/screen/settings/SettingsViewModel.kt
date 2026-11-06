@@ -60,6 +60,10 @@ class SettingsViewModel @Inject constructor(
         }
     }
 
+    fun setScrollAnimation(enabled: Boolean) {
+        viewModelScope.launch { appearancePreferences.setScrollAnimation(enabled) }
+    }
+
     fun setMonetEnabled(enabled: Boolean) {
         viewModelScope.launch { appearancePreferences.setMonetEnabled(enabled) }
     }

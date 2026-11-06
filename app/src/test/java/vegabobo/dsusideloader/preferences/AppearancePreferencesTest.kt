@@ -34,9 +34,10 @@ class AppearancePreferencesTest {
             first.setThemeMode(ThemeMode.AMOLED)
             first.setAccentColor(AccentColor.TEAL)
             first.setKeyColor(0xFFE91E63.toInt())
-            first.setMonetEnabled(false)
+            first.setMonetEnabled(true)
             first.setPaletteVariant(PaletteVariant.FIDELITY)
             first.setColorSpec(ColorSpecVersion.SPEC_2021)
+            first.setScrollAnimation(false)
         } finally {
             firstScope.coroutineContext[Job]!!.cancelAndJoin()
         }
@@ -45,7 +46,7 @@ class AppearancePreferencesTest {
         val secondStore = PreferenceDataStoreFactory.create(scope = secondScope, produceFile = { file })
         try {
             assertEquals(
-                AppearanceSettings(ThemeMode.AMOLED, AccentColor.TEAL, false, DesignStyle.MIUIX, false, 0xFFE91E63.toInt(), PaletteVariant.FIDELITY, ColorSpecVersion.SPEC_2021),
+                AppearanceSettings(ThemeMode.AMOLED, AccentColor.TEAL, false, DesignStyle.MIUIX, true, 0xFFE91E63.toInt(), PaletteVariant.FIDELITY, ColorSpecVersion.SPEC_2021, scrollAnimation = false),
                 AppearancePreferences(secondStore).settings.first(),
             )
         } finally {
@@ -63,6 +64,7 @@ class AppearancePreferencesTest {
         try {
             val appearance = AppearancePreferences(store)
             assertEquals(AppearanceSettings(), appearance.settings.first())
+            assertFalse(appearance.settings.first().monetEnabled)
             store.edit {
                 it[stringPreferencesKey("appearance_style")] = "future-style"
                 it[stringPreferencesKey("appearance_theme")] = "future-theme"
@@ -89,6 +91,8 @@ class AppearancePreferencesTest {
             appearance.setThemeMode(ThemeMode.DARK)
             appearance.setAccentColor(AccentColor.ROSE)
             appearance.setWallpaperColors(true)
+            appearance.setMonetEnabled(true)
+            appearance.setScrollAnimation(false)
             appearance.reset()
             assertEquals(AppearanceSettings(), appearance.settings.first())
             assertTrue(store.data.first()[keepScreenOn] == true)

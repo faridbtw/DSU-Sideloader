@@ -1,5 +1,15 @@
 package vegabobo.dsusideloader.ui.screen
 
+import androidx.compose.animation.AnimatedContentTransitionScope
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.core.FastOutSlowInEasing
+import androidx.compose.animation.core.tween
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.ui.platform.LocalLayoutDirection
+import androidx.compose.ui.unit.LayoutDirection
+import vegabobo.dsusideloader.ui.theme.LocalScrollAnimation
 import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.consumeWindowInsets
 import androidx.compose.foundation.layout.padding
@@ -34,6 +44,8 @@ fun Navigation() {
     val navController = rememberNavController()
     val entry by navController.currentBackStackEntryAsState()
     val route = entry?.destination?.route ?: Destinations.Homepage
+    val animateTabs = LocalScrollAnimation.current
+    val rtl = LocalLayoutDirection.current == LayoutDirection.Rtl
     val showTabs = route == Destinations.Homepage || route == Destinations.Preferences
     Scaffold(
         contentWindowInsets = WindowInsets(0, 0, 0, 0),
@@ -53,6 +65,26 @@ fun Navigation() {
             navController = navController,
             startDestination = Destinations.Homepage,
             modifier = Modifier.padding(padding).consumeWindowInsets(padding),
+            enterTransition = {
+                val from = initialState.destination.route
+                val to = targetState.destination.route
+                if (isMainTabChange(from, to)) {
+                    if (animateTabs) slideIntoContainer(
+                        towards = if ((to == Destinations.Preferences) != rtl) AnimatedContentTransitionScope.SlideDirection.Left else AnimatedContentTransitionScope.SlideDirection.Right,
+                        animationSpec = tween(320, easing = FastOutSlowInEasing),
+                    ) else EnterTransition.None
+                } else fadeIn(tween(220))
+            },
+            exitTransition = {
+                val from = initialState.destination.route
+                val to = targetState.destination.route
+                if (isMainTabChange(from, to)) {
+                    if (animateTabs) slideOutOfContainer(
+                        towards = if ((to == Destinations.Preferences) != rtl) AnimatedContentTransitionScope.SlideDirection.Left else AnimatedContentTransitionScope.SlideDirection.Right,
+                        animationSpec = tween(320, easing = FastOutSlowInEasing),
+                    ) else ExitTransition.None
+                } else fadeOut(tween(220))
+            },
         ) {
             fun navigate(destination: String) {
                 if (destination == Destinations.Up) {
@@ -71,3 +103,7 @@ fun Navigation() {
         }
     }
 }
+
+private fun isMainTabChange(from: String?, to: String?): Boolean =
+    (from == Destinations.Homepage && to == Destinations.Preferences) ||
+        (from == Destinations.Preferences && to == Destinations.Homepage)

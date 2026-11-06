@@ -20,4 +20,6 @@
     <string name="key_blue_grey">ブルーグレー</string>
     <string name="key_sakura">サクラ</string>
     <string name="theme_preview">テーマのプレビュー</string>
+    <string name="scroll_animation">スクロールアニメーション</string>
+    <string name="scroll_animation_description">ホームと設定の切り替えをアニメーション表示します。</string>
 </resources>

@@ -20,4 +20,6 @@
     <string name="key_blue_grey">Niebieskoszary</string>
     <string name="key_sakura">Sakura</string>
     <string name="theme_preview">Podgląd motywu</string>
+    <string name="scroll_animation">Animacja przewijania</string>
+    <string name="scroll_animation_description">Animuj przełączanie między ekranem głównym a ustawieniami.</string>
 </resources>

@@ -20,4 +20,6 @@
     <string name="key_blue_grey">Blue grey</string>
     <string name="key_sakura">Sakura</string>
     <string name="theme_preview">Theme preview</string>
+    <string name="scroll_animation">Scroll animation</string>
+    <string name="scroll_animation_description">Animate switching between Home and Settings.</string>
 </resources>

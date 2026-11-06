@@ -8,6 +8,8 @@ import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 import vegabobo.dsusideloader.preferences.DesignStyle
 
+val LocalScrollAnimation = staticCompositionLocalOf { true }
+
 val LocalDesignStyle = staticCompositionLocalOf { DesignStyle.MATERIAL }
 
 data class StyleMetrics(

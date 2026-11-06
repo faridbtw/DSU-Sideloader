@@ -71,7 +71,7 @@ class AppearanceColorSchemeTest {
     }
     @Test
     fun monetUsesTheSelectedSeedAndPaletteAndCanBeTurnedOff() {
-        val red = AppearanceSettings(themeMode = ThemeMode.LIGHT, keyColor = 0xFFF44336.toInt())
+        val red = AppearanceSettings(themeMode = ThemeMode.LIGHT, monetEnabled = true, keyColor = 0xFFF44336.toInt())
         val blue = red.copy(keyColor = 0xFF2196F3.toInt())
         assertNotEquals(appearanceColorScheme(red, false).primary, appearanceColorScheme(blue, false).primary)
         val generated = PaletteVariant.entries.map {

@@ -20,4 +20,6 @@
     <string name="key_blue_grey">Cinza azulado</string>
     <string name="key_sakura">Sakura</string>
     <string name="theme_preview">Prévia do tema</string>
+    <string name="scroll_animation">Animação de rolagem</string>
+    <string name="scroll_animation_description">Animar a troca entre Início e Configurações.</string>
 </resources>

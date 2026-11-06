@@ -20,4 +20,6 @@
     <string name="key_blue_grey">Xám xanh</string>
     <string name="key_sakura">Anh đào</string>
     <string name="theme_preview">Xem trước giao diện</string>
+    <string name="scroll_animation">Hiệu ứng cuộn</string>
+    <string name="scroll_animation_description">Tạo hiệu ứng chuyển giữa Trang chủ và Cài đặt.</string>
 </resources>
