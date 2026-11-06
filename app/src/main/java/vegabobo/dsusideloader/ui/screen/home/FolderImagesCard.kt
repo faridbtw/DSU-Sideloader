@@ -18,7 +18,7 @@ import androidx.compose.material.icons.outlined.CheckCircle
 import androidx.compose.material.icons.outlined.Description
 import androidx.compose.material.icons.outlined.FolderOpen
 import androidx.compose.material.icons.outlined.Refresh
-import androidx.compose.material3.AlertDialog
+import vegabobo.dsusideloader.ui.components.AppAlertDialog
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
@@ -159,7 +159,7 @@ fun FolderImagesCard(
     }
 
     if (showAll) {
-        AlertDialog(
+        AppAlertDialog(
             onDismissRequest = { showAll = false },
             title = { Text(stringResource(R.string.folder_system_images)) },
             text = {

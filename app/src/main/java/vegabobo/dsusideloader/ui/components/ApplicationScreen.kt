@@ -22,6 +22,9 @@ import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
 import androidx.compose.material3.rememberTopAppBarState
 import androidx.compose.runtime.Composable
+import vegabobo.dsusideloader.preferences.DesignStyle
+import vegabobo.dsusideloader.ui.theme.LocalDesignStyle
+import top.yukonga.miuix.kmp.basic.Scaffold as MiuixScaffold
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.input.nestedscroll.nestedScroll
 import androidx.compose.ui.unit.dp
@@ -50,36 +53,45 @@ fun ApplicationScreen(
         .only(WindowInsetsSides.Vertical)
         .asPaddingValues()
 
-    Surface(color = MaterialTheme.colorScheme.background) {
-        Scaffold(
-            containerColor = MaterialTheme.colorScheme.background,
-            modifier = scrollBehaviorModifier
-                .fillMaxSize(),
-            topBar = { topBar(scrollBehavior) },
-            bottomBar = { bottomBar() },
-            content = { innerPadding ->
-                val scrollModifier =
-                    if (enableDefaultScrollBehavior) Modifier.verticalScroll(rememberScrollState()) else Modifier
-                if (columnContent) {
-                    Column(
-                        modifier = modifier
-                            .padding(top = innerPadding.calculateTopPadding())
-                            .then(scrollModifier)
-                            .fillMaxWidth(),
-                        verticalArrangement = verticalArrangement,
-                    ) {
-                        content()
-                        Spacer(modifier = Modifier.padding(innerPadding.calculateBottomPadding()))
-                    }
-                } else {
-                    Surface(modifier = modifier.padding(top = innerPadding.calculateTopPadding())) {
-                        content()
-                        Spacer(modifier = Modifier.padding(innerPadding.calculateBottomPadding()))
-                    }
-                }
-            },
-        )
+    val screenContent: @Composable (PaddingValues) -> Unit = { innerPadding ->
+        val scrollModifier =
+            if (enableDefaultScrollBehavior) Modifier.verticalScroll(rememberScrollState()) else Modifier
+        if (columnContent) {
+            Column(
+                modifier = modifier
+                    .padding(top = innerPadding.calculateTopPadding())
+                    .then(scrollModifier)
+                    .fillMaxWidth(),
+                verticalArrangement = verticalArrangement,
+            ) {
+                content()
+                Spacer(modifier = Modifier.padding(innerPadding.calculateBottomPadding()))
+            }
+        } else {
+            Surface(modifier = modifier.padding(top = innerPadding.calculateTopPadding())) {
+                content()
+                Spacer(modifier = Modifier.padding(innerPadding.calculateBottomPadding()))
+            }
+        }
     }
-
+    if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+        MiuixScaffold(
+            modifier = Modifier.fillMaxSize(),
+            containerColor = MaterialTheme.colorScheme.background,
+            topBar = { topBar(scrollBehavior) },
+            bottomBar = bottomBar,
+            content = screenContent,
+        )
+    } else {
+        Surface(color = MaterialTheme.colorScheme.background) {
+            Scaffold(
+                modifier = scrollBehaviorModifier.fillMaxSize(),
+                containerColor = MaterialTheme.colorScheme.background,
+                topBar = { topBar(scrollBehavior) },
+                bottomBar = bottomBar,
+                content = screenContent,
+            )
+        }
+    }
     outsideContent(insets)
 }

@@ -5,6 +5,10 @@ import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.ColumnScope
+import androidx.compose.foundation.layout.PaddingValues
+import vegabobo.dsusideloader.preferences.DesignStyle
+import top.yukonga.miuix.kmp.basic.Card as MiuixCard
+import top.yukonga.miuix.kmp.basic.CardDefaults as MiuixCardDefaults
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
@@ -33,22 +37,7 @@ fun CardBox(
     roundedCornerShape: RoundedCornerShape = RoundedCornerShape(LocalDesignStyle.current.metrics().cardRadius.dp),
     content: @Composable (ColumnScope) -> Unit,
 ) {
-    Box(
-        modifier = if (addPadding) {
-            Modifier
-                .clip(roundedCornerShape)
-                .border(1.dp, if (LocalDesignStyle.current.metrics().borderedCards) MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f) else Color.Transparent, roundedCornerShape)
-                .background(cardColor)
-                .padding(all = 20.dp)
-                .fillMaxWidth()
-        } else {
-            Modifier
-                .clip(roundedCornerShape)
-                .border(1.dp, if (LocalDesignStyle.current.metrics().borderedCards) MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f) else Color.Transparent, roundedCornerShape)
-                .background(cardColor)
-                .fillMaxWidth()
-        },
-    ) {
+    val body: @Composable () -> Unit = {
         Column(modifier = modifier) {
             if (cardTitle.isNotEmpty()) {
                 if (addToggle) {
@@ -70,5 +59,20 @@ fun CardBox(
             }
             content(this)
         }
+    }
+    if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+        MiuixCard(
+            modifier = Modifier.fillMaxWidth(),
+            insideMargin = PaddingValues(if (addPadding) 16.dp else 0.dp),
+            colors = MiuixCardDefaults.defaultColors(color = cardColor, contentColor = MaterialTheme.colorScheme.onSurface),
+        ) { body() }
+    } else {
+        Box(
+            modifier = Modifier.fillMaxWidth()
+                .clip(roundedCornerShape)
+                .border(1.dp, if (LocalDesignStyle.current.metrics().borderedCards) MaterialTheme.colorScheme.outlineVariant.copy(alpha = 0.65f) else Color.Transparent, roundedCornerShape)
+                .background(cardColor)
+                .then(if (addPadding) Modifier.padding(20.dp) else Modifier),
+        ) { body() }
     }
 }

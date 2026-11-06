@@ -8,6 +8,12 @@ import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextButton
 import androidx.compose.runtime.Composable
+import vegabobo.dsusideloader.preferences.DesignStyle
+import top.yukonga.miuix.kmp.basic.Button as MiuixButton
+import top.yukonga.miuix.kmp.basic.TextButton as MiuixTextButton
+import top.yukonga.miuix.kmp.basic.ButtonDefaults as MiuixButtonDefaults
+import top.yukonga.miuix.kmp.basic.Text as MiuixText
+import top.yukonga.miuix.kmp.theme.MiuixTheme
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
@@ -25,6 +31,25 @@ fun ActionButton(
     isEnabled: Boolean = true,
     content: @Composable () -> Unit = {},
 ) {
+    if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+        if (textButton) {
+            MiuixTextButton(text = text, onClick = onClick, enabled = isEnabled, modifier = modifier.heightIn(min = 48.dp))
+        } else {
+            MiuixButton(
+                onClick = onClick,
+                enabled = isEnabled,
+                modifier = modifier.heightIn(min = 48.dp),
+                colors = MiuixButtonDefaults.buttonColorsPrimary(
+                    color = colorButton ?: MiuixTheme.colorScheme.primary,
+                    contentColor = colorText ?: MiuixTheme.colorScheme.onPrimary,
+                ),
+            ) {
+                MiuixText(text = text)
+                content()
+            }
+        }
+        return
+    }
     if (textButton) {
         TextButton(modifier = modifier.heightIn(min = 48.dp), onClick = onClick, enabled = isEnabled) {
             Text(text = text)

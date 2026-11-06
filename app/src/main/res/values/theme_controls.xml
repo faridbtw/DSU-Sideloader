@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_style">UI Style</string>
+    <string name="open_theme_description">Theme mode, Monet, key color, and palette settings</string>
+    <string name="enable_monet">Enable Monet</string>
+    <string name="monet_description">Generate the app palette from a key color or your wallpaper.</string>
+    <string name="key_color">Key color</string>
+    <string name="key_default">Default</string>
+    <string name="color_style">Color Style</string>
+    <string name="color_spec">Color Spec</string>
+    <string name="color_spec_compatibility">This color style uses the 2021 color specification.</string>
+    <string name="key_red">Red</string>
+    <string name="key_pink">Pink</string>
+    <string name="key_purple">Purple</string>
+    <string name="key_deep_purple">Deep purple</string>
+    <string name="key_cyan">Cyan</string>
+    <string name="key_yellow">Yellow</string>
+    <string name="key_orange">Orange</string>
+    <string name="key_brown">Brown</string>
+    <string name="key_blue_grey">Blue grey</string>
+    <string name="key_sakura">Sakura</string>
+</resources>

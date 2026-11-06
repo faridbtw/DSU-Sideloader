@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "vegabobo.dsusideloader"
-    compileSdk = 33
+    compileSdkVersion("android-37.0")
 
     defaultConfig {
         minSdk = 29
@@ -16,6 +16,6 @@ android {
 }
 
 dependencies {
-    implementation("dev.rikka.shizuku:api:_")
-    implementation("dev.rikka.shizuku:provider:_")
+    implementation("dev.rikka.shizuku:api:13.1.1")
+    implementation("dev.rikka.shizuku:provider:13.1.1")
 }

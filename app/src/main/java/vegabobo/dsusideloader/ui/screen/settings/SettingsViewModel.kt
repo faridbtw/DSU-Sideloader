@@ -19,6 +19,8 @@ import vegabobo.dsusideloader.preferences.AccentColor
 import vegabobo.dsusideloader.preferences.AppPrefs
 import vegabobo.dsusideloader.preferences.AppearancePreferences
 import vegabobo.dsusideloader.preferences.DesignStyle
+import vegabobo.dsusideloader.preferences.PaletteVariant
+import vegabobo.dsusideloader.preferences.ColorSpecVersion
 import vegabobo.dsusideloader.preferences.ThemeMode
 import vegabobo.dsusideloader.util.OperationMode
 import vegabobo.dsusideloader.util.OperationModeUtils
@@ -56,6 +58,22 @@ class SettingsViewModel @Inject constructor(
                 _uiState.update { it.copy(appearance = appearance) }
             }
         }
+    }
+
+    fun setMonetEnabled(enabled: Boolean) {
+        viewModelScope.launch { appearancePreferences.setMonetEnabled(enabled) }
+    }
+
+    fun setKeyColor(color: Int) {
+        viewModelScope.launch { appearancePreferences.setKeyColor(color) }
+    }
+
+    fun setPaletteVariant(palette: PaletteVariant) {
+        viewModelScope.launch { appearancePreferences.setPaletteVariant(palette) }
+    }
+
+    fun setColorSpec(spec: ColorSpecVersion) {
+        viewModelScope.launch { appearancePreferences.setColorSpec(spec) }
     }
 
     fun setDesignStyle(style: DesignStyle) {

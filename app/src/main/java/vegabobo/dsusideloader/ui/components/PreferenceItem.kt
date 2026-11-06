@@ -11,6 +11,9 @@ import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import vegabobo.dsusideloader.preferences.DesignStyle
+import vegabobo.dsusideloader.ui.theme.LocalDesignStyle
+import top.yukonga.miuix.kmp.basic.BasicComponent
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
@@ -27,6 +30,19 @@ fun PreferenceItem(
     showToggle: Boolean = false,
     isEnabled: Boolean = true,
 ) {
+    if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+        BasicComponent(
+            title = title,
+            summary = description.takeIf { it.isNotEmpty() },
+            enabled = isEnabled,
+            onClick = { onClick(isChecked) },
+            startAction = if (icon != null) ({ Icon(icon, contentDescription = null) }) else null,
+            endActions = if (showToggle) ({
+                StyledSwitch(checked = isChecked, enabled = isEnabled, onCheckedChange = { onClick(isChecked) })
+            }) else null,
+        )
+        return
+    }
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier

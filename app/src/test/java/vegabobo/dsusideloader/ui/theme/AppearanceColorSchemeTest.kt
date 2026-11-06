@@ -3,12 +3,14 @@ package vegabobo.dsusideloader.ui.theme
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.luminance
 import org.junit.Assert.assertEquals
+import org.junit.Assert.assertNotEquals
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
 import vegabobo.dsusideloader.preferences.AccentColor
 import vegabobo.dsusideloader.preferences.AppearanceSettings
 import vegabobo.dsusideloader.preferences.DesignStyle
+import vegabobo.dsusideloader.preferences.PaletteVariant
 import vegabobo.dsusideloader.preferences.ThemeMode
 
 class AppearanceColorSchemeTest {
@@ -67,4 +69,19 @@ class AppearanceColorSchemeTest {
         assertEquals(4, schemes.map { it.background }.distinct().size)
         assertEquals(1, schemes.map { it.primary }.distinct().size)
     }
+    @Test
+    fun monetUsesTheSelectedSeedAndPaletteAndCanBeTurnedOff() {
+        val red = AppearanceSettings(themeMode = ThemeMode.LIGHT, keyColor = 0xFFF44336.toInt())
+        val blue = red.copy(keyColor = 0xFF2196F3.toInt())
+        assertNotEquals(appearanceColorScheme(red, false).primary, appearanceColorScheme(blue, false).primary)
+        val generated = PaletteVariant.entries.map {
+            appearanceColorScheme(red.copy(paletteVariant = it), false).primary
+        }
+        assertTrue(generated.distinct().size > 4)
+        assertEquals(
+            appearanceColorScheme(red.copy(monetEnabled = false), false).primary,
+            appearanceColorScheme(blue.copy(monetEnabled = false), false).primary,
+        )
+    }
+
 }

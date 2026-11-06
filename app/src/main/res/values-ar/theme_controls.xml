@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_style">نمط الواجهة</string>
+    <string name="open_theme_description">وضع السمة وMonet واللون الأساسي ولوحة الألوان</string>
+    <string name="enable_monet">تفعيل Monet</string>
+    <string name="monet_description">إنشاء لوحة ألوان التطبيق من لون أساسي أو خلفية الجهاز.</string>
+    <string name="key_color">اللون الأساسي</string>
+    <string name="key_default">افتراضي</string>
+    <string name="color_style">نمط الألوان</string>
+    <string name="color_spec">مواصفات الألوان</string>
+    <string name="color_spec_compatibility">يستخدم نمط الألوان هذا مواصفات عام 2021.</string>
+    <string name="key_red">أحمر</string>
+    <string name="key_pink">وردي</string>
+    <string name="key_purple">بنفسجي</string>
+    <string name="key_deep_purple">بنفسجي داكن</string>
+    <string name="key_cyan">سماوي</string>
+    <string name="key_yellow">أصفر</string>
+    <string name="key_orange">برتقالي</string>
+    <string name="key_brown">بني</string>
+    <string name="key_blue_grey">رمادي مزرق</string>
+    <string name="key_sakura">ساكورا</string>
+</resources>

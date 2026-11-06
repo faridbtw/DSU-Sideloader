@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_style">Styl interfejsu</string>
+    <string name="open_theme_description">Tryb motywu, Monet, kolor bazowy i paleta</string>
+    <string name="enable_monet">Włącz Monet</string>
+    <string name="monet_description">Generuj paletę aplikacji z koloru bazowego lub tapety.</string>
+    <string name="key_color">Kolor bazowy</string>
+    <string name="key_default">Domyślny</string>
+    <string name="color_style">Styl kolorów</string>
+    <string name="color_spec">Specyfikacja kolorów</string>
+    <string name="color_spec_compatibility">Ten styl korzysta ze specyfikacji kolorów z 2021 roku.</string>
+    <string name="key_red">Czerwony</string>
+    <string name="key_pink">Różowy</string>
+    <string name="key_purple">Fioletowy</string>
+    <string name="key_deep_purple">Ciemnofioletowy</string>
+    <string name="key_cyan">Cyjan</string>
+    <string name="key_yellow">Żółty</string>
+    <string name="key_orange">Pomarańczowy</string>
+    <string name="key_brown">Brązowy</string>
+    <string name="key_blue_grey">Niebieskoszary</string>
+    <string name="key_sakura">Sakura</string>
+</resources>

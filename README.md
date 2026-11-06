@@ -27,11 +27,11 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
-| **Compact install flow** — image selection and Install share one card; the full library opens in a scrollable dialog. | **Your appearance** — Material, Miuix-inspired, Cupertino-inspired, or Minimal styles; light/dark/AMOLED modes, accent presets, and wallpaper colors. |
+| **Compact install flow** — image selection and Install share one card; the full library opens in a scrollable dialog. | **Your appearance** — Real Material and Miuix interfaces, plus Cupertino-inspired and Minimal presets; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
 | **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
-Interface styles are built-in Compose presets that change surfaces, corners, typography, header alignment, and controls. Choose a style independently of light/dark mode and accent color under **Settings → Appearance → Interface style**.
+Switch between Material and the actual Miuix component library under **Settings → Appearance → Interface style**. Miuix supplies native cards, buttons, switches, text fields, top bars, dialogs, and dropdowns. Cupertino-inspired and Minimal remain appearance presets. Open **Theme** for mode, Monet, key color, nine palette variants, and the 2021/2025 color specifications. Unsupported 2025 palettes use 2021 while retaining your saved choice.
 
 ## Screenshots
 
@@ -86,7 +86,7 @@ See the [original operation-mode documentation](docs/UPSTREAM.md#operation-modes
 
 ## Build from source
 
-Use **JDK 17** and **Android SDK 33**, then run:
+Use **JDK 21**, **Android SDK platform 37.0**, and **Build Tools 36.0.0**, then run:
 
 ```sh
 git clone https://github.com/faridbtw/DSU-Sideloader.git
@@ -101,5 +101,7 @@ Android Studio previews for light mode, dark mode, and larger text are in [`Work
 ## Credits & license
 
 This is an independent design fork by [faridbtw](https://github.com/faridbtw), based on [VegaBobo/DSU-Sideloader](https://github.com/VegaBobo/DSU-Sideloader). Original app icon and design reference by [WSTxda](https://github.com/WSTxda). Thanks to the original contributors and translators.
+
+The appearance controls reference the behavior of [KowSU Pro](https://github.com/KOWX712/KernelSU). This fork independently implements those controls using [Miuix](https://github.com/miuix-kotlin-multiplatform/miuix) (Apache 2.0) and [MaterialKolor](https://github.com/jordond/MaterialKolor) (MIT).
 
 Released under [Apache License 2.0](LICENSE). The [original project guide](docs/UPSTREAM.md) is preserved for reference.

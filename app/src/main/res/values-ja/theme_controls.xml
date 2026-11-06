@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_style">UI スタイル</string>
+    <string name="open_theme_description">テーマモード、Monet、キーカラー、パレットの設定</string>
+    <string name="enable_monet">Monet を有効化</string>
+    <string name="monet_description">キーカラーや壁紙からアプリのパレットを生成します。</string>
+    <string name="key_color">キーカラー</string>
+    <string name="key_default">既定</string>
+    <string name="color_style">カラースタイル</string>
+    <string name="color_spec">カラー仕様</string>
+    <string name="color_spec_compatibility">このカラースタイルでは 2021 年のカラー仕様を使用します。</string>
+    <string name="key_red">レッド</string>
+    <string name="key_pink">ピンク</string>
+    <string name="key_purple">パープル</string>
+    <string name="key_deep_purple">ディープパープル</string>
+    <string name="key_cyan">シアン</string>
+    <string name="key_yellow">イエロー</string>
+    <string name="key_orange">オレンジ</string>
+    <string name="key_brown">ブラウン</string>
+    <string name="key_blue_grey">ブルーグレー</string>
+    <string name="key_sakura">サクラ</string>
+</resources>

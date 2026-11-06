@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_style">Estilo da interface</string>
+    <string name="open_theme_description">Modo de tema, Monet, cor base e paleta</string>
+    <string name="enable_monet">Ativar Monet</string>
+    <string name="monet_description">Gerar a paleta do app a partir de uma cor base ou do papel de parede.</string>
+    <string name="key_color">Cor base</string>
+    <string name="key_default">Padrão</string>
+    <string name="color_style">Estilo de cores</string>
+    <string name="color_spec">Especificação de cores</string>
+    <string name="color_spec_compatibility">Este estilo usa a especificação de cores de 2021.</string>
+    <string name="key_red">Vermelho</string>
+    <string name="key_pink">Rosa</string>
+    <string name="key_purple">Roxo</string>
+    <string name="key_deep_purple">Roxo escuro</string>
+    <string name="key_cyan">Ciano</string>
+    <string name="key_yellow">Amarelo</string>
+    <string name="key_orange">Laranja</string>
+    <string name="key_brown">Marrom</string>
+    <string name="key_blue_grey">Cinza azulado</string>
+    <string name="key_sakura">Sakura</string>
+</resources>

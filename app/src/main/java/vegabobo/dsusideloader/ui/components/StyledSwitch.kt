@@ -13,6 +13,8 @@ import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Switch
 import androidx.compose.runtime.Composable
+import vegabobo.dsusideloader.preferences.DesignStyle
+import top.yukonga.miuix.kmp.basic.Switch as MiuixSwitch
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -30,6 +32,10 @@ fun StyledSwitch(
     enabled: Boolean = true,
     modifier: Modifier = Modifier,
 ) {
+    if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+        MiuixSwitch(checked = checked, onCheckedChange = onCheckedChange, enabled = enabled, modifier = modifier)
+        return
+    }
     if (!LocalDesignStyle.current.metrics().roundedSwitches) {
         Switch(checked = checked, onCheckedChange = onCheckedChange, enabled = enabled, modifier = modifier)
         return

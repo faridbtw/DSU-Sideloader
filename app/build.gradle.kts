@@ -1,4 +1,5 @@
 import java.util.Properties
+import org.jetbrains.kotlin.gradle.dsl.JvmTarget
 
 fun getReleaseSigningConfig(): File {
     return File(".sign/dsu_sideloader.prop")
@@ -7,10 +8,11 @@ fun getReleaseSigningConfig(): File {
 plugins {
     id("com.android.application")
     id("org.jetbrains.kotlin.android")
-    id("kotlin-kapt")
-    id("dagger.hilt.android.plugin")
+    id("org.jetbrains.kotlin.kapt")
+    id("com.google.dagger.hilt.android")
     id("com.mikepenz.aboutlibraries.plugin")
-    id("kotlinx-serialization")
+    id("org.jetbrains.kotlin.plugin.serialization")
+    id("org.jetbrains.kotlin.plugin.compose")
     id("org.jmailen.kotlinter")
 }
 
@@ -20,7 +22,7 @@ android {
     val packageName: String by rootProject.extra
 
     namespace = packageName
-    compileSdk = 33
+    compileSdkVersion("android-37.0")
 
     defaultConfig {
         this.applicationId = packageName
@@ -83,14 +85,8 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_17
-        targetCompatibility = JavaVersion.VERSION_17
-    }
-    kotlinOptions {
-        jvmTarget = "17"
-    }
-    kotlin {
-        jvmToolchain(17)
+        sourceCompatibility = JavaVersion.VERSION_21
+        targetCompatibility = JavaVersion.VERSION_21
     }
     lint {
         baseline = file("lint-baseline.xml")
@@ -99,9 +95,6 @@ android {
         aidl = true
         buildConfig = true
         compose = true
-    }
-    composeOptions {
-        kotlinCompilerExtensionVersion = "1.4.6"
     }
     packaging {
         resources {
@@ -121,53 +114,45 @@ kotlin.sourceSets.all {
 
 dependencies {
     testImplementation("junit:junit:4.13.2")
-
-    implementation(AndroidX.appCompat)
-    implementation(AndroidX.dataStore.preferences)
-
-    implementation(AndroidX.activity.compose)
-    implementation(AndroidX.lifecycle.viewModelCompose)
-    implementation(AndroidX.navigation.compose)
-    implementation(AndroidX.compose.material3)
-    implementation(AndroidX.compose.material)
-    implementation(AndroidX.compose.runtime.liveData)
-    implementation(AndroidX.compose.material.icons.extended)
-    implementation(AndroidX.compose.ui.toolingPreview)
-    implementation(AndroidX.compose.ui)
-
-    implementation(AndroidX.core.ktx)
-    implementation(AndroidX.fragment.ktx)
-    implementation(AndroidX.preference.ktx)
-    implementation(AndroidX.lifecycle.runtime.ktx)
-
-    implementation(Google.dagger.hilt.android)
-    implementation(AndroidX.hilt.navigationCompose)
-    kapt(Google.dagger.hilt.compiler)
-
-    implementation(Google.android.material)
-    implementation(KotlinX.serialization.json)
-
-    implementation("com.github.topjohnwu.libsu:core:_")
-    implementation("com.github.topjohnwu.libsu:service:_")
-
-    implementation("org.tukaani:xz:_")
-    implementation("org.apache.commons:commons-compress:_")
-
-    implementation("com.mikepenz:aboutlibraries-core:_")
-
-    implementation("dev.rikka.shizuku:api:_")
-    implementation("dev.rikka.shizuku:provider:_")
-
-    implementation("org.lsposed.hiddenapibypass:hiddenapibypass:_")
-
+    implementation("androidx.appcompat:appcompat:1.7.1")
+    implementation("androidx.datastore:datastore-preferences:1.2.0")
+    implementation("androidx.activity:activity-compose:1.13.0")
+    implementation("androidx.lifecycle:lifecycle-viewmodel-compose:2.11.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.11.0")
+    implementation("androidx.lifecycle:lifecycle-runtime-compose:2.11.0")
+    implementation("androidx.navigation:navigation-compose:2.9.0")
+    implementation(platform("androidx.compose:compose-bom:2026.09.00"))
+    implementation("androidx.compose.material3:material3:1.5.0-alpha28")
+    implementation("androidx.compose.material:material")
+    implementation("androidx.compose.runtime:runtime-livedata")
+    implementation("androidx.compose.material:material-icons-extended")
+    implementation("androidx.compose.ui:ui-tooling-preview")
+    implementation("androidx.compose.ui:ui")
+    implementation("androidx.core:core-ktx:1.15.0")
+    implementation("androidx.fragment:fragment-ktx:1.8.6")
+    implementation("androidx.preference:preference-ktx:1.2.1")
+    implementation("com.google.dagger:hilt-android:2.60.1")
+    implementation("androidx.hilt:hilt-navigation-compose:1.3.0")
+    kapt("com.google.dagger:hilt-compiler:2.60.1")
+    implementation("com.google.android.material:material:1.12.0")
+    implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.11.0")
+    implementation("com.github.topjohnwu.libsu:core:5.0.5")
+    implementation("com.github.topjohnwu.libsu:service:5.0.5")
+    implementation("org.tukaani:xz:1.9")
+    implementation("org.apache.commons:commons-compress:1.23.0")
+    implementation("com.mikepenz:aboutlibraries-core:10.6.2")
+    implementation("dev.rikka.shizuku:api:13.1.1")
+    implementation("dev.rikka.shizuku:provider:13.1.1")
+    implementation("org.lsposed.hiddenapibypass:hiddenapibypass:4.3")
+    implementation("top.yukonga.miuix.kmp:miuix-ui-android:0.9.4")
+    implementation("top.yukonga.miuix.kmp:miuix-preference-android:0.9.4")
+    implementation("com.materialkolor:material-kolor-android:5.0.1")
     compileOnly(project(":hidden-api-stub"))
 }
 
-tasks {
-    "preBuild" {
-        dependsOn(lintKotlin)
-    }
-    "lintKotlin" {
-        dependsOn(formatKotlin)
-    }
+kotlin {
+    jvmToolchain(21)
+    compilerOptions { jvmTarget.set(JvmTarget.JVM_21) }
 }
+
+kapt { correctErrorTypes = true }

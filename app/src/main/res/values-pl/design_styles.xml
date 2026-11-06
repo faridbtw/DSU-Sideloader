@@ -2,7 +2,7 @@
 <resources>
     <string name="interface_style">Styl interfejsu</string>
     <string name="style_material">Material</string>
-    <string name="style_miuix">Inspirowany Miuix</string>
+    <string name="style_miuix">Miuix</string>
     <string name="style_cupertino">Inspirowany Cupertino</string>
     <string name="style_minimal">Minimalistyczny</string>
     <string name="style_material_description">Oryginalny, zaokrąglony wygląd Material.</string>

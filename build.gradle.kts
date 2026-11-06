@@ -1,26 +1,20 @@
-buildscript {
-    repositories { mavenCentral() }
-    dependencies {
-        classpath(Google.dagger.hilt.android.gradlePlugin)
-        classpath("org.jetbrains.kotlin:kotlin-serialization:_")
-    }
-}// Top-level build file where you can add configuration options common to all sub-projects/modules.
 plugins {
-    id("com.android.application") apply false
-    id("com.android.library") apply false
-
-    id("org.jetbrains.kotlin.android") apply false
-    id("org.jetbrains.kotlin.multiplatform") apply false
-    id("org.jetbrains.kotlin.plugin.serialization") apply false
-
-    id("com.mikepenz.aboutlibraries.plugin") apply false
-    id("org.jmailen.kotlinter") apply false
+    id("com.android.application") version "9.4.1" apply false
+    id("com.android.library") version "9.4.1" apply false
+    id("org.jetbrains.kotlin.android") version "2.4.20" apply false
+    id("org.jetbrains.kotlin.jvm") version "2.4.20" apply false
+    id("org.jetbrains.kotlin.kapt") version "2.4.20" apply false
+    id("org.jetbrains.kotlin.plugin.compose") version "2.4.20" apply false
+    id("org.jetbrains.kotlin.plugin.serialization") version "2.4.20" apply false
+    id("com.google.dagger.hilt.android") version "2.60.1" apply false
+    id("com.mikepenz.aboutlibraries.plugin") version "10.6.2" apply false
+    id("org.jmailen.kotlinter") version "5.7.0" apply false
 }
 
-val versionCode by extra { 13 }
-val versionName by extra { "2.03-design.5" }
+val versionCode by extra { 14 }
+val versionName by extra { "2.04-miuix.1" }
 val packageName by extra { "vegabobo.dsusideloader" }
 
-task("clean") {
-    delete(project.buildDir)
+tasks.register<Delete>("clean") {
+    delete(layout.buildDirectory)
 }

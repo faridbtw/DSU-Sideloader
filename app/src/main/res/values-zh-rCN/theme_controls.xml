@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_style">界面风格</string>
+    <string name="open_theme_description">主题模式、Monet、种子颜色和调色板设置</string>
+    <string name="enable_monet">启用 Monet</string>
+    <string name="monet_description">根据种子颜色或壁纸生成应用调色板。</string>
+    <string name="key_color">种子颜色</string>
+    <string name="key_default">默认</string>
+    <string name="color_style">配色风格</string>
+    <string name="color_spec">配色规范</string>
+    <string name="color_spec_compatibility">此配色风格使用 2021 配色规范。</string>
+    <string name="key_red">红色</string>
+    <string name="key_pink">粉色</string>
+    <string name="key_purple">紫色</string>
+    <string name="key_deep_purple">深紫色</string>
+    <string name="key_cyan">青色</string>
+    <string name="key_yellow">黄色</string>
+    <string name="key_orange">橙色</string>
+    <string name="key_brown">棕色</string>
+    <string name="key_blue_grey">蓝灰色</string>
+    <string name="key_sakura">樱花色</string>
+</resources>

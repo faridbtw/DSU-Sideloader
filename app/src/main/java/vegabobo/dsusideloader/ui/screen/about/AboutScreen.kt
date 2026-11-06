@@ -7,6 +7,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.platform.LocalResources
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.platform.LocalUriHandler
 import androidx.compose.ui.res.stringResource
@@ -39,22 +40,23 @@ fun AboutScreen(
     val uiState by aboutViewModel.uiState.collectAsStateWithLifecycle()
     val uriHandler = LocalUriHandler.current
     val context = LocalContext.current
+    val resources = LocalResources.current
 
-    LaunchedEffect(Unit) {
+    LaunchedEffect(resources) {
         aboutViewModel.resetDeveloperOptionsCounter()
         uiState.toastDisplay.collectLatest {
             when (it) {
                 DevOptToastDisplay.ENABLED_DEV_OPT ->
                     Toast.makeText(
                         context,
-                        context.getString(R.string.developer_options_enabled),
+                        resources.getString(R.string.developer_options_enabled),
                         Toast.LENGTH_LONG,
                     ).show()
 
                 DevOptToastDisplay.DISABLED_DEV_OPT ->
                     Toast.makeText(
                         context,
-                        context.getString(R.string.developer_options_disabled),
+                        resources.getString(R.string.developer_options_disabled),
                         Toast.LENGTH_LONG,
                     ).show()
 

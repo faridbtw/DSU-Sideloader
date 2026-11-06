@@ -2,7 +2,7 @@
 <resources>
     <string name="interface_style">インターフェースのスタイル</string>
     <string name="style_material">Material</string>
-    <string name="style_miuix">Miuix 風</string>
+    <string name="style_miuix">Miuix</string>
     <string name="style_cupertino">Cupertino 風</string>
     <string name="style_minimal">ミニマル</string>
     <string name="style_material_description">丸みのある標準の Material デザイン。</string>

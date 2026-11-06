@@ -2,7 +2,7 @@
 <resources>
     <string name="interface_style">Kiểu giao diện</string>
     <string name="style_material">Material</string>
-    <string name="style_miuix">Lấy cảm hứng từ Miuix</string>
+    <string name="style_miuix">Miuix</string>
     <string name="style_cupertino">Lấy cảm hứng từ Cupertino</string>
     <string name="style_minimal">Tối giản</string>
     <string name="style_material_description">Thiết kế Material bo tròn ban đầu.</string>

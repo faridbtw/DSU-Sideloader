@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ui_style">Kiểu giao diện</string>
+    <string name="open_theme_description">Chế độ chủ đề, Monet, màu chủ đạo và bảng màu</string>
+    <string name="enable_monet">Bật Monet</string>
+    <string name="monet_description">Tạo bảng màu ứng dụng từ màu chủ đạo hoặc hình nền.</string>
+    <string name="key_color">Màu chủ đạo</string>
+    <string name="key_default">Mặc định</string>
+    <string name="color_style">Kiểu màu</string>
+    <string name="color_spec">Đặc tả màu</string>
+    <string name="color_spec_compatibility">Kiểu màu này sử dụng đặc tả màu năm 2021.</string>
+    <string name="key_red">Đỏ</string>
+    <string name="key_pink">Hồng</string>
+    <string name="key_purple">Tím</string>
+    <string name="key_deep_purple">Tím đậm</string>
+    <string name="key_cyan">Xanh lơ</string>
+    <string name="key_yellow">Vàng</string>
+    <string name="key_orange">Cam</string>
+    <string name="key_brown">Nâu</string>
+    <string name="key_blue_grey">Xám xanh</string>
+    <string name="key_sakura">Anh đào</string>
+</resources>

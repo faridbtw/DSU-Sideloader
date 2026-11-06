@@ -44,10 +44,7 @@ fun Settings(
         AppearanceSettingsCard(
             settings = uiState.appearance,
             onDesignStyleChanged = settingsViewModel::setDesignStyle,
-            onThemeModeChanged = settingsViewModel::setThemeMode,
-            onAccentChanged = settingsViewModel::setAccentColor,
-            onWallpaperColorsChanged = settingsViewModel::setWallpaperColors,
-            onReset = settingsViewModel::resetAppearance,
+            onOpenTheme = { navigate(Destinations.Theme) },
         )
         Title(title = stringResource(id = R.string.installation))
         PreferenceItem(

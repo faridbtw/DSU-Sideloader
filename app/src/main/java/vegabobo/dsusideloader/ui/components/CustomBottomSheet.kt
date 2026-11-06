@@ -18,6 +18,15 @@ import androidx.compose.material.Surface
 import androidx.compose.material.rememberModalBottomSheetState
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.setValue
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.foundation.layout.heightIn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
+import top.yukonga.miuix.kmp.window.WindowDialog
+import vegabobo.dsusideloader.preferences.DesignStyle
+import vegabobo.dsusideloader.ui.theme.LocalDesignStyle
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -39,6 +48,15 @@ fun CustomBottomSheet(
     onDismiss: () -> Unit = {},
     content: @Composable ColumnScope.(hideSheet: suspend () -> Unit) -> Unit,
 ) {
+    if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+        var visible by remember { mutableStateOf(true) }
+        WindowDialog(show = visible, title = title, onDismissRequest = { visible = false; onDismiss() }) {
+            Column(modifier = modifier.heightIn(max = (LocalConfiguration.current.screenHeightDp * 0.65f).dp).verticalScroll(rememberScrollState())) {
+                content { visible = false }
+            }
+        }
+        return
+    }
     val coroutineScope = rememberCoroutineScope()
     val sheetState = rememberModalBottomSheetState(
         initialValue = ModalBottomSheetValue.Hidden,

@@ -7,7 +7,10 @@ import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
 import androidx.compose.material3.MaterialTheme
-import androidx.compose.material3.SmallTopAppBar
+import androidx.compose.material3.TopAppBar
+import top.yukonga.miuix.kmp.basic.SmallTopAppBar as MiuixTopAppBar
+import top.yukonga.miuix.kmp.basic.IconButton as MiuixIconButton
+import vegabobo.dsusideloader.preferences.DesignStyle
 import androidx.compose.material3.Text
 import androidx.compose.material3.TopAppBarDefaults
 import androidx.compose.material3.TopAppBarScrollBehavior
@@ -27,6 +30,23 @@ fun TopBar(
     onClickIcon: () -> Unit = {},
     onClickBackButton: (() -> Unit)? = null,
 ) {
+    if (LocalDesignStyle.current == DesignStyle.MIUIX) {
+        MiuixTopAppBar(
+            title = barTitle,
+            color = MaterialTheme.colorScheme.background,
+            navigationIcon = {
+                if (onClickBackButton != null) {
+                    MiuixIconButton(onClick = onClickBackButton) {
+                        Icon(Icons.Outlined.ArrowBack, contentDescription = stringResource(vegabobo.dsusideloader.R.string.navigate_back))
+                    }
+                }
+            },
+            actions = {
+                if (icon != null) MiuixIconButton(onClick = onClickIcon) { Icon(icon, contentDescription = iconContentDescription) }
+            },
+        )
+        return
+    }
     val title: @Composable () -> Unit = { Text(text = barTitle, style = MaterialTheme.typography.titleMedium) }
     val navigationIcon: @Composable () -> Unit = {
         if (onClickBackButton != null) {
@@ -41,12 +61,12 @@ fun TopBar(
         }
     }
     if (LocalDesignStyle.current.metrics().leftAlignedTitle) {
-        SmallTopAppBar(
+        TopAppBar(
             title = title,
             navigationIcon = navigationIcon,
             actions = actions,
             scrollBehavior = scrollBehavior,
-            colors = TopAppBarDefaults.smallTopAppBarColors(
+            colors = TopAppBarDefaults.topAppBarColors(
                 containerColor = MaterialTheme.colorScheme.background,
                 scrolledContainerColor = MaterialTheme.colorScheme.background,
             ),

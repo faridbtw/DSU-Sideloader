@@ -33,7 +33,10 @@ class AppearancePreferencesTest {
             first.setDesignStyle(DesignStyle.MIUIX)
             first.setThemeMode(ThemeMode.AMOLED)
             first.setAccentColor(AccentColor.TEAL)
-            first.setWallpaperColors(true)
+            first.setKeyColor(0xFFE91E63.toInt())
+            first.setMonetEnabled(false)
+            first.setPaletteVariant(PaletteVariant.FIDELITY)
+            first.setColorSpec(ColorSpecVersion.SPEC_2021)
         } finally {
             firstScope.coroutineContext[Job]!!.cancelAndJoin()
         }
@@ -42,7 +45,7 @@ class AppearancePreferencesTest {
         val secondStore = PreferenceDataStoreFactory.create(scope = secondScope, produceFile = { file })
         try {
             assertEquals(
-                AppearanceSettings(ThemeMode.AMOLED, AccentColor.TEAL, true, DesignStyle.MIUIX),
+                AppearanceSettings(ThemeMode.AMOLED, AccentColor.TEAL, false, DesignStyle.MIUIX, false, 0xFFE91E63.toInt(), PaletteVariant.FIDELITY, ColorSpecVersion.SPEC_2021),
                 AppearancePreferences(secondStore).settings.first(),
             )
         } finally {
@@ -134,4 +137,34 @@ class AppearancePreferencesTest {
             scope.coroutineContext[Job]!!.cancelAndJoin()
         }
     }
+    @Test
+    fun olderAccentPreferencesMigrateWithoutLosingTheChosenColor() = runBlocking {
+        val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+        val store = PreferenceDataStoreFactory.create(
+            scope = scope,
+            produceFile = { File(temporaryFolder.root, "legacy.preferences_pb") },
+        )
+        try {
+            store.edit { it[stringPreferencesKey("appearance_accent")] = "teal" }
+            val appearance = AppearancePreferences(store)
+            assertEquals(0xFF006B60.toInt(), appearance.settings.first().keyColor)
+            store.edit { it[booleanPreferencesKey("appearance_wallpaper_colors")] = true }
+            assertEquals(0, appearance.settings.first().keyColor)
+        } finally {
+            scope.coroutineContext[Job]!!.cancelAndJoin()
+        }
+    }
+
+    @Test
+    fun unsupportedPalettesFallBackWithoutOverwritingTheSavedSpec() {
+        PaletteVariant.entries.forEach { palette ->
+            val settings = AppearanceSettings(paletteVariant = palette, colorSpec = ColorSpecVersion.SPEC_2025)
+            assertEquals(
+                if (palette.supportsSpec2025) ColorSpecVersion.SPEC_2025 else ColorSpecVersion.SPEC_2021,
+                settings.effectiveColorSpec(),
+            )
+            assertEquals(ColorSpecVersion.SPEC_2025, settings.colorSpec)
+        }
+    }
+
 }
