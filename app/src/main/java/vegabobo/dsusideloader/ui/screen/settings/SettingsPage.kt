@@ -34,7 +34,7 @@ import top.yukonga.miuix.kmp.basic.TopAppBar as MiuixTopAppBar
 
 @OptIn(ExperimentalMaterial3Api::class)
 @Composable
-fun SettingsPage(title: String, onBack: () -> Unit, content: @Composable ColumnScope.() -> Unit) {
+fun SettingsPage(title: String, onBack: (() -> Unit)? = null, content: @Composable ColumnScope.() -> Unit) {
     val scroll = rememberScrollState()
     val backLabel = stringResource(R.string.navigate_back)
     if (LocalDesignStyle.current == DesignStyle.MIUIX) {
@@ -45,7 +45,7 @@ fun SettingsPage(title: String, onBack: () -> Unit, content: @Composable ColumnS
                     title = title,
                     scrollBehavior = behavior,
                     navigationIcon = {
-                        MiuixIconButton(onClick = onBack) {
+                        if (onBack != null) MiuixIconButton(onClick = onBack) {
                             Icon(Icons.AutoMirrored.Rounded.ArrowBack, backLabel, tint = MiuixTheme.colorScheme.onSurface)
                         }
                     },
@@ -68,7 +68,7 @@ fun SettingsPage(title: String, onBack: () -> Unit, content: @Composable ColumnS
                     title = { Text(title) }, scrollBehavior = behavior,
                     colors = TopAppBarDefaults.topAppBarColors(containerColor = MaterialTheme.colorScheme.background),
                     navigationIcon = {
-                        IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Rounded.ArrowBack, backLabel) }
+                        if (onBack != null) IconButton(onClick = onBack) { Icon(Icons.AutoMirrored.Rounded.ArrowBack, backLabel) }
                     },
                 )
             },

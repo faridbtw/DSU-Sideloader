@@ -36,7 +36,6 @@ fun Settings(
 
     SettingsPage(
         title = stringResource(R.string.settings),
-        onBack = { navigate(Destinations.Up) },
     ) {
         AppearanceSettingsCard(
             settings = uiState.appearance,
