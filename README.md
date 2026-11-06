@@ -27,7 +27,7 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 | A clearer workspace | Made for everyday use |
 | --- | --- |
-| **Compact install flow** — image selection and Install share one card; the full library opens in a scrollable dialog with format badges, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
+| **Compact install flow** — a collapsing Home header, quieter library controls, and an Install action shown after image selection; the full library opens in a scrollable dialog with format badges, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
 | **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
 | **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
 
@@ -100,8 +100,10 @@ Android Studio previews for light mode, dark mode, and larger text are in [`Work
 
 ## Credits & license
 
-This is an independent design fork by [faridbtw](https://github.com/faridbtw), based on [VegaBobo/DSU-Sideloader](https://github.com/VegaBobo/DSU-Sideloader). Original app icon and design reference by [WSTxda](https://github.com/WSTxda). Thanks to the original contributors and translators.
+This is an independent design fork by [faridbtw](https://github.com/faridbtw), based on [VegaBobo/DSU-Sideloader](https://github.com/VegaBobo/DSU-Sideloader). Upstream app icon and original design reference by [WSTxda](https://github.com/WSTxda). Thanks to the original contributors and translators.
 
 The appearance controls reference the behavior of [KowSU Pro](https://github.com/KOWX712/KernelSU). This fork independently implements those controls using [Miuix](https://github.com/miuix-kotlin-multiplatform/miuix) (Apache 2.0) and [MaterialKolor](https://github.com/jordond/MaterialKolor) (MIT).
+
+This fork includes an original [Material-style DSU icon](docs/assets/dsu-icon.svg), with adaptive and monochrome Android variants.
 
 Released under [Apache License 2.0](LICENSE). The [original project guide](docs/UPSTREAM.md) is preserved for reference.

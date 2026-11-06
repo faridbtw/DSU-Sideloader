@@ -82,14 +82,12 @@ fun NotInstallingCardContent(
             modifier = Modifier.padding(top = 8.dp),
         )
     }
-    Row(
+    if (uiState.isInstallable) Row(
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.spacedBy(8.dp),
         modifier = Modifier.fillMaxWidth().padding(top = 8.dp),
     ) {
-        if (uiState.isInstallable) {
-            SecondaryButton(text = stringResource(R.string.clear), onClick = onClickClear)
-        }
+        SecondaryButton(text = stringResource(R.string.clear), onClick = onClickClear)
         PrimaryButton(
             modifier = Modifier.weight(1f),
             text = stringResource(R.string.install),

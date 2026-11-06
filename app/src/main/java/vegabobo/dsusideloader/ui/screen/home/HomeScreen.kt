@@ -29,8 +29,7 @@ import vegabobo.dsusideloader.ui.cards.warnings.SetupStorage
 import vegabobo.dsusideloader.ui.cards.warnings.StorageWarningCard
 import vegabobo.dsusideloader.ui.cards.warnings.UnlockedBootloaderCard
 import vegabobo.dsusideloader.ui.cards.warnings.UnsupportedCard
-import vegabobo.dsusideloader.ui.components.ApplicationScreen
-import vegabobo.dsusideloader.ui.components.TopBar
+import vegabobo.dsusideloader.ui.components.LargeTitleScreen
 import vegabobo.dsusideloader.ui.screen.Destinations
 import vegabobo.dsusideloader.ui.sdialogs.CancelSheet
 import vegabobo.dsusideloader.ui.sdialogs.ConfirmInstallationSheet
@@ -71,18 +70,11 @@ fun Home(
         onDispose { lifecycleOwner.lifecycle.removeObserver(observer) }
     }
 
-    ApplicationScreen(
-        modifier = Modifier.padding(start = 20.dp, end = 20.dp),
-        verticalArrangement = Arrangement.spacedBy(12.dp),
-        topBar = {
-            TopBar(
-                barTitle = stringResource(id = R.string.app_name),
-                scrollBehavior = it,
-            )
-        },
+    LargeTitleScreen(
+        title = stringResource(R.string.app_name),
         content = {
             WorkspaceHeader(operationMode = operationMode)
-            Box(modifier = Modifier.animateContentSize()) {
+            if (uiState.additionalCard != AdditionalCardState.NONE) Box(modifier = Modifier.animateContentSize()) {
                 when (uiState.additionalCard) {
                     AdditionalCardState.NO_DYNAMIC_PARTITIONS ->
                         UnsupportedCard(

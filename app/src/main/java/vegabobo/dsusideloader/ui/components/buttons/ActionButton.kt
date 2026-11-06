@@ -28,12 +28,19 @@ fun ActionButton(
     colorButton: Color? = null,
     colorText: Color? = null,
     textButton: Boolean = false,
+    plainText: Boolean = false,
     isEnabled: Boolean = true,
     content: @Composable () -> Unit = {},
 ) {
     if (LocalDesignStyle.current == DesignStyle.MIUIX) {
         if (textButton) {
-            MiuixTextButton(text = text, onClick = onClick, enabled = isEnabled, modifier = modifier.heightIn(min = 48.dp))
+            MiuixTextButton(
+                text = text, onClick = onClick, enabled = isEnabled, modifier = modifier.heightIn(min = 48.dp),
+                colors = if (plainText) MiuixButtonDefaults.textButtonColors(
+                    color = Color.Transparent, disabledColor = Color.Transparent,
+                    textColor = MiuixTheme.colorScheme.primary,
+                ) else MiuixButtonDefaults.textButtonColors(),
+            )
         } else {
             MiuixButton(
                 onClick = onClick,

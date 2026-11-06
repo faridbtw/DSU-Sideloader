@@ -96,7 +96,7 @@ fun UpdaterCard(
                             .clip(CircleShape)
                             .align(Alignment.Center)
                             .clickable { onClickImage() },
-                        painter = painterResource(id = R.drawable.app_icon_mini),
+                        painter = painterResource(id = R.drawable.dsu_icon),
                         contentDescription = "App icon",
                     )
                 }

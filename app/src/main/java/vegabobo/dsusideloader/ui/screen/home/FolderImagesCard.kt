@@ -78,16 +78,8 @@ fun FolderImagesCard(
 
     CardBox {
         Row(verticalAlignment = Alignment.CenterVertically, modifier = Modifier.fillMaxWidth()) {
-            Surface(
-                shape = RoundedCornerShape(12.dp), color = MaterialTheme.colorScheme.primaryContainer,
-                modifier = Modifier.padding(end = 10.dp).size(38.dp),
-            ) {
-                Box(contentAlignment = Alignment.Center) {
-                    Icon(Icons.Outlined.FolderOpen, null, tint = MaterialTheme.colorScheme.onPrimaryContainer, modifier = Modifier.size(21.dp))
-                }
-            }
             Column(modifier = Modifier.weight(1f)) {
-                Text(stringResource(R.string.folder_system_images), style = MaterialTheme.typography.titleMedium)
+                Text(stringResource(R.string.system_image), style = MaterialTheme.typography.titleMedium)
                 if (state.folderName.isNotBlank()) {
                     Text(
                         state.folderName,
@@ -153,12 +145,12 @@ fun FolderImagesCard(
             ) {
                 ActionButton(
                     text = stringResource(R.string.browse_images), onClick = browseImage,
-                    textButton = true, isEnabled = enabled, modifier = Modifier.weight(1f),
+                    textButton = true, plainText = true, isEnabled = enabled, modifier = Modifier.weight(1f),
                 )
                 if (state.images.size > 2) {
                     ActionButton(
                         text = stringResource(R.string.show_all_images, state.images.size),
-                        onClick = { showAll = true }, textButton = true,
+                        onClick = { showAll = true }, textButton = true, plainText = true,
                         isEnabled = enabled, modifier = Modifier.weight(1f),
                     )
                 }
@@ -173,7 +165,7 @@ fun FolderImagesCard(
                 modifier = Modifier.padding(vertical = 4.dp),
             )
         }
-        NotInstallingCardContent(
+        if (installation.isInstallable || state.images.isEmpty() || installation.isError) NotInstallingCardContent(
             onClickSelectFile = browseImage,
             uiState = installation,
             onClickClear = onClear,
@@ -233,9 +225,9 @@ private fun FolderImageRow(
     Surface(
         onClick = onClick, enabled = enabled,
         modifier = Modifier.fillMaxWidth().semantics { selected = isSelected; role = Role.RadioButton },
-        color = if (isSelected) colors.primaryContainer else colors.surfaceVariant.copy(alpha = 0.45f),
+        color = if (isSelected) colors.primaryContainer else colors.surface,
         shape = RoundedCornerShape(16.dp),
-        border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) colors.primary else colors.outlineVariant.copy(alpha = 0.4f)),
+        border = BorderStroke(if (isSelected) 2.dp else 1.dp, if (isSelected) colors.primary else colors.outlineVariant.copy(alpha = 0.55f)),
     ) {
         Row(
             modifier = Modifier.padding(12.dp), verticalAlignment = Alignment.CenterVertically,
