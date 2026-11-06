@@ -31,7 +31,7 @@ private fun WorkspacePreview() {
                 modifier = Modifier.fillMaxSize().verticalScroll(rememberScrollState()).padding(20.dp),
                 verticalArrangement = Arrangement.spacedBy(16.dp),
             ) {
-                WorkspaceHeader(OperationMode.SHIZUKU, HomeUiState(passedInitialChecks = true))
+                WorkspaceHeader(OperationMode.SHIZUKU)
                 CardBox(cardTitle = stringResource(R.string.system_image)) {
                     NotInstallingCardContent(
                         onClickSelectFile = {},

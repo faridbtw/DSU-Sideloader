@@ -11,4 +11,5 @@
     <string name="show_fewer_images">Hiện ít hơn</string>
     <string name="show_all_images">Hiện tất cả (%1$d)</string>
     <string name="image_scan_limited">Chỉ quét được một phần thư mục. Chọn thư mục cụ thể hơn để xem thêm ảnh.</string>
+    <string name="browse_images">Duyệt tệp</string>
 </resources>

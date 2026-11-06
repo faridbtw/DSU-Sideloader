@@ -75,7 +75,7 @@ fun Home(
 
     ApplicationScreen(
         modifier = Modifier.padding(start = 20.dp, end = 20.dp),
-        verticalArrangement = Arrangement.spacedBy(16.dp),
+        verticalArrangement = Arrangement.spacedBy(12.dp),
         topBar = {
             TopBar(
                 barTitle = stringResource(id = R.string.app_name),
@@ -86,7 +86,7 @@ fun Home(
             )
         },
         content = {
-            WorkspaceHeader(operationMode = operationMode, uiState = uiState)
+            WorkspaceHeader(operationMode = operationMode)
             Box(modifier = Modifier.animateContentSize()) {
                 when (uiState.additionalCard) {
                     AdditionalCardState.NO_DYNAMIC_PARTITIONS ->
@@ -120,45 +120,53 @@ fun Home(
                 }
             }
             if (uiState.passedInitialChecks && uiState.additionalCard == AdditionalCardState.NONE) {
-                FolderImagesCard(
-                    state = uiState.folderImages,
-                    selectedUri = uiState.installationCard.selectedFileUri,
-                    enabled = !uiState.isInstalling(),
-                    onRefresh = homeViewModel::refreshFolderImages,
-                    onChangeFolder = homeViewModel::takeUriPermission,
-                    onSelectImage = { homeViewModel.onFileSelectionResult(it.uriString.toUri()) },
-                )
-                InstallationCard(
-                    uiState = uiState.installationCard,
-                    onClickInstall = { homeViewModel.onClickInstall() },
-                    onClickUnmountSdCardAndRetry = { homeViewModel.onClickUnmountSdCardAndRetry() },
-                    onClickSetSeLinuxPermissive = { homeViewModel.onClickSetSeLinuxPermissive() },
-                    onClickRetryInstallation = { homeViewModel.onClickRetryInstallation() },
-                    onClickClear = { homeViewModel.resetInstallationCard() },
-                    onSelectFileSuccess = { homeViewModel.onFileSelectionResult(it) },
-                    onClickCancelInstallation = { homeViewModel.onClickCancel() },
-                    onClickDiscardInstalledGsiAndInstall = { homeViewModel.onClickDiscardGsiAndStartInstallation() },
-                    onClickDiscardDsu = { homeViewModel.showDiscardSheet() },
-                    onClickRebootToDynOS = { homeViewModel.onClickRebootToDynOS() },
-                    onClickViewLogs = { homeViewModel.showLogsWarning() },
-                    onClickViewCommands = { navigate(Destinations.ADBInstallation) },
-                    minPercentageOfFreeStorage = homeViewModel.allocPercentageInt.toString(),
-                )
-                AdvancedOptions(
-                    hasCustomValues = uiState.userDataCard.isSelected || uiState.imageSizeCard.isSelected,
-                ) {
-                    UserdataCard(
-                        isEnabled = uiState.isInstalling(),
-                        uiState = uiState.userDataCard,
-                        onCheckedChange = { homeViewModel.onCheckUserdataCard() },
-                        onValueChange = { homeViewModel.updateUserdataSize(it) },
+                if (!uiState.isInstalling()) {
+                    FolderImagesCard(
+                        state = uiState.folderImages,
+                        installation = uiState.installationCard,
+                        enabled = !uiState.isInstalling(),
+                        onRefresh = homeViewModel::refreshFolderImages,
+                        onChangeFolder = homeViewModel::takeUriPermission,
+                        onSelectImage = { homeViewModel.onFileSelectionResult(it.uriString.toUri()) },
+                        onSelectFile = homeViewModel::onFileSelectionResult,
+                        onInstall = homeViewModel::onClickInstall,
+                        onClear = homeViewModel::resetInstallationCard,
                     )
-                    ImageSizeCard(
-                        isEnabled = uiState.isInstalling(),
-                        uiState = uiState.imageSizeCard,
-                        onCheckedChange = { homeViewModel.onCheckImageSizeCard() },
-                        onValueChange = { homeViewModel.updateImageSize(it) },
+                } else {
+                    InstallationCard(
+                        uiState = uiState.installationCard,
+                        onClickInstall = { homeViewModel.onClickInstall() },
+                        onClickUnmountSdCardAndRetry = { homeViewModel.onClickUnmountSdCardAndRetry() },
+                        onClickSetSeLinuxPermissive = { homeViewModel.onClickSetSeLinuxPermissive() },
+                        onClickRetryInstallation = { homeViewModel.onClickRetryInstallation() },
+                        onClickClear = { homeViewModel.resetInstallationCard() },
+                        onSelectFileSuccess = { homeViewModel.onFileSelectionResult(it) },
+                        onClickCancelInstallation = { homeViewModel.onClickCancel() },
+                        onClickDiscardInstalledGsiAndInstall = { homeViewModel.onClickDiscardGsiAndStartInstallation() },
+                        onClickDiscardDsu = { homeViewModel.showDiscardSheet() },
+                        onClickRebootToDynOS = { homeViewModel.onClickRebootToDynOS() },
+                        onClickViewLogs = { homeViewModel.showLogsWarning() },
+                        onClickViewCommands = { navigate(Destinations.ADBInstallation) },
+                        minPercentageOfFreeStorage = homeViewModel.allocPercentageInt.toString(),
                     )
+                }
+                if (!uiState.isInstalling()) {
+                    AdvancedOptions(
+                        hasCustomValues = uiState.userDataCard.isSelected || uiState.imageSizeCard.isSelected,
+                    ) {
+                        UserdataCard(
+                            isEnabled = uiState.isInstalling(),
+                            uiState = uiState.userDataCard,
+                            onCheckedChange = { homeViewModel.onCheckUserdataCard() },
+                            onValueChange = { homeViewModel.updateUserdataSize(it) },
+                        )
+                        ImageSizeCard(
+                            isEnabled = uiState.isInstalling(),
+                            uiState = uiState.imageSizeCard,
+                            onCheckedChange = { homeViewModel.onCheckImageSizeCard() },
+                            onValueChange = { homeViewModel.updateImageSize(it) },
+                        )
+                    }
                 }
             }
         },

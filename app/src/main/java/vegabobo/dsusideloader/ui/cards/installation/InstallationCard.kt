@@ -1,6 +1,5 @@
 package vegabobo.dsusideloader.ui.cards.installation
 
-import android.content.Intent
 import android.net.Uri
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
@@ -9,6 +8,7 @@ import vegabobo.dsusideloader.R
 import vegabobo.dsusideloader.ui.components.CardBox
 import vegabobo.dsusideloader.ui.screen.home.InstallationCardState
 import vegabobo.dsusideloader.ui.util.launcherAcResult
+import vegabobo.dsusideloader.ui.util.systemImageSelectionIntent
 
 @Composable
 fun InstallationCard(
@@ -28,18 +28,6 @@ fun InstallationCard(
     onClickViewLogs: () -> Unit,
     onClickViewCommands: () -> Unit,
 ) {
-    var chooseFile = Intent(Intent.ACTION_OPEN_DOCUMENT)
-    chooseFile.type = "*/*"
-    val mimetypes = arrayOf(
-        "application/gzip",
-        "application/x-gzip",
-        "application/x-xz",
-        "application/zip",
-        "application/octet-stream",
-    )
-    chooseFile.putExtra(Intent.EXTRA_MIME_TYPES, mimetypes)
-    chooseFile = Intent.createChooser(chooseFile, "")
-
     val launcherSelectFile = launcherAcResult {
         onSelectFileSuccess(it)
     }
@@ -51,7 +39,7 @@ fun InstallationCard(
     ) {
         InstallationCardStep(
             uiState = uiState,
-            onClickSelectFile = { launcherSelectFile.launch(chooseFile) },
+            onClickSelectFile = { launcherSelectFile.launch(systemImageSelectionIntent()) },
             onClickClear = onClickClear,
             onClickInstall = onClickInstall,
             onClickRetryInstallation = onClickRetryInstallation,

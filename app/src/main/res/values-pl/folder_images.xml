@@ -11,4 +11,5 @@
     <string name="show_fewer_images">Pokaż mniej</string>
     <string name="show_all_images">Pokaż wszystkie (%1$d)</string>
     <string name="image_scan_limited">Przeskanowano tylko część folderu. Wybierz bardziej szczegółowy folder, aby zobaczyć kolejne obrazy.</string>
+    <string name="browse_images">Wybierz plik</string>
 </resources>
