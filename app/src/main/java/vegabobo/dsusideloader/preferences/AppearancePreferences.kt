@@ -30,7 +30,7 @@ enum class AccentColor(val preferenceValue: String) {
 }
 
 enum class DesignStyle(val preferenceValue: String) {
-    MATERIAL("material"), MIUIX("miuix"), CUPERTINO("cupertino"), MINIMAL("minimal")
+    MATERIAL("material"), MIUIX("miuix")
 }
 
 enum class PaletteVariant(val preferenceValue: String) {

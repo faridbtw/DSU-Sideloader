@@ -3,10 +3,6 @@
     <string name="interface_style">Estilo da interface</string>
     <string name="style_material">Material</string>
     <string name="style_miuix">Miuix</string>
-    <string name="style_cupertino">Inspirado no Cupertino</string>
-    <string name="style_minimal">Minimalista</string>
     <string name="style_material_description">Design Material original com cantos arredondados.</string>
     <string name="style_miuix_description">Cartões suaves, interruptores fluidos e títulos no estilo Xiaomi.</string>
-    <string name="style_cupertino_description">Superfícies agrupadas, botões em cápsula e interruptores arredondados.</string>
-    <string name="style_minimal_description">Contornos limpos, cantos menores e texto compacto.</string>
 </resources>

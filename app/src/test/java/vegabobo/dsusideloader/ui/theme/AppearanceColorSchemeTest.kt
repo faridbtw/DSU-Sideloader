@@ -66,7 +66,7 @@ class AppearanceColorSchemeTest {
         val schemes = DesignStyle.values().map { style ->
             appearanceColorScheme(AppearanceSettings(ThemeMode.LIGHT, AccentColor.TEAL, designStyle = style), false)
         }
-        assertEquals(4, schemes.map { it.background }.distinct().size)
+        assertEquals(2, schemes.map { it.background }.distinct().size)
         assertEquals(1, schemes.map { it.primary }.distinct().size)
     }
     @Test

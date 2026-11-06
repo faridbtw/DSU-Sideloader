@@ -3,10 +3,6 @@
     <string name="interface_style">インターフェースのスタイル</string>
     <string name="style_material">Material</string>
     <string name="style_miuix">Miuix</string>
-    <string name="style_cupertino">Cupertino 風</string>
-    <string name="style_minimal">ミニマル</string>
     <string name="style_material_description">丸みのある標準の Material デザイン。</string>
     <string name="style_miuix_description">柔らかいカード、滑らかなスイッチ、Xiaomi 風の見出し。</string>
-    <string name="style_cupertino_description">グループ化された画面、カプセル型ボタン、丸みのあるスイッチ。</string>
-    <string name="style_minimal_description">すっきりした枠線、小さな角丸、コンパクトな文字。</string>
 </resources>

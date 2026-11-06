@@ -18,8 +18,6 @@ fun AppearanceSettingsCard(settings: AppearanceSettings, onDesignStyleChanged: (
             stringResource(when (it) {
                 DesignStyle.MATERIAL -> R.string.style_material
                 DesignStyle.MIUIX -> R.string.style_miuix
-                DesignStyle.CUPERTINO -> R.string.style_cupertino
-                DesignStyle.MINIMAL -> R.string.style_minimal
             })
         }
         AppearanceChoice(

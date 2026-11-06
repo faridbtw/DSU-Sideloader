@@ -71,6 +71,10 @@ class AppearancePreferencesTest {
                 it[stringPreferencesKey("appearance_accent")] = "future-accent"
             }
             assertEquals(AppearanceSettings(), appearance.settings.first())
+            listOf("cupertino", "minimal").forEach { removedStyle ->
+                store.edit { it[stringPreferencesKey("appearance_style")] = removedStyle }
+                assertEquals(DesignStyle.MATERIAL, appearance.settings.first().designStyle)
+            }
         } finally {
             scope.coroutineContext[Job]!!.cancelAndJoin()
         }
@@ -87,7 +91,7 @@ class AppearancePreferencesTest {
             val appearance = AppearancePreferences(store)
             val keepScreenOn = booleanPreferencesKey(AppPrefs.KEEP_SCREEN_ON)
             store.edit { it[keepScreenOn] = true }
-            appearance.setDesignStyle(DesignStyle.CUPERTINO)
+            appearance.setDesignStyle(DesignStyle.MIUIX)
             appearance.setThemeMode(ThemeMode.DARK)
             appearance.setAccentColor(AccentColor.ROSE)
             appearance.setWallpaperColors(true)
@@ -132,9 +136,9 @@ class AppearancePreferencesTest {
             appearance.setThemeMode(ThemeMode.DARK)
             appearance.setAccentColor(AccentColor.ROSE)
             appearance.setWallpaperColors(true)
-            appearance.setDesignStyle(DesignStyle.MINIMAL)
+            appearance.setDesignStyle(DesignStyle.MIUIX)
             assertEquals(
-                AppearanceSettings(ThemeMode.DARK, AccentColor.ROSE, true, DesignStyle.MINIMAL),
+                AppearanceSettings(ThemeMode.DARK, AccentColor.ROSE, true, DesignStyle.MIUIX),
                 appearance.settings.first(),
             )
         } finally {
