@@ -1,95 +1,91 @@
 <p align="center">
-  <img src="docs/assets/hero.svg" alt="DSU Sideloader — Design Edition. A new system. A fresh start." width="100%">
+  <img src="docs/assets/hero.svg" alt="DSU Sideloader — Material and Miuix. Your Android, another possibility." width="100%">
 </p>
 
 <p align="center">
-  A native Android workspace for trying Generic System Images.<br>
-  Redesigned with Jetpack Compose, an indigo palette, and a clearer installation flow.
+  Try compatible Android system images with a cleaner workspace.<br>
+  Material and Miuix interfaces. Your colors. Your icons.
 </p>
 
 <p align="center">
-  <a href="https://github.com/faridbtw/DSU-Sideloader/actions/workflows/android.yml"><img src="https://github.com/faridbtw/DSU-Sideloader/actions/workflows/android.yml/badge.svg?branch=master" alt="Android build status"></a>
-  <img src="https://img.shields.io/badge/Android-10%2B-5754D6?style=flat-square&amp;logo=android&amp;logoColor=white" alt="Android 10 or newer">
-  <img src="https://img.shields.io/badge/UI-Jetpack_Compose-5754D6?style=flat-square" alt="Built with Jetpack Compose">
-  <a href="LICENSE"><img src="https://img.shields.io/badge/License-Apache_2.0-5754D6?style=flat-square" alt="Apache 2.0 license"></a>
+  <a href="https://github.com/faridbtw/DSU-Sideloader/releases/latest/download/Dsu-Sideloader.apk"><img src="docs/assets/download.svg" alt="Download APK — Dsu-Sideloader.apk" width="260"></a>
 </p>
 
 <p align="center">
-  <a href="#get-a-build">Get a build</a> &nbsp;·&nbsp;
-  <a href="#quick-start">Quick start</a> &nbsp;·&nbsp;
-  <a href="#build-from-source">Build from source</a>
+  <a href="https://github.com/faridbtw/DSU-Sideloader/releases">All releases</a> &nbsp;·&nbsp;
+  <a href="#get-started">Get started</a> &nbsp;·&nbsp;
+  <a href="#make-it-yours">Customization</a> &nbsp;·&nbsp;
+  <a href="https://github.com/faridbtw/DSU-Sideloader/issues">Report an issue</a>
 </p>
 
-## A familiar tool, refreshed
+<p align="center"><strong>Android 10+</strong> &nbsp; / &nbsp; <strong>Material + Miuix</strong> &nbsp; / &nbsp; <strong>Open source</strong></p>
 
-Choose an image, adjust the options you need, and follow the installation. This fork gives DSU Sideloader a more focused interface while retaining the original installation engine and operation modes.
+## A simpler way to sideload
 
-| A clearer workspace | Made for everyday use |
+Choose an image from your folder, adjust storage if needed, and follow the installation. This independent fork refreshes DSU Sideloader’s interface while retaining its original installation engine.
+
+| Your systems, together | A workspace that feels yours |
 | --- | --- |
-| **Compact install flow** — a collapsing Home header, quieter library controls, and an Install action shown after image selection; the image library scrolls independently inside Home, with file-type icons, clearer filenames, and selection rings. | **Your appearance** — Real Material and Miuix interfaces; light/dark/AMOLED modes, Monet, 15 key colors, and wallpaper colors. |
-| **Your image library** — automatically lists supported images in the selected folder and its subfolders, with refresh and folder switching. | **Options when you need them** — expandable userdata and image-size controls. |
-| **Visible progress** — a percentage when the installer provides one, plus logs and recovery actions. | **Consistent controls** — updated typography, rounded surfaces, and clearer button states. |
+| **Scrollable image library** with clear file types, sizes, selection indicators, and a manual file picker. | **Material or Miuix**, with a floating dock and smooth page transitions. |
+| **Focused installation controls**, expandable storage options, progress, and logs. | **Light, dark, and AMOLED**, optional Monet, key colors, and palette styles. |
+| **Operation-mode selection** for Automatic, ADB, Root, Shizuku, and System access. | **13 launcher icons**, including the original stock blue icon. |
+| **Live SELinux status** with a read-only root check and manual refresh. | **Independent list scrolling** that keeps Home still while you browse images. |
 
-Switch between Material and the actual Miuix component library under **Settings → Appearance → Interface style**. Miuix supplies native cards, buttons, switches, text fields, top bars, dialogs, and dropdowns. Home and Settings are available from a floating dock, with saved tab state and a horizontal slide between tabs. Disable **Theme → Scroll animation** for instant switching. Settings follows KowSU Pro’s grouped cards, leading icons, navigation arrows, native switches, and collapsing large header. The **Theme** page has a live miniature workspace preview and direct mode tabs. Miuix uses compact color dropdowns with animated expansion; Material uses a horizontal strip of tonal swatches. Monet is off by default and can be enabled in Theme settings. Configure Monet, key color, nine palette variants, and the 2021/2025 color specifications there. Unsupported 2025 palettes use 2021 while retaining your saved choice.
+## Get started
 
-## Get a build
+**[Download Dsu-Sideloader.apk](https://github.com/faridbtw/DSU-Sideloader/releases/latest/download/Dsu-Sideloader.apk)** from the latest release and install it on your phone.
 
-**[Download Dsu-Sideloader.apk →](https://github.com/faridbtw/DSU-Sideloader/releases/latest/download/Dsu-Sideloader.apk)**
+1. Grant access to the folder containing your images.
+2. Select an image from the list, or tap **Browse file**. Supported formats: `.img`, `.gz`, `.xz`, and DSU `.zip` packages on Android 11+.
+3. Expand **Installation options** if you need a custom userdata allocation.
+4. Tap **Install**, review the confirmation, and follow the prompts.
+5. Once installation finishes, boot the image using the app or Android’s DSU notification.
 
-The latest release contains the signed APK for this design fork. Download **Dsu-Sideloader.apk** and install it on your phone.
-
-Development builds are also available from [Android CI](https://github.com/faridbtw/DSU-Sideloader/actions/workflows/android.yml). Choose a successful `master` run and download **DSU-Sideloader-redesign** from its **Artifacts** section. GitHub requires sign-in for workflow artifacts.
-
-These are debug builds of this fork. They use the same package ID as the original app and a different signing key, so back up anything you need before uninstalling the original. The upstream F-Droid listing and upstream releases contain the original interface. The upstream in-app updater is disabled in this fork.
-
-## Quick start
-
-You need **Android 10 or newer**, a device with **dynamic partitions**, an **unlocked bootloader** for most community images, and a GSI compatible with your device architecture and vendor implementation.
-
-1. Install the app and grant access to a folder for temporary image files.
-2. Scroll the **System image** list and select an image: `.img`, `.gz`, `.xz`, or a DSU package `.zip` on Android 11+. Use the folder icon to change the library folder, or **Browse file** to select an image manually.
-3. Open **Installation options** if you need a custom userdata allocation. Leave image size automatic unless you know a manual value is needed.
-4. Tap **Install**, review the confirmation, and follow the prompts for your operation mode.
-5. When installation completes, use the app or Android’s DSU notification to boot the image.
-
-Device support determines whether a GSI can install and boot. Successful builds do not verify GSI boot compatibility. A normal reboot returns to the original system unless sticky mode is enabled.
+A compatible GSI, dynamic partitions, and usually an unlocked bootloader are required. Device and image compatibility determine whether installation and boot succeed. A normal reboot returns to the original system unless sticky mode is enabled.
 
 <details>
-<summary><strong>Which operation mode will the app use?</strong></summary>
+<summary><strong>Updating from another version</strong></summary>
 
-The default **Automatic** option detects the best available mode. **Settings → Operation mode** also lets you choose ADB, Root, Shizuku, System, or Root/System. Changing the selection restarts the app to reconnect its service; unavailable modes fall back to ADB, and the current mode is shown below the selector. Mode changes are locked during installation. The experimental built-in installer is off by default. Home also shows a read-only SELinux status from `getenforce` in a verified `su` shell. Root mode refreshes this automatically; the refresh button can explicitly request a root check in other modes.
-
-| Mode | What it provides |
-| --- | --- |
-| **ADB** | Prepares the image and provides a command to start Android’s DSU installer. |
-| **Shizuku** | Starts the system installer without a separate PC command; diagnostics depend on log permission. |
-| **Root** | Adds DSU controls and the experimental built-in installer on supported Android versions. |
-| **System / System + Root** | Uses the original project’s privileged module for additional integration. |
-
-See the [original operation-mode documentation](docs/UPSTREAM.md#operation-modes) for details and limitations.
+Release APKs use this fork’s debug signing key. They can update matching previously supplied APKs. The original upstream app uses a different key; back up anything you need before replacing it. The upstream in-app updater is disabled in this fork. Download updates from this repository’s [Releases](https://github.com/faridbtw/DSU-Sideloader/releases).
 
 </details>
 
-## Build from source
+## Make it yours
 
-Use **JDK 21**, **Android SDK platform 37.0**, and **Build Tools 36.0.0**, then run:
+Open **Settings → UI Style** to choose Material or Miuix. Under **Theme**, you can change the mode, enable Monet, choose a key color, select one of nine palette styles, and toggle the Home–Settings animation. Monet is off by default.
 
-```sh
-git clone https://github.com/faridbtw/DSU-Sideloader.git
-cd DSU-Sideloader
-./gradlew testDebugUnitTest assembleDebug lintDebug
-```
+**Settings → Theme → App icon** offers 13 choices. Keep the original blue icon, pick a Material color variant, or try Orbit, Circuit, Prism, Pixel, Terminal, or Solar. Icon choices survive theme resets.
 
-The APK is generated at `app/build/outputs/apk/debug/app-debug.apk`.
+<p align="center">
+  <img src="docs/assets/app-icons.svg" alt="Thirteen DSU launcher icons, including the original blue icon and Material-style designs" width="640">
+</p>
 
-Android Studio previews for light mode, dark mode, and larger text are in [`WorkspacePreview.kt`](app/src/main/java/vegabobo/dsusideloader/ui/screen/home/WorkspacePreview.kt). New labels cover all six existing translated locales. The lint baseline records only 67 pre-existing translation gaps in upstream resources; new code and resources are still checked.
+<details>
+<summary><strong>Operation modes</strong></summary>
 
-## Credits & license
+**Automatic** selects the best available mode. You can also choose a mode under **Settings → Operation mode**. Applying a choice restarts the app to reconnect its service. Unavailable modes fall back to ADB; the active mode appears below the selector. Changes are locked during installation.
 
-This is an independent design fork by [faridbtw](https://github.com/faridbtw), based on [VegaBobo/DSU-Sideloader](https://github.com/VegaBobo/DSU-Sideloader). Upstream app icon and original design reference by [WSTxda](https://github.com/WSTxda). Thanks to the original contributors and translators.
+| Mode | Available behavior |
+| --- | --- |
+| **ADB** | Prepares the image and supplies the command for Android’s DSU installer. |
+| **Shizuku** | Starts the system installer without a separate PC command. |
+| **Root** | Adds DSU controls and access to the optional experimental built-in installer. |
+| **System / Root + System** | Uses the upstream privileged integration for additional features. |
 
-The appearance controls reference the behavior of [KowSU Pro](https://github.com/KOWX712/KernelSU). This fork independently implements those controls using [Miuix](https://github.com/miuix-kotlin-multiplatform/miuix) (Apache 2.0) and [MaterialKolor](https://github.com/jordond/MaterialKolor) (MIT).
+The built-in installer is off by default. The SELinux check runs `getenforce` in a verified root shell and only reads the current status.
 
-Choose from **13 launcher icons** under **Settings → Theme → App icon**, including the original blue stock icon, Material color variants, Orbit, Circuit, Prism, Pixel, Terminal, and Solar. [Preview the icon collection](docs/assets/app-icons.svg). Launcher icon choices are saved separately from theme resets.
+See the [upstream guide](docs/UPSTREAM.md#operation-modes) for device requirements and limitations.
 
-Released under [Apache License 2.0](LICENSE). The [original project guide](docs/UPSTREAM.md) is preserved for reference.
+</details>
+
+## Credits
+
+Maintained by [faridbtw](https://github.com/faridbtw), based on [VegaBobo/DSU-Sideloader](https://github.com/VegaBobo/DSU-Sideloader). Original blue icon and upstream design by [WSTxda](https://github.com/WSTxda).
+
+The appearance controls reference [KowSU Pro](https://github.com/KOWX712/KernelSU), independently implemented using [Miuix](https://github.com/miuix-kotlin-multiplatform/miuix) (Apache 2.0) and [MaterialKolor](https://github.com/jordond/MaterialKolor) (MIT). Thanks to the upstream contributors and translators.
+
+<p align="center">
+  <a href="LICENSE">Apache License 2.0</a> &nbsp;·&nbsp;
+  <a href="docs/DEVELOPMENT.md">Developer guide</a> &nbsp;·&nbsp;
+  <a href="docs/UPSTREAM.md">Upstream documentation</a>
+</p>

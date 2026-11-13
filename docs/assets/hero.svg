@@ -1,29 +1,22 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="1440" height="440" viewBox="0 0 1440 440" role="img" aria-labelledby="title desc">
-  <title id="title">DSU Sideloader — Design Edition</title>
-  <desc id="desc">A new system. A fresh start. A native Android interface built with Jetpack Compose.</desc>
-  <defs>
-    <linearGradient id="bg" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#161727"/><stop offset="1" stop-color="#242249"/></linearGradient>
-    <linearGradient id="panel" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#b9b4ff" stop-opacity=".35"/><stop offset="1" stop-color="#7771e8" stop-opacity=".08"/></linearGradient>
-    <radialGradient id="glow"><stop stop-color="#7971f2" stop-opacity=".22"/><stop offset="1" stop-color="#7971f2" stop-opacity="0"/></radialGradient>
-  </defs>
-  <rect width="1440" height="440" rx="28" fill="url(#bg)"/>
-  <circle cx="1150" cy="220" r="340" fill="url(#glow)"/>
-  <g fill="none" stroke="#b7b2fc" stroke-opacity=".08"><circle cx="1150" cy="220" r="180"/><circle cx="1150" cy="220" r="260"/><path d="M860 0v440M1040 0v440M1220 0v440M1400 0v440M800 80h640M800 260h640"/></g>
-  <g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
-    <text x="68" y="66" fill="#dedbff" font-size="17" font-weight="700" letter-spacing="3">DSU SIDELOADER</text>
-    <rect x="286" y="46" width="157" height="27" rx="13.5" fill="#b7b1ff" fill-opacity=".12" stroke="#b7b1ff" stroke-opacity=".22"/>
-    <text x="364.5" y="64" text-anchor="middle" fill="#cbc5ff" font-size="10" font-weight="600" letter-spacing="2">DESIGN EDITION</text>
-    <text x="64" y="170" fill="#f4f3ff" font-size="72" font-weight="700" letter-spacing="-3">A new system.</text>
-    <text x="64" y="250" fill="#bab4ff" font-size="72" font-weight="700" letter-spacing="-3">A fresh start.</text>
-    <text x="68" y="302" fill="#b5b6cc" font-size="23">A cleaner way to explore Android.</text>
-    <text x="68" y="391" fill="#8f92ae" font-size="12" font-weight="600" letter-spacing="2.5">NATIVE ANDROID   /   JETPACK COMPOSE   /   LIGHT + DARK</text>
-  </g>
-  <g fill="url(#panel)" stroke="#aaa3ff" stroke-opacity=".55" stroke-width="1.5" stroke-linejoin="round">
-    <path d="M1120 210l180 76-180 80-180-80z"/>
-    <path d="M1120 152l180 76-180 80-180-80z"/>
-    <path d="M1120 94l180 76-180 80-180-80z"/>
-  </g>
-  <path d="M1077 171l30 16 58-28" fill="none" stroke="#e2deff" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
-  <circle cx="1300" cy="170" r="5" fill="#d6d1ff"/>
-  <circle cx="940" cy="286" r="4" fill="#a8e5d2"/>
-</svg>
+<title id="title">DSU Sideloader</title><desc id="desc">Material and Miuix. Your Android, another possibility.</desc>
+<defs><linearGradient id="bg" x2="1" y2="1"><stop stop-color="#201A30"/><stop offset="1" stop-color="#33234E"/></linearGradient></defs>
+<rect width="1440" height="440" rx="32" fill="url(#bg)"/>
+<circle cx="1250" cy="60" r="270" fill="#BBA4EF" opacity=".06"/>
+<circle cx="1190" cy="350" r="210" fill="#CFBEF5" opacity=".06"/>
+<g font-family="-apple-system,BlinkMacSystemFont,Segoe UI,Arial,sans-serif">
+<rect x="64" y="54" width="200" height="32" rx="16" fill="#CEBEF3" opacity=".14"/>
+<text x="164" y="75" text-anchor="middle" fill="#D9CBF6" font-size="12" font-weight="600" letter-spacing="2">MATERIAL + MIUIX</text>
+<text x="60" y="182" fill="#F5EFFD" font-size="78" font-weight="700" letter-spacing="-3">DSU Sideloader</text>
+<text x="64" y="244" fill="#C9B9E8" font-size="29">Your Android, another possibility.</text>
+<text x="66" y="325" fill="#A99BBC" font-size="18">System images. A clearer workspace. Your style.</text>
+<text x="66" y="386" fill="#A99BBC" font-size="12" letter-spacing="2.5">ANDROID 10+    /    OPEN SOURCE    /    MADE YOURS</text>
+</g>
+<g transform="translate(1010 100) rotate(-8 120 120)">
+<rect width="240" height="240" rx="64" fill="#EADDFF"/>
+<g transform="scale(2.22)">
+<path fill="#B8A3E8" d="M38 30H62Q70 30 70 38V62Q70 70 62 70H38Q30 70 30 62V38Q30 30 38 30Z"/>
+<rect x="37" y="37" width="24" height="4" rx="2" fill="#6750A4"/>
+<path fill="#6750A4" d="M48 40H70Q78 40 78 48V70Q78 78 70 78H48Q40 78 40 70V48Q40 40 48 40Z"/>
+<path fill="none" stroke="white" stroke-width="4.5" stroke-linecap="round" stroke-linejoin="round" d="M58 48V64M51 57L58 64L65 57"/>
+</g></g></svg>
