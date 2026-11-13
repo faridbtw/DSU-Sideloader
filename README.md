@@ -14,7 +14,6 @@
 <p align="center">
   <a href="https://github.com/faridbtw/DSU-Sideloader/releases">All releases</a> &nbsp;·&nbsp;
   <a href="#get-started">Get started</a> &nbsp;·&nbsp;
-  <a href="#make-it-yours">Customization</a> &nbsp;·&nbsp;
   <a href="https://github.com/faridbtw/DSU-Sideloader/issues">Report an issue</a>
 </p>
 
@@ -49,16 +48,6 @@ A compatible GSI, dynamic partitions, and usually an unlocked bootloader are req
 Release APKs use this fork’s debug signing key. They can update matching previously supplied APKs. The original upstream app uses a different key; back up anything you need before replacing it. The upstream in-app updater is disabled in this fork. Download updates from this repository’s [Releases](https://github.com/faridbtw/DSU-Sideloader/releases).
 
 </details>
-
-## Make it yours
-
-Open **Settings → UI Style** to choose Material or Miuix. Under **Theme**, you can change the mode, enable Monet, choose a key color, select one of nine palette styles, and toggle the Home–Settings animation. Monet is off by default.
-
-**Settings → Theme → App icon** offers 13 choices. Keep the original blue icon, pick a Material color variant, or try Orbit, Circuit, Prism, Pixel, Terminal, or Solar. Icon choices survive theme resets.
-
-<p align="center">
-  <img src="docs/assets/app-icons.svg" alt="Thirteen DSU launcher icons, including the original blue icon and Material-style designs" width="640">
-</p>
 
 <details>
 <summary><strong>Operation modes</strong></summary>
