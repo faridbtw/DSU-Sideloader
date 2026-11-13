@@ -15,7 +15,6 @@
 </p>
 
 <p align="center">
-  <a href="#screenshots">Screenshots</a> &nbsp;·&nbsp;
   <a href="#get-a-build">Get a build</a> &nbsp;·&nbsp;
   <a href="#quick-start">Quick start</a> &nbsp;·&nbsp;
   <a href="#build-from-source">Build from source</a>
@@ -33,26 +32,13 @@ Choose an image, adjust the options you need, and follow the installation. This 
 
 Switch between Material and the actual Miuix component library under **Settings → Appearance → Interface style**. Miuix supplies native cards, buttons, switches, text fields, top bars, dialogs, and dropdowns. Home and Settings are available from a floating dock, with saved tab state and a horizontal slide between tabs. Disable **Theme → Scroll animation** for instant switching. Settings follows KowSU Pro’s grouped cards, leading icons, navigation arrows, native switches, and collapsing large header. The **Theme** page has a live miniature workspace preview and direct mode tabs. Miuix uses compact color dropdowns with animated expansion; Material uses a horizontal strip of tonal swatches. Monet is off by default and can be enabled in Theme settings. Configure Monet, key color, nine palette variants, and the 2021/2025 color specifications there. Unsupported 2025 palettes use 2021 while retaining your saved choice.
 
-## Screenshots
-
-Captured on a **OnePlus PJZ110**, running this fork (`2.03-design.1`). The options screen shows a sample 4 GB userdata allocation.
-
-<table>
-  <tr>
-    <td align="center"><strong>Light workspace</strong><br><br><img src="docs/screenshots/home-light.png" alt="DSU Sideloader redesigned home screen in light mode" width="260"></td>
-    <td align="center"><strong>Dark workspace</strong><br><br><img src="docs/screenshots/home-dark.png" alt="DSU Sideloader redesigned home screen in dark mode" width="260"></td>
-  </tr>
-  <tr>
-    <td align="center"><strong>Installation options</strong><br><br><img src="docs/screenshots/options.png" alt="Expandable userdata and system image allocation controls" width="260"></td>
-    <td align="center"><strong>Settings</strong><br><br><img src="docs/screenshots/settings.png" alt="DSU Sideloader settings and operation mode" width="260"></td>
-  </tr>
-</table>
-
 ## Get a build
 
-**[Open Android builds →](https://github.com/faridbtw/DSU-Sideloader/actions/workflows/android.yml)**
+**[Download Dsu-Sideloader.apk →](https://github.com/faridbtw/DSU-Sideloader/releases/latest/download/Dsu-Sideloader.apk)**
 
-Choose a successful `master` run and download **DSU-Sideloader-redesign** from its **Artifacts** section. Extract the ZIP and install `app-debug.apk`. GitHub requires you to sign in to download workflow artifacts.
+The latest release contains the signed APK for this design fork. Download **Dsu-Sideloader.apk** and install it on your phone.
+
+Development builds are also available from [Android CI](https://github.com/faridbtw/DSU-Sideloader/actions/workflows/android.yml). Choose a successful `master` run and download **DSU-Sideloader-redesign** from its **Artifacts** section. GitHub requires sign-in for workflow artifacts.
 
 These are debug builds of this fork. They use the same package ID as the original app and a different signing key, so back up anything you need before uninstalling the original. The upstream F-Droid listing and upstream releases contain the original interface. The upstream in-app updater is disabled in this fork.
 
@@ -66,7 +52,7 @@ You need **Android 10 or newer**, a device with **dynamic partitions**, an **unl
 4. Tap **Install**, review the confirmation, and follow the prompts for your operation mode.
 5. When installation completes, use the app or Android’s DSU notification to boot the image.
 
-Device support determines whether a GSI can install and boot. Successful builds and interface screenshots do not verify GSI boot compatibility. A normal reboot returns to the original system unless sticky mode is enabled.
+Device support determines whether a GSI can install and boot. Successful builds do not verify GSI boot compatibility. A normal reboot returns to the original system unless sticky mode is enabled.
 
 <details>
 <summary><strong>Which operation mode will the app use?</strong></summary>
